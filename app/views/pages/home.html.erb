@@ -1,2 +1,14 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class='wrapper'>
+  <div class="banner d-flex align-items-center vh-100" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(<%= image_path "banner.jpg" %>);">
+    <div class="container text-align">
+      <div class="body-banner">
+        <h1>COOKING LAB</h1>
+        <p>The place <span class="background-yellow">to eat</span></p>
+        <div class="connexion-bar">
+        <%= link_to 'Sign up', new_user_registration_path, class: 'btn' %>
+        <%= link_to 'Log in', new_user_session_path, class: 'btn' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
