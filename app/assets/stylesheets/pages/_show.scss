@@ -1,0 +1,151 @@
+.recipe-header {
+  position: relative
+}
+
+.recipe-photo {
+  background-image: url(https://platedcravings.com/wp-content/uploads/2017/08/Moist-Lemon-Cake-Recipe-Plated-Cravings-5-640x854.jpg);
+  background-size: cover;
+  height: 80vh;
+  width: 100%;
+  min-height: 500px;
+  position: relative;
+}
+
+.recipe-title-card {
+  background-color: $white;
+  padding: 15px 20px;
+
+  h5 {
+    margin-bottom: 0;
+  }
+}
+
+@media(min-width: 992px) {
+  .recipe-title-card {
+    position: absolute;
+    right: 0;
+    top: 55%;
+    width: 40%;
+  }
+  .recipe-photo {
+    width: 75%;
+  }
+}
+
+.tags-list {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  span {
+    background-color: $white;
+    padding: 5px 10px;
+    margin-right: 10px
+  }
+}
+
+.recipe-date {
+  position: absolute;
+  bottom: 0;
+  right: 15px;
+  line-height: 1;
+}
+
+.recipe-division {
+  padding: 20px 15px;
+  margin: 15px 0;
+  background-color: $white;
+  border-bottom: 2px dotted $primary;
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.recipe-description {
+}
+
+.author {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  h5 {
+    margin-bottom: 0;
+  }
+
+  .author-name {
+    margin-right: 10px;
+  }
+}
+
+.timing {
+  p {
+    margin-bottom: 0;
+  }
+}
+
+table {
+  width: 100%;
+}
+.amount {
+  width: 25%;
+}
+
+.step {
+  margin-top: 30px;
+  border-bottom: 2px solid $primary;
+  &:last-of-type {
+    border-bottom: none;
+  }
+  padding-bottom: 20px;
+}
+
+.recipe-variants {
+  padding: 15px 15px;
+  margin: 10px 0;
+  background-color: $secondary;
+  .tags-variants {
+    display: flex;
+    flex-wrap: wrap;
+    span {
+      padding: 5px 10px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+    span.background-white {
+      background-color: $white;
+    }
+    span.active {
+      border: 2px dotted $primary;
+    }
+  }
+
+}
+
+.variant-card {
+  background-color: $white;
+  padding: 15px 15px;
+  margin: 15px 0;
+  &:last-of-type {
+    margin: 15px 0 0 0;
+  }
+  span.variant-span {
+    background-color: $secondary;
+  }
+}
+
+.variant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items : center;
+  text-align: left;
+}
+
+.add-variant {
+  opacity: 0.5;
+  margin-left: 10px;
+  text-align: center;
+  &:hover {
+    transition-duration: 250ms;
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
