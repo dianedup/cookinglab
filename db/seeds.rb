@@ -53,6 +53,7 @@ sans_gluten = Tag.create!(name: "sans gluten")
 sans_lactose = Tag.create!(name: "sans lactose")
 vegan = Tag.create!(name: "vegan")
 plus_rapide = Tag.create!(name: "plus rapide")
+version_mini = Tag.create!(name: "version mini")
 
 puts 'Creating new users'
 thierry  = User.create!(first_name: "thierry", last_name: "de azevedo", email: "tda@cuisine.com", password: "azerty", avatar: File.open(Rails.root.join('db/fixtures/avatars/thierry.jpg')))
@@ -68,7 +69,7 @@ tajine_poulet_citron_confits = Recipe.create!(photo: File.open(Rails.root.join('
 puts 'Creating steps'
 cake_citron_graines_pavot_step_1 = Step.create!(recipe: cake_citron_graines_pavot, position: 1, content: "Dans un bol, battre vivement le beurre et le sucre jusqu’à obtenir un mélange crémeux. Ajouter ensuite les ingrédients restants dans l’ordre et bien mélanger entre chaque ajout. Verser la préparation dans un moule à cake beurré. Enfourner dans un four préchauffé à 180°C et cuire 40 à 45mn (jusqu’à ce que la lame d’un couteau ressorte propre).  - Laisser le cake tiédir 10mn sans le démouler.")
 cake_citron_graines_pavot_step_2 = Step.create!(recipe: cake_citron_graines_pavot, position: 2, content: "Pendant ce temps, mélanger les ingredients du 1er glaçage : 80g de sucre glace et le jus d'un demi citron, on doit obtenir un mélange plutôt liquide. Piquer le cake avec le couteau et verser doucement ce glaçage sur le dessus du cake toujours dans son moule pour l'imbiber. Laisser le cake absorber le glaçage et refroidir pendant environ 20 min.")
-cake_citron_graines_pavot_step_3 = Step.create!(recipe: cake_citron_graines_pavot, position: 3, content: "Démouler ensuite le cake et le poser sur une grille à pâtisserie. Mélanger les ingrédients du 2e glaçage : 150g de sucre glace et le jus d’un demi citron, on doit il obtenir un mélange pas trop liquide et bien blanc (ajouter un peu de sucre glace si il est trop liquide). Verser doucement la moitié du glaçage blanc sur le dessus du cake, étaler jusqu’aux bords avec une spatule. Verser ensuite le reste du glaçage blanc sur le dessus du cake et le laisser couler sur les bords. Parsemer immédiatement de graines de pavots et de zeste de citron pour décorer le glaçage. Laisser ensuite le glaçage figer 12h sur la grille à pâtisserie sans le toucher.")
+cake_citron_graines_pavot_step_3 = Step.create!(recipe: cake_citron_graines_pavot, position: 3, content: "Démouler ensuite le cake et le poser sur une grille à pâtisserie. Mélanger les ingrédients du 2e glaçage : 150g de sucre glace et le jus d’un demi citron, on doit il obtenir un mélange pas trop liquide et bien blanc (ajouter un peu de sucre glace si il est trop liquide). Verser doucement la moitié du glaçage blanc sur le dessus du cake, étaler jusqu’aux bords avec une spatule. Verser ensuite le reste du glaçage blanc sur le dessus du cake et le laisser couler sur les bords. Parsemer immédiatement de graines de pavots et de zestes de citron pour décorer le glaçage. Laisser ensuite le glaçage figer 12h sur la grille à pâtisserie sans le toucher.")
 
 puts 'Creating doses'
 Dose.create!(step: cake_citron_graines_pavot_step_1, ingredient: beurre, quantity: 100, unit: 'g')
@@ -113,12 +114,12 @@ RecipeTag.create!(recipe: cake_citron_graines_pavot, tag: allegee)
 ################################################################################
 
 puts 'Creating recipe variant 1'
-cake_citron_graines_pavot_variant_1    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/cake_citron_pavot.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Sans lactose", description: "J'aime beaucoup la recette de cake au citron et graines de pavot de Diane et j'ai voulu la tenter sans lactose. Un vrai délice aussi pour les allergiques !", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, user: matthias, original_recipe: cake_citron_graines_pavot)
+cake_citron_graines_pavot_variant_1    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/cake_citron_pavot_sans_lactose.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Sans lactose", description: "J'aime beaucoup la recette de cake au citron et graines de pavot de Diane et j'ai voulu la tenter sans lactose. Un vrai délice aussi pour les allergiques !", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, user: matthias, original_recipe: cake_citron_graines_pavot)
 
 
 cake_citron_graines_pavot_variant_1_step_1 = Step.create!(recipe: cake_citron_graines_pavot_variant_1, position: 1, content: "Dans un bol, battre vivement le beurre végétal (d'amande, de noix de cajou, ou de noisette) et le sucre jusqu’à obtenir un mélange crémeux. Ajouter ensuite les ingrédients restants dans l’ordre et bien mélanger entre chaque ajout. Verser la préparation dans un moule à cake beurré. Enfourner dans un four préchauffé à 180°C et cuire 40 à 45mn (jusqu’à ce que la lame d’un couteau ressorte propre).  - Laisser le cake tiédir 10mn sans le démouler.")
 cake_citron_graines_pavot_variant_1_step_2 = Step.create!(recipe: cake_citron_graines_pavot_variant_1, position: 2, content: "Pendant ce temps, mélanger les ingredients du 1er glaçage : 80g de sucre glace et le jus d'un demi citron, on doit obtenir un mélange plutôt liquide. Piquer le cake avec le couteau et verser doucement ce glaçage sur le dessus du cake toujours dans son moule pour l'imbiber. Laisser le cake absorber le glaçage et refroidir pendant environ 20 min.")
-cake_citron_graines_pavot_variant_1_step_3 = Step.create!(recipe: cake_citron_graines_pavot_variant_1, position: 3, content: "Démouler ensuite le cake et le poser sur une grille à pâtisserie. Mélanger les ingrédients du 2e glaçage : 150g de sucre glace et le jus d’un demi citron, on doit il obtenir un mélange pas trop liquide et bien blanc (ajouter un peu de sucre glace si il est trop liquide). Verser doucement la moitié du glaçage blanc sur le dessus du cake, étaler jusqu’aux bords avec une spatule. Verser ensuite le reste du glaçage blanc sur le dessus du cake et le laisser couler sur les bords. Parsemer immédiatement de graines de pavots et de zeste de citron pour décorer le glaçage. Laisser ensuite le glaçage figer 12h sur la grille à pâtisserie sans le toucher.")
+cake_citron_graines_pavot_variant_1_step_3 = Step.create!(recipe: cake_citron_graines_pavot_variant_1, position: 3, content: "Démouler ensuite le cake et le poser sur une grille à pâtisserie. Mélanger les ingrédients du 2e glaçage : 150g de sucre glace et le jus d’un demi citron, on doit il obtenir un mélange pas trop liquide et bien blanc (ajouter un peu de sucre glace si il est trop liquide). Verser doucement la moitié du glaçage blanc sur le dessus du cake, étaler jusqu’aux bords avec une spatule. Verser ensuite le reste du glaçage blanc sur le dessus du cake et le laisser couler sur les bords. Parsemer immédiatement de graines de pavots et de zestes de citron pour décorer le glaçage. Laisser ensuite le glaçage figer 12h sur la grille à pâtisserie sans le toucher.")
 
 
 Dose.create!(step: cake_citron_graines_pavot_variant_1_step_1, ingredient: beurre_vegetal, quantity: 100, unit: 'g')
@@ -166,11 +167,11 @@ RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_1, tag: vegan)
 ################################################################################
 
 puts 'Creating recipe variant 2'
-cake_citron_graines_pavot_variant_2    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/cake_citron_pavot.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Sans lactose", description: "Super recette, merci Diane, et moi je préfère cette version sans gluten. Goutez-y, vous verrez c'est super bon !", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, user: melanie, original_recipe: cake_citron_graines_pavot)
+cake_citron_graines_pavot_variant_2    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/cake_citron_pavot_sans_gluten.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Sans gluten", description: "Super recette, merci Diane, et moi je préfère cette version sans gluten. Goutez-y, vous verrez c'est super bon !", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, user: melanie, original_recipe: cake_citron_graines_pavot)
 
 cake_citron_graines_pavot_variant_2_step_1 = Step.create!(recipe: cake_citron_graines_pavot_variant_2, position: 1, content: "Dans un bol, battre vivement le beurre et le sucre jusqu’à obtenir un mélange crémeux. Ajouter ensuite les ingrédients restants dans l’ordre et bien mélanger entre chaque ajout. Je vous recommande ici la farine de riz qui donnera une bonne texture au cake. Verser la préparation dans un moule à cake beurré. Enfourner dans un four préchauffé à 180°C et cuire 40 à 45mn (jusqu’à ce que la lame d’un couteau ressorte propre).  - Laisser le cake tiédir 10mn sans le démouler.")
 cake_citron_graines_pavot_variant_2_step_2 = Step.create!(recipe: cake_citron_graines_pavot_variant_2, position: 2, content: "Pendant ce temps, mélanger les ingredients du 1er glaçage : 80g de sucre glace et le jus d'un demi citron, on doit obtenir un mélange plutôt liquide. Piquer le cake avec le couteau et verser doucement ce glaçage sur le dessus du cake toujours dans son moule pour l'imbiber. Laisser le cake absorber le glaçage et refroidir pendant environ 20 min.")
-cake_citron_graines_pavot_variant_2_step_3 = Step.create!(recipe: cake_citron_graines_pavot_variant_2, position: 3, content: "Démouler ensuite le cake et le poser sur une grille à pâtisserie. Mélanger les ingrédients du 2e glaçage : 150g de sucre glace et le jus d’un demi citron, on doit il obtenir un mélange pas trop liquide et bien blanc (ajouter un peu de sucre glace si il est trop liquide). Verser doucement la moitié du glaçage blanc sur le dessus du cake, étaler jusqu’aux bords avec une spatule. Verser ensuite le reste du glaçage blanc sur le dessus du cake et le laisser couler sur les bords. Parsemer immédiatement de graines de pavots et de zeste de citron pour décorer le glaçage. Laisser ensuite le glaçage figer 12h sur la grille à pâtisserie sans le toucher.")
+cake_citron_graines_pavot_variant_2_step_3 = Step.create!(recipe: cake_citron_graines_pavot_variant_2, position: 3, content: "Démouler ensuite le cake et le poser sur une grille à pâtisserie. Mélanger les ingrédients du 2e glaçage : 150g de sucre glace et le jus d’un demi citron, on doit il obtenir un mélange pas trop liquide et bien blanc (ajouter un peu de sucre glace si il est trop liquide). Verser doucement la moitié du glaçage blanc sur le dessus du cake, étaler jusqu’aux bords avec une spatule. Verser ensuite le reste du glaçage blanc sur le dessus du cake et le laisser couler sur les bords. Parsemer immédiatement de graines de pavots et de zestes de citron pour décorer le glaçage. Laisser ensuite le glaçage figer 12h sur la grille à pâtisserie sans le toucher.")
 
 Dose.create!(step: cake_citron_graines_pavot_variant_2_step_1, ingredient: beurre, quantity: 100, unit: 'g')
 Dose.create!(step: cake_citron_graines_pavot_variant_2_step_1, ingredient: sucre, quantity: 150, unit: 'g')
@@ -208,6 +209,53 @@ StepUtensil.create!(step: cake_citron_graines_pavot_variant_2_step_3, utensil: g
 
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_2, tag: allegee)
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_2, tag: sans_gluten)
+
+################################################################################
+# VARIANT 3
+################################################################################
+
+puts 'Creating recipe variant 3'
+cake_citron_graines_pavot_variant_3    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/mini_cakes_au_citron.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Version mini et sans graines de pavot", description: "Et voici un version mini, à partager et à emporter ! Et comme je ne suis pas très graines de pavot, j'ai fait sans.", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, user: thierry, original_recipe: cake_citron_graines_pavot)
+
+cake_citron_graines_pavot_variant_3_step_1 = Step.create!(recipe: cake_citron_graines_pavot_variant_3, position: 1, content: "Dans un bol, battre vivement le beurre et le sucre jusqu’à obtenir un mélange crémeux. Ajouter ensuite les ingrédients restants dans l’ordre et bien mélanger entre chaque ajout. Verser la préparation dans un moule à cake beurré. Enfourner dans un four préchauffé à 180°C et cuire 40 à 45mn (jusqu’à ce que la lame d’un couteau ressorte propre).  - Laisser le cake tiédir 10mn sans le démouler.")
+cake_citron_graines_pavot_variant_3_step_2 = Step.create!(recipe: cake_citron_graines_pavot_variant_3, position: 2, content: "Pendant ce temps, mélanger les ingredients du 1er glaçage : 80g de sucre glace et le jus d'un demi citron, on doit obtenir un mélange plutôt liquide. Piquer le cake avec le couteau et verser doucement ce glaçage sur le dessus du cake toujours dans son moule pour l'imbiber. Laisser le cake absorber le glaçage et refroidir pendant environ 20 min.")
+cake_citron_graines_pavot_variant_3_step_3 = Step.create!(recipe: cake_citron_graines_pavot_variant_3, position: 3, content: "Démouler ensuite le cake et le poser sur une grille à pâtisserie. Mélanger les ingrédients du 2e glaçage : 150g de sucre glace et le jus d’un demi citron, on doit il obtenir un mélange pas trop liquide et bien blanc (ajouter un peu de sucre glace si il est trop liquide). Verser doucement la moitié du glaçage blanc sur le dessus du cake, étaler jusqu’aux bords avec une spatule. Verser ensuite le reste du glaçage blanc sur le dessus du cake et le laisser couler sur les bords. Parsemer de zestes de citron pour décorer le glaçage. Laisser ensuite le glaçage figer 12h sur la grille à pâtisserie sans le toucher.")
+
+Dose.create!(step: cake_citron_graines_pavot_variant_3_step_1, ingredient: beurre, quantity: 100, unit: 'g')
+Dose.create!(step: cake_citron_graines_pavot_variant_3_step_1, ingredient: sucre, quantity: 150, unit: 'g')
+Dose.create!(step: cake_citron_graines_pavot_variant_3_step_1, ingredient: oeuf, quantity: 2)
+Dose.create!(step: cake_citron_graines_pavot_variant_3_step_1, ingredient: citron, unit: 'zeste')
+Dose.create!(step: cake_citron_graines_pavot_variant_3_step_1, ingredient: jus_citron, quantity: 10, unit: 'cl')
+Dose.create!(step: cake_citron_graines_pavot_variant_3_step_1, ingredient: farine_riz, quantity: 200, unit: 'g')
+Dose.create!(step: cake_citron_graines_pavot_variant_3_step_1, ingredient: levure_chimique, quantity: 1, unit: 'sachet')
+Dose.create!(step: cake_citron_graines_pavot_variant_3_step_1, ingredient: sel, quantity: 2, unit: 'pincée')
+Dose.create!(step: cake_citron_graines_pavot_variant_3_step_1, ingredient: lait, quantity: 5, unit: 'cl')
+
+Dose.create!(step: cake_citron_graines_pavot_variant_3_step_2, ingredient: sucre_glace, quantity: 80, unit: 'g')
+Dose.create!(step: cake_citron_graines_pavot_variant_3_step_2, ingredient: jus_citron, quantity: 5, unit: 'cl')
+
+Dose.create!(step: cake_citron_graines_pavot_variant_3_step_3, ingredient: sucre_glace, quantity: 150, unit: 'g')
+Dose.create!(step: cake_citron_graines_pavot_variant_3_step_3, ingredient: jus_citron, quantity: 5, unit: 'cl')
+
+
+StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_1, utensil: bol)
+StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_1, utensil: fouet)
+StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_1, utensil: moule)
+StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_1, utensil: four)
+StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_1, utensil: couteau)
+
+StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_2, utensil: fouet)
+StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_2, utensil: bol)
+StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_2, utensil: couteau)
+
+StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_3, utensil: fouet)
+StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_3, utensil: bol)
+StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_3, utensil: spatule)
+StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_3, utensil: grille_a_patisserie)
+
+
+RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_3, tag: allegee)
+RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_3, tag: version_mini)
 
 
 puts 'Finished!'
