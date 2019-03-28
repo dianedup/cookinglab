@@ -5,5 +5,10 @@ class RecipesControllerTest < ActionDispatch::IntegrationTest
     get recipes_index_url
     assert_response :success
   end
+  
+  test "should get show" do
+    get recipes_show_url
+    assert_response :success
+  end
 
 end

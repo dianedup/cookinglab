@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  
   def index
     if params[:query].present?
       sql_query = " \
@@ -8,5 +9,7 @@ class RecipesController < ApplicationController
     else
       @recipes = Recipe.all
     end
+  end
+  def show
   end
 end
