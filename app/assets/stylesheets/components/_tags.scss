@@ -1,0 +1,26 @@
+.tags-list {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  span {
+    background-color: $white;
+    padding: 5px 10px;
+    margin-right: 10px;
+  }
+}
+
+.tags-variants {
+  display: flex;
+  flex-wrap: wrap;
+  span {
+    padding: 5px 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  span.background-white {
+    background-color: $white;
+  }
+  span.active {
+    border: 2px dotted $primary;
+  }
+}

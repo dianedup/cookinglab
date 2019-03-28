@@ -9,8 +9,8 @@ $headers-font: "Brown-Bold";
 @font-face {
   font-family: "Brown-Bold";
   src: font-url('Brown-Bold.ttf');
-  src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
-       font-url('FontFile.woff') format('woff'),
-       font-url('FontFile.ttf') format('truetype')
+  // src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
+  //      font-url('FontFile.woff') format('woff'),
+  //      font-url('FontFile.ttf') format('truetype')
 }
 $my-font: "Brown-Bold";
