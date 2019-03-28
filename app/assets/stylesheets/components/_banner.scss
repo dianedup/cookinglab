@@ -1,0 +1,18 @@
+.banner {
+  height: 600px;
+  background-size: cover;
+  height: 100vh;
+  color: white;
+}
+
+.body-banner {
+  h1 {
+    font-size: 80px;
+  }
+  p {
+    font-size: 30px;
+    span {
+        background-color: $middle_yellow;
+      }
+  }
+}
