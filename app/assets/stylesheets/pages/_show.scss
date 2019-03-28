@@ -13,7 +13,7 @@
 
 .recipe-title-card {
   background-color: $white;
-  padding: 15px 20px;
+  padding: 20px 25px;
 
   h5 {
     margin-bottom: 0;
@@ -28,7 +28,7 @@
     width: 40%;
   }
   .recipe-photo {
-    width: 75%;
+    width: 80%;
   }
 }
 
@@ -39,7 +39,7 @@
   span {
     background-color: $white;
     padding: 5px 10px;
-    margin-right: 10px
+    margin-right: 10px;
   }
 }
 
@@ -100,7 +100,7 @@ table {
 
 .recipe-variants {
   padding: 15px 15px;
-  margin: 10px 0;
+  margin: 15px 0;
   background-color: $secondary;
   .tags-variants {
     display: flex;
@@ -140,12 +140,21 @@ table {
 }
 
 .add-variant {
-  opacity: 0.5;
+  opacity: 0.7;
   margin-left: 10px;
   text-align: center;
+  display: flex;
+  justify-content: center;
   &:hover {
     transition-duration: 250ms;
     transform: scale(1.05);
     opacity: 1;
+  }
+  span {
+    line-height: 1;
+    background-color: #FEF475;
+    padding: 3px 7px;
+    border-radius: 50%;
+    margin-right: 15px;
   }
 }
