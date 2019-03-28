@@ -32,17 +32,6 @@
   }
 }
 
-.tags-list {
-  position: absolute;
-  bottom: 10px;
-  left: 15px;
-  span {
-    background-color: $white;
-    padding: 5px 10px;
-    margin-right: 10px;
-  }
-}
-
 .recipe-date {
   position: absolute;
   bottom: 0;
@@ -58,9 +47,6 @@
   &:last-of-type {
     border-bottom: none;
   }
-}
-
-.recipe-description {
 }
 
 .author {
@@ -102,22 +88,6 @@ table {
   padding: 15px 15px;
   margin: 15px 0;
   background-color: $secondary;
-  .tags-variants {
-    display: flex;
-    flex-wrap: wrap;
-    span {
-      padding: 5px 10px;
-      margin-right: 10px;
-      margin-bottom: 10px;
-    }
-    span.background-white {
-      background-color: $white;
-    }
-    span.active {
-      border: 2px dotted $primary;
-    }
-  }
-
 }
 
 .variant-card {
