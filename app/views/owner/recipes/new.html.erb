@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-sm form-basics">
-      <h2 class="mt-3 text-center">Créer une nouvelle recette</h2>
-      <%= simple_form_for @recipe do |f| %>
+      <h1 class="mt-3 text-center mb-5">Créer une nouvelle recette</h1>
+      <%= simple_form_for [:owner, @recipe] do |f| %>
       <div class="form-row">
         <div class="col-sm-12 col-md-6">
           <%= f.input :title, label: 'Titre de votre recette'%>
@@ -27,11 +27,21 @@
       </div>
       <div class="form-row">
         <div class="col-sm-12">
-          <%= f.input :description, as: :text %>
+          <div class="text-area-description">
+          <%= f.input :description, as: :text, label: "Ajouter un commentaire à votre recette"%>
+          </div>
         </div>
       </div>
-      <%= f.submit "Etape suivante", class: "btn btn-primary" %>
+       <%= f.submit "Etape suivante", class: "btn btn-info" %>
       <% end %>
     </div>
   </div>
+</div>
+
+<div class="quote-icon-open">
+  <i class="fas fa-quote-left"></i>
+</div>
+
+<div class="quote-icon-close">
+  <i class="fas fa-quote-right"></i>
 </div>

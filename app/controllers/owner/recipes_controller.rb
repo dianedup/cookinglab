@@ -1,12 +1,15 @@
 class Owner::RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
-    # @tags = Tag.all
   end
 
   def create
     @recipe = Recipe.new(params_recipe)
-    @recipe.save
+    if @recipe.save
+      redirect_to edit_owner_recipe_path(@recipe)
+    else
+      render :new
+    end
   end
 
   private
