@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="search-box">
+    <h2>Nos recettes originales</h2>
+    <%= form_tag recipes_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control search-bar",
+        placeholder: "Filter by title"
+      %>
+    <% end %>
+  </div>
+  <div class="row">
+    <%# @recipes.each do |recipe| %>
+      <%#= link_to recipe_path(recipe.id), class: 'index-link' do %>
+      <div class= "col-sm-12 col-md-6 col-lg-4">
+        <div class="card-recipe">
+
+          <div class="card-recipe-image" style="background-image: url('https://images.unsplash.com/photo-1516705084646-81d84767d4c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1652&q=80')">
+            <div class="card-recipe-title">
+              <h2>Muesli Suisse</h2>
+            </div>
+          <!-- <div class="card-recipe-image" style="background-image: url('<%#= cl_image_path recipe.photo %>')"> -->
+            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-bordered avatar-in-card" %>
+            <span class="variant-count">variantes</span>
+          </div>
+          <div class="card-recipe-description">
+            <p>"Vous pouvez préparer le muesli la veille au soir et le laisser reposer toute la nuit. Dans ce cas, mettez-le dans un récipient refermable et stockez-le au réfrigérateur."</p>
+          </div>
+        </div>
+      </div>
+    <%# end %>
+      <div class= "col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="card-recipe">
+
+          <div class="card-recipe-image" style="background-image: url('https://images.unsplash.com/reserve/YFdIoUsRJCAehcoUnQaS_Straw.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1647&q=80')">
+            <div class="card-recipe-title">
+              <h2>Muesli avec fruits</h2>
+            </div>
+          <!-- <div class="card-recipe-image" style="background-image: url('<%#= cl_image_path recipe.photo %>')"> -->
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-bordered avatar-in-card" %>
+          <span class="variant-count">variantes</span>
+          </div>
+          <div class="card-recipe-description">
+            <p>"Vous pouvez préparer le muesli la veille au soir et le laisser reposer toute la nuit. Dans ce cas, mettez-le dans un récipient refermable et stockez-le au réfrigérateur."</p>
+          </div>
+        </div>
+      </div>
+      <div class= "col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="card-recipe">
+
+          <div class="card-recipe-image" style="background-image: url('https://images.unsplash.com/photo-1505253827648-b4de98bc66b4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=929&q=80')">
+            <div class="card-recipe-title">
+              <h2>Muesli au chocolat</h2>
+            </div>
+          <!-- <div class="card-recipe-image" style="background-image: url('<%#= cl_image_path recipe.photo %>')"> -->
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-bordered avatar-in-card" %>
+          <span class="variant-count">variantes</span>
+          </div>
+          <div class="card-recipe-description">
+            <p>"Vous pouvez préparer le muesli la veille au soir et le laisser reposer toute la nuit. Dans ce cas, mettez-le dans un récipient refermable et stockez-le au réfrigérateur."</p>
+          </div>
+        </div>
+      </div>
+      <div class= "col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="card-recipe">
+
+          <div class="card-recipe-image" style="background-image: url('https://images.unsplash.com/photo-1502747220144-846486e80891?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80')">
+            <div class="card-recipe-title">
+              <h2>Muesli classique</h2>
+            </div>
+          <!-- <div class="card-recipe-image" style="background-image: url('<%#= cl_image_path recipe.photo %>')"> -->
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-bordered avatar-in-card" %>
+          <span class="variant-count">variantes</span>
+          </div>
+          <div class="card-recipe-description">
+            <p>"Vous pouvez préparer le muesli la veille au soir et le laisser reposer toute la nuit. Dans ce cas, mettez-le dans un récipient refermable et stockez-le au réfrigérateur."</p>
+          </div>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
