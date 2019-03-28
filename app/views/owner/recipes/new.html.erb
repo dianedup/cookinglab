@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm form-basics">
+      <h2 class="mt-3 text-center">Create à new recipe</h2>
+      <%= simple_form_for @recipe do |f| %>
+        <div class="form-row">
+          <div class="col-sm-12 col-md-6">
+            <%= f.input :title %>
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <%= f.input :photo %>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-sm-12">
+           <%= f.input :description, as: :text %>
+          </div>
+        </div>
+        <%= f.submit "next step", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
