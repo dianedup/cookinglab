@@ -1,17 +1,3 @@
 // Import page-specific CSS files here.
 @import "home";
-
-.results {
-    margin-top: 25px;
-    margin-bottom: 20px;
-
-  h2 {
-    font-size: 30px;
-    font-weight: lighter;
-  }
-
-  p {
-    font-size: 18px;
-    color: #39454E;
-  }
-}
+@import "index-page"

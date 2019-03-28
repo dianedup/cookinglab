@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="results">
+  <div class="search-box">
     <h2>Nos recettes originales</h2>
     <%= form_tag recipes_path, method: :get do %>
       <%= text_field_tag :query,
@@ -20,8 +20,8 @@
               <h2>Muesli Suisse</h2>
             </div>
           <!-- <div class="card-recipe-image" style="background-image: url('<%#= cl_image_path recipe.photo %>')"> -->
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-bordered avatar-in-card" %>
-          <span class="variant-count">variantes</span>
+            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-bordered avatar-in-card" %>
+            <span class="variant-count">variantes</span>
           </div>
           <div class="card-recipe-description">
             <p>"Vous pouvez préparer le muesli la veille au soir et le laisser reposer toute la nuit. Dans ce cas, mettez-le dans un récipient refermable et stockez-le au réfrigérateur."</p>
