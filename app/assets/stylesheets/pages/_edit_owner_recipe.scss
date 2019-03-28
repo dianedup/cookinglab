@@ -1,0 +1,18 @@
+.edit-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ingredients-list {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+  list-style: none;
+  .ingredients-tags {
+    display: flex;
+    border: #FEF475 solid 1px;
+    padding: 0px 10px;
+    margin: 0px 10px;
+  }
+}

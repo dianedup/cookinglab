@@ -1,0 +1,34 @@
+<div class="container">
+        <div>
+          <center><h4>Editer votre recette</h4></center>
+        </div>
+        <%= simple_form_for @recipe, url: recipe_path(@recipe.id) do |f|%>
+          <div class="form-inputs">
+            <h5>Temps global de la recette</h5>
+            <div class="edit-form temps">
+              <%= f.input :prep_time, label: 'Temps de préparation', placeholder: '20 min', error: 'Le temps de préparation est obligatoire' %>
+              <%= f.input :cook_time, placeholder: '1h30', label: 'Temps de cuisson', error: 'Le temps de cuisson est obligatoire' %>
+              <%= f.input :rest_time, label: 'Temps de repos', placeholder: '5h', error: 'Le temps de repos est obligatoire' %>
+            </div>
+            <div class="">
+              <% @recipe.steps.reverse_each do |step| %>
+              <h5>Etape n°<%= step.position %> de la recette</h5>
+                <ul class="ingredients-list">
+                  <% step.doses.each do |dose| %>
+                    <div class="ingredients-tags">
+                      <li> <%= dose.ingredient.name %> </li>
+                      <button type="button" class="ml-2 mb-1 close" data-dismiss="ingredients-tags" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                  <% end %>
+                </ul>
+              <% end %>
+            </div>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, 'Publier la recette', class: 'btn btn-info' %>
+          </div>
+        <% end %>
+</div>
+
