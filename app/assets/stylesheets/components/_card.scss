@@ -4,14 +4,17 @@
   max-width: 300px;
   height: 400px;
   margin: 60px auto 20px auto;
+  &:hover {
+    transition-duration: 250ms;
+    animation-timing-function: ease-in-out;
+    transform: scale(1.03);
+  }
 }
 
-.index-link {
+.card-link {
   text-decoration: none;
-  color: $primary;
   &:hover {
     text-decoration: none;
-    color: $primary;
   }
 }
 
@@ -35,7 +38,6 @@
   height: 250px;
   background-size: cover;
   background-position: center;
-
 }
 
 .avatar-in-card {
