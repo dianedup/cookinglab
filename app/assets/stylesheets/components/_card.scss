@@ -3,7 +3,7 @@
   background-color: $white;
   max-width: 300px;
   height: 400px;
-  margin: 60px auto 10px auto;
+  margin: 60px auto 20px auto;
 }
 
 .index-link {
@@ -47,7 +47,7 @@
 .variant-count {
   position: absolute;
   font-size: 10px;
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 3px 5px;
   background-color: $secondary;
   right: 20px;
@@ -55,9 +55,19 @@
 
 }
 .card-recipe-description {
-    font-size: 11px;
-    text-align: left;
-    vertical-align: center;
-    height: 80px;
-    padding: 45px 20px;
+  position: relative;
+  font-size: 11px;
+  text-align: left;
+  vertical-align: center;
+  height: 80px;
+  padding: 45px 20px;
+  .cook-time-info {
+    position: absolute;
+    font-size: 10px;
+    border-radius: 2px;
+    padding: 1px 5px;
+    border: 1px solid $primary;
+    right: 20px;
+    bottom: -50px;
+  }
 }
