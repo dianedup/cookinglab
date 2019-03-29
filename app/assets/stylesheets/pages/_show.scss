@@ -3,7 +3,6 @@
 }
 
 .recipe-photo {
-  background-image: url(https://platedcravings.com/wp-content/uploads/2017/08/Moist-Lemon-Cake-Recipe-Plated-Cravings-5-640x854.jpg);
   background-size: cover;
   height: 80vh;
   width: 100%;
@@ -70,11 +69,13 @@
 
 table {
   width: 100%;
+  .dose {
+     vertical-align: top;
+  }
 }
 .amount {
-  width: 25%;
+  width: 30%;
 }
-
 .step {
   margin-top: 30px;
   border-bottom: 2px solid $primary;
