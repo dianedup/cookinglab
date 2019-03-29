@@ -1,34 +1,58 @@
 <div class="container">
-        <div>
-          <center><h4>Editer votre recette</h4></center>
+  <div>
+    <center><h4>Editer votre recette: <%= @recipe.title %></h4></center>
+  </div>
+  <%= simple_form_for @recipe, url: recipe_path(@recipe.id) do |recipe_form|%>
+    <div class="blocs form-inputs">
+      <div class="step-blocs">
+        <h5>Temps global de la recette</h5>
+      </div>
+      <div class="form-temps">
+        <%= recipe_form.input :prep_time, label: 'Temps de préparation', placeholder: '20 min', error: 'Le temps de préparation est obligatoire' %>
+        <%= recipe_form.input :cook_time, placeholder: '1h30', label: 'Temps de cuisson', error: 'Le temps de cuisson est obligatoire' %>
+        <%= recipe_form.input :rest_time, label: 'Temps de repos', placeholder: '5h', error: 'Le temps de repos est obligatoire' %>
+        <%= recipe_form.button :submit, 'Mettre à jour les temps', class: 'btn btn-info btn-doses' %>
+      </div>
+    </div>
+
+  <% end %>
+  <div class="blocs">
+    <% @recipe.steps.reverse_each do |step| %>
+      <div class="step-blocs">
+        <h5>Etape n°<%= step.position %> de la recette</h5>
+      </div>
+      <% if @recipe.steps.empty? %>
+        <%= "recette empty" %>
+      <% else %>
+        <div class="doses-header">
+          <h6>Ingredients</h6>
+          <h6 style="text-align: left">Quantité</h6>
+          <h6>Unité</h6>
+          <h6></h6>
         </div>
-        <%= simple_form_for @recipe, url: recipe_path(@recipe.id) do |f|%>
-          <div class="form-inputs">
-            <h5>Temps global de la recette</h5>
-            <div class="edit-form temps">
-              <%= f.input :prep_time, label: 'Temps de préparation', placeholder: '20 min', error: 'Le temps de préparation est obligatoire' %>
-              <%= f.input :cook_time, placeholder: '1h30', label: 'Temps de cuisson', error: 'Le temps de cuisson est obligatoire' %>
-              <%= f.input :rest_time, label: 'Temps de repos', placeholder: '5h', error: 'Le temps de repos est obligatoire' %>
+        <% step.doses.order(:created_at).each do |dose| %>
+          <%= simple_form_for([:owner, dose]) do |dose_form|%>
+            <div class="dose-ingredients">
+                <p class="ingredient-name">
+                  <%= dose.ingredient.name %>
+                </p>
+                <%= dose_form.input :quantity, label: false %>
+                <%= dose_form.input :unit, label: false %>
+                <%= dose_form.submit 'Mettre à jour', class: "btn btn-info btn-doses" %>
             </div>
-            <div class="">
-              <% @recipe.steps.reverse_each do |step| %>
-              <h5>Etape n°<%= step.position %> de la recette</h5>
-                <ul class="ingredients-list">
-                  <% step.doses.each do |dose| %>
-                    <div class="ingredients-tags">
-                      <li> <%= dose.ingredient.name %> </li>
-                      <button type="button" class="ml-2 mb-1 close" data-dismiss="ingredients-tags" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                      </button>
-                    </div>
-                  <% end %>
-                </ul>
-              <% end %>
-            </div>
-          </div>
-          <div class="form-actions">
-            <%= f.button :submit, 'Publier la recette', class: 'btn btn-info' %>
-          </div>
+          <% end %>
         <% end %>
+        <div class="bloc-description">
+          <%= simple_form_for([:owner, step]) do |content_form|%>
+            <div class="step-content">
+                <h6>Description de l'étape</h6>
+                <%= content_form.input :content, label: false %>
+                <%= content_form.submit 'Mettre à jour la description', class:"btn btn-info btn-doses" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 

@@ -16,3 +16,37 @@
     margin: 0px 10px;
   }
 }
+
+.btn-doses {
+  padding: 0px 10px;
+}
+
+.blocs {
+  margin: 100px 0px;
+}
+
+.step-blocs {
+  margin: 100px 0px 30px 0px;
+}
+
+.doses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+}
+
+.dose-ingredients {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.bloc-description {
+  margin: 30px 0px;
+}
+
+.ingredient-name {
+  width: 100px;
+  text-align: left;
+}

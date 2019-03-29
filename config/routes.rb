@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
     resources :steps, only: [:edit, :update, :destroy]
 
+    resources :doses, only: [:update]
+
     resources :changes_proposals, only: [:show] do
       member do
         patch :accept
