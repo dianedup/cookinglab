@@ -10,3 +10,22 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.logotype {
+  display: flex;
+  align-items: center;
+  .logotype-title {
+    margin-bottom: 0px;
+    margin-top: 5px;
+  }
+}
+
+.partie-gauche {
+  display: flex;
+  align-items: center;
+}
+
+.lien-recettes {
+  margin-top: 17px;
+  margin-left: 60px;
+}
