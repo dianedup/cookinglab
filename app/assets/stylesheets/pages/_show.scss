@@ -86,7 +86,7 @@ table {
 }
 
 .recipe-variants {
-  padding: 15px 15px;
+  padding: 15px 15px 0 15px;
   margin: 15px 0;
   background-color: $secondary;
 }
@@ -94,12 +94,13 @@ table {
 .variant-card {
   background-color: $white;
   padding: 15px 15px;
-  margin: 15px 0;
-  &:last-of-type {
-    margin: 15px 0 0 0;
-  }
   span.variant-span {
     background-color: $secondary;
+  }
+  &:hover {
+    transition-duration: 250ms;
+    animation-timing-function: ease-in-out;
+    transform: scale(1.03);
   }
 }
 
@@ -128,4 +129,7 @@ table {
     border-radius: 50%;
     margin-right: 15px;
   }
+}
+.variant-margin-top {
+  margin-top: 30px;
 }
