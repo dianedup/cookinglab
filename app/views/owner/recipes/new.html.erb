@@ -13,35 +13,28 @@
       </div>
       <div class="form-group">
         <label class="control-label check_boxes optional">Tags</label>
-        <input type="hidden" name="post[tag_ids][]" value="">
         <div class="tag-choices">
           <% Tag.all.each do |tag| %>
           <div>
-            <input type="checkbox" class="d-none" value="<%= tag.id %>" name="post[tag_ids][]" id="post_tag_ids_<%= tag.id %>">
-            <label class="tag-choice" for="post_tag_ids_<%= tag.id %>">
+            <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>">
+            <label class="tag-choice" for="recipe_tag_<%= tag.id %>">
               <%= tag.name %>
             </label>
           </div>
           <% end %>
         </div>
       </div>
-      <div class="form-row">
-        <div class="col-sm-12">
-          <div class="text-area-description">
-          <%= f.input :description, as: :text, label: "Ajouter un commentaire à votre recette"%>
-          </div>
-        </div>
+      <div style="position: relative;">
+        <i class="fas fa-quote-left" style="position: absolute; left: 20px; top: -8px"></i>
+        <input :description, as: :text, label: "Ajouter un commentaire à votre recette" name="" id="" cols="30" rows="10" style="height: 30vh; width: 100%; padding: 10px;">
+        <i class="fas fa-quote-right" style="position: absolute; right: 20px; bottom: -8px;"></i>
       </div>
-       <%= f.submit "Etape suivante", class: "btn btn-info" %>
+
+       <%= f.submit "Etape suivante", class: "btn btn-info mt-3" %>
       <% end %>
     </div>
   </div>
 </div>
-<%#= link_to "save", recipe_path(recipe_id) %>
-<div class="quote-icon-open">
-  <i class="fas fa-quote-left"></i>
-</div>
 
-<div class="quote-icon-close">
-  <i class="fas fa-quote-right"></i>
-</div>
+
+
