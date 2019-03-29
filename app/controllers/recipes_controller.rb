@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  
+
   def index
     if params[:query].present?
       sql_query = " \
@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
             "
       @recipes = Recipe.where("recipes.title @@ :query", query: "%#{params[:query].split(' ').join(' OR ')}%")
     else
-      @recipes = Recipe.all
+      @recipes = Recipe.where(kind: "original")
     end
   end
   def show
