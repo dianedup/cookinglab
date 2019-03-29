@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  
+
   def index
     if params[:query].present?
       sql_query = " \
@@ -11,5 +11,6 @@ class RecipesController < ApplicationController
     end
   end
   def show
+    @recipe = Recipe.find(1) # TO DELETE WHEN INDEX is RESPONSIVE
   end
 end
