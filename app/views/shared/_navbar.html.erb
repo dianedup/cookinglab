@@ -4,14 +4,10 @@
       <div class="logotype">
         <%= link_to "/", class: "navbar-brand" do %>
           <%= image_tag "saucepan.png" %>
+          <h5 class="logotype-title">Cooking Lab</h5>
         <% end %>
-        <h5 class="logotype-title">Cooking Lab</h5>
       </div>
-      <div>
-        <p class="nav-item active lien-recettes">
-          <%= link_to "Recettes", "/recipes", class: "nav-link" %>
-        </p>
-      </div>
+      <%= link_to "Recettes", "/recipes", class: "nav-link" %>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
