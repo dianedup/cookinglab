@@ -1,19 +1,20 @@
 <div class='wrapper'>
   <div class="banner d-flex align-items-center vh-100" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(<%= image_path "banner.jpg" %>);">
+      <div class="home-logo">
+        <%= image_tag "saucepan.png", width: '40px', height: '40px' %>
+        <h5>Cooking Lab</h5>
+      </div>
     <div class="container text-align">
       <div class="body-banner">
         <div class="col-sm-12 col-md-8">
-        <h1>COOKING LAB</h1>
-        <p> Expérimentez autour d'une recette</p>
+        <h2> Faites <strong><u>vivre</u></strong> vos recettes en famille</h2>
+        <p><%= link_to 'Expérimenter', recipes_path, class: 'btn btn-lg btn-info font-weight-bold' %></p>
         </div>
         <div class="connexion-bar">
           <% unless user_signed_in? %>
           <span class="background-yellow"><%= link_to 'Se connecter', new_user_session_path, class: 'btn' %></span>
           <% end %>
         </div>
-        <% if user_signed_in? %>
-          <%= link_to 'Voir les recettes', recipes_path, class: 'btn btn-info font-weight-bold' %>
-          <% end %>
       </div>
     </div>
   </div>
