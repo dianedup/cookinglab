@@ -7,8 +7,15 @@
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.navbar-lewagon .navbar-brand {
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  img {
+    width: 40px;
+  }
 }
 
 .logotype {
@@ -28,4 +35,11 @@
 .lien-recettes {
   margin-top: 17px;
   margin-left: 60px;
+}
+
+.nav-link {
+  border-bottom: 2px solid $white;
+  &:hover {
+    border-bottom: 2px solid $middle_yellow;
+  }
 }
