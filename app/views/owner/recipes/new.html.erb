@@ -10,10 +10,14 @@
         <div class="col-sm-12 col-md-6">
             <%= f.input :photo %>
         </div>
+        </div>
+<div class="form-group">
+      <div style="position: relative;">
+        <i class="fas fa-quote-left" style="position: absolute; left: 20px; top: 23px"></i>
+        <%= f.input :description, label: "Décrivez-nous son origine"%>
+        <i class="fas fa-quote-right" style="position: absolute; right: 20px; bottom: -8px;"></i>
       </div>
-      <div class="form-group">
-        <div class="col-sm col-md">
-        <label class="control-label check_boxes optional">Tags</label>
+        <label class="control-label check_boxes optional">Sélectionner des tags correspondants à votre recette (optionnel)</label>
         <div class="tag-choices">
           <% Tag.all.each do |tag| %>
           <div>
@@ -24,13 +28,8 @@
           </div>
           <% end %>
         </div>
-        </div>
       </div>
-      <div style="position: relative;">
-        <i class="fas fa-quote-left" style="position: absolute; left: 20px; top: 23px"></i>
-        <%= f.input :description, label: 'Ajouter un commentaire à votre recette'%>
-        <i class="fas fa-quote-right" style="position: absolute; right: 20px; bottom: -8px;"></i>
-      </div>
+
       <%= f.submit "Etape suivante", class: "btn btn-info mt-3" %>
       <% end %>
     </div>
