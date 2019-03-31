@@ -11,6 +11,7 @@
   opacity: .4;
   flex: 0 0 30%;
   text-align: center;
+  border: 2px solid $white;
   &:hover {
     opacity: 1;
     cursor: pointer;
@@ -37,4 +38,3 @@
   bottom: 223px; right: 200px;
   font-size: 25px;
 }
-
