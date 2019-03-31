@@ -18,7 +18,7 @@
               <div class="card-recipe-title">
                 <h2><%= recipe.title %></h2>
               </div>
-              <%= cl_image_tag recipe.user.avatar, class: "avatar-bordered avatar-in-card" %>
+              <%= cl_image_tag recipe.user.avatar, aspect_ratio: 1, crop: :fill, class: "avatar-bordered avatar-in-card" %>
               <% if recipe.variants.count > 1 %>
                 <span class="variant-count"><%= recipe.variants.count %> variantes</span>
               <% elsif recipe.variants.count == 1 %>
