@@ -1,25 +1,45 @@
-<h2>Sign up</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class="wrapper">
+  <div class="banner d-flex align-items-center vh-100" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(<%= image_path "devise-banner.jpg" %>);">
+    <div class="container text-align">
+      <div class="row">
+        <div class="col-sm-12 col-md-8 offset-md-2">
+          <div class="text-center pb-4">
+          <h1><%= link_to 'Cooking Lab', root_path %> </h1>
+          <p>Enchanté</p>
+          </div>
+          <div class="devise-form-card">
+          <p style="color: black">Inscription</p>
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
-
   <div class="form-inputs">
     <%= f.input :email,
+    label: false,
+            placeholder: 'email',
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
     <%= f.input :password,
+    label: false,
+            placeholder: 'mot de passe',
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :password_confirmation,
+    label: false,
+            placeholder: 'confirmation du mot de passe',
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
   </div>
-
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+            <div class="mb-2 text-center">
+            <%= f.button :submit, "Lancer vous", class: "btn btn-outline-success"%>
+            </div>
+          </div>
+          <% end %>
+          <p style="color: black">Vous avez déjà un compte ? <%= render "devise/shared/links" %></p>
+        </div>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

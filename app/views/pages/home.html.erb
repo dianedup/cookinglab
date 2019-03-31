@@ -12,7 +12,7 @@
         </div>
         <div class="connexion-bar">
           <% unless user_signed_in? %>
-          <span class="background-yellow"><%= link_to 'Se connecter', new_user_session_path, class: 'btn' %></span>
+          <%= link_to 'Se connecter', new_user_session_path, class: 'btn' %>
           <% end %>
         </div>
       </div>
