@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="search-box">
+    <h2>Les recettes</h2>
+    <%= form_tag recipes_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control search-bar",
+        placeholder: "Rechercher par titre"
+      %>
+    <% end %>
+  </div>
+  <div class="row">
+    <% @recipes.each do |recipe| %>
+      <div class= "col-sm-12 col-md-6 col-lg-4">
+        <%= link_to recipe_path(recipe), class: 'card-link' do %>
+          <div class="card-recipe">
+            <div class="card-recipe-image" style="background-image: url('<%= cl_image_path recipe.photo %>')">
+              <div class="card-recipe-title">
+                <h2><%= recipe.title %></h2>
+              </div>
+              <%= cl_image_tag recipe.user.avatar, aspect_ratio: 1, crop: :fill, class: "avatar-bordered avatar-in-card" %>
+              <% if recipe.variants.count > 1 %>
+                <span class="variant-count"><%= recipe.variants.count %> variantes</span>
+              <% elsif recipe.variants.count == 1 %>
+                <span class="variant-count"><%= recipe.variants.count %>variante</span>
+              <% else %>
+              <% end %>
+            </div>
+            <div class="card-recipe-description">
+              <p>" <%= recipe.description.truncate(130, omission: '...') %> "</p>
+              <span class="cook-time-info">
+                <i class="far fa-clock"></i> <%= recipe.cook_time %>
+              </span>
+            </div>
+          </div>
+       <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
