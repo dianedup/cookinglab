@@ -8,6 +8,11 @@ class Owner::DosesController < ApplicationController
     @dose = Dose.new(dose_params)
     @step = Step.find(params[:step_id])
     @dose.step = @step
+    ingredient = params[:dose][:ingredient_id]
+    if ingredient.to_i.zero?
+      new_ingredient = Ingredient.create!(name: params[:dose][:ingredient_id])
+      @dose.ingredient = new_ingredient
+    end
     @dose.save!
     redirect_to edit_owner_recipe_path(@step.recipe)
   end
