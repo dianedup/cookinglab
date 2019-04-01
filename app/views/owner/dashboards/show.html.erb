@@ -1,0 +1,47 @@
+<div class="container pt-3">
+  <h1 class="text-center">Mon dashboard</h1>
+  <div class="row">
+    <% @recipes.each do |recipe| %>
+    <div class= "col-sm-12 col-md-6 col-lg-4">
+      <div class="card-recipe-dashboard">
+        <div class="card-recipe-image text-center" style="background-image: url('<%= cl_image_path recipe.photo %>')">
+          <div class="card-recipe-title">
+            <h2><%= recipe.title %></h2>
+          </div>
+          <span class="variant-count">
+            <% if recipe.kind == 'variant' %>
+            variante
+            <% else %>
+            originale
+            <% end %>
+          </span>
+        </div>
+        <div class="container-subtitle">
+          <% if recipe.kind == 'variant' %>
+          <p class="pl-1"><%= recipe.subtitle %></p>
+          <% end %>
+        </div>
+        <div class="d-flex justify-content-around">
+          <div>
+            <% if recipe.published == false %>
+            <%= link_to 'Publier', owner_recipe_publish_path(recipe), method: :patch %>
+            <% else %>
+            <p clas="badge badge-primary">Publié<i class="fas fa-check"></i></p>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to edit_owner_recipe_path(recipe), class: 'card-link' do %>
+            <p class="text-center">Modifier <i class="fas fa-pen"></i></p>
+            <% end %>
+          </div>
+        </div>
+        <div class="card-recipe-options">
+          <%= link_to recipe_path(recipe), class: 'card-link' do %>
+          <p class="btn-line-behind"><span>voir la recette</span></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
