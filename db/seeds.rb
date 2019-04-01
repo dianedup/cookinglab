@@ -8,6 +8,7 @@ Utensil.destroy_all
 Step.destroy_all
 Recipe.destroy_all
 User.destroy_all
+Tag.destroy_all
 
 
 puts 'Creating new ingredients'

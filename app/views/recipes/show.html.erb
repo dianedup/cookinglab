@@ -11,8 +11,8 @@
           </div>
         </div>
         <div class="recipe-title-card">
-          <h2><%= @recipe.title %></h2>
-          <h5 style="opacity: 0.5;"><%= @recipe.subtitle %></h5>
+          <h2><%= @recipe.title.capitalize %></h2>
+          <h5 style="opacity: 0.5;"><%= @recipe.subtitle.capitalize %></h5>
         </div>
         <div class="recipe-date">23 mars 2019</div>
       </div>
@@ -114,63 +114,73 @@
         </div>
     </div>
     <div class="col-sm-12 col-md-4">
-      <div class="recipe-variants">
-        <% if @recipe.kind == 'original' %>
-          <h5 class="text-center">Tester une variante de la recette</h5>
-        <% else %>
-          <h5 class="text-center">Revenir à la recette originale</h5>
-          <div class="variant-card">
-            <div class="variant-header">
-              <div class="variant-subtitle"><h5><%= @recipe.original_recipe.subtitle %></h5></div>
-              <div class="author-avatar">
-                <%= cl_image_tag @recipe.original_recipe.user.avatar, aspect_ratio: 1, crop: :fill, class: "avatar" %>
+      <% if @recipe.variants.present? || @recipe.kind == 'variant'%>
+        <div class="recipe-variants">
+          <% if @recipe.kind == 'original' %>
+            <h5 class="text-center">Tester une variante de la recette</h5>
+          <% else %>
+            <h5 class="text-center">Revenir à la recette originale</h5>
+            <%= link_to recipe_path(@recipe.original_recipe), class: 'card-link' do %>
+              <div class="variant-card mb-3">
+                <div class="variant-header">
+                  <div class="variant-subtitle"><h5><%= @recipe.original_recipe.subtitle.capitalize %></h5></div>
+                  <div class="author-avatar">
+                    <%= cl_image_tag @recipe.original_recipe.user.avatar, aspect_ratio: 1, crop: :fill, class: "avatar" %>
+                  </div>
+                </div>
+                <i class="fas fa-arrow-up"></i> 12
+                <div class="tags-variants">
+                  <% original_tags_list = @recipe.original_recipe.tags.map do |tag| %>
+                    <% tag.name %>
+                  <% end %>
+                  <% original_tags_list.each do |tag| %>
+                    <span class="variant-span"><%= tag %></span>
+                  <% end %>
+                </div>
               </div>
-            </div>
-            <i class="fas fa-arrow-up"></i> 12
-            <div class="tags-variants">
-              <% original_tags_list = @recipe.original_recipe.tags.map do |tag| %>
-                <% tag.name %>
-              <% end %>
-              <% original_tags_list.each do |tag| %>
-                <span class="variant-span"><%= tag %></span>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-        <div class="tags-variants">
-          <% all_variants_tags = [] %>
-          <% @recipe.variants.each do |variant| %>
-            <% variant.tags.each do |tag| %>
-              <% all_variants_tags << tag.name %>
             <% end %>
           <% end %>
-          <% all_variants_tags.uniq.each do |tag| %>
-            <span class="background-white"><%= tag %></span>
+          <div class="tags-variants mb-3">
+            <% all_variants_tags = [] %>
+            <% @recipe.variants.each do |variant| %>
+              <% variant.tags.each do |tag| %>
+                <% all_variants_tags << tag.name %>
+              <% end %>
+            <% end %>
+            <% all_variants_tags.uniq.each do |tag| %>
+              <span class="background-white"><%= tag %></span>
+            <% end %>
+          </div>
+          <% @recipe.variants.each do |variant| %>
+            <%= link_to recipe_path(variant), class: 'card-link' do %>
+              <div class="variant-card">
+                <div class="variant-header">
+                  <div class="variant-subtitle"><h5><%= variant.subtitle.capitalize %></h5></div>
+                  <div class="author-avatar">
+                    <%= cl_image_tag variant.user.avatar, aspect_ratio: 1, crop: :fill, class: "avatar" %>
+                  </div>
+                </div>
+                <i class="fas fa-arrow-up"></i> 12
+                <div class="tags-variants">
+                  <% variant_tags_list = variant.tags.map do |tag| %>
+                    <% tag.name %>
+                  <% end %>
+                  <% variant_tags_list.each do |tag| %>
+                    <span class="variant-span"><%= tag %></span>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
           <% end %>
         </div>
-        <% @recipe.variants.each do |variant| %>
-          <div class="variant-card">
-            <div class="variant-header">
-              <div class="variant-subtitle"><h5><%= variant.subtitle %></h5></div>
-              <div class="author-avatar">
-                <%= cl_image_tag variant.user.avatar, aspect_ratio: 1, crop: :fill, class: "avatar" %>
-              </div>
-            </div>
-            <i class="fas fa-arrow-up"></i> 12
-            <div class="tags-variants">
-              <% variant_tags_list = variant.tags.map do |tag| %>
-                <% tag.name %>
-              <% end %>
-              <% variant_tags_list.each do |tag| %>
-                <span class="variant-span"><%= tag %></span>
-              <% end %>
-            </div>
-          </div>
-          <% end %>
-      </div>
-      <div class="add-variant">
+        <div class="add-variant">
+          <h5><span>+</span>Créer une nouvelle variante</h5>
+        </div>
+      <% else %>
+      <div class="add-variant variant-margin-top">
         <h5><span>+</span>Créer une nouvelle variante</h5>
       </div>
+      <% end %>
     </div>
    </div>
 </div>
