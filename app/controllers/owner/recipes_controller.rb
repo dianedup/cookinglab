@@ -8,6 +8,18 @@ class Owner::RecipesController < ApplicationController
     @recipe.save
   end
 
+  def edit
+    @recipe = Recipe.find(params[:id])
+    @step = Step.new(recipe: @recipe)
+    @dose = Dose.new
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.update!(params_recipe)
+    redirect_to edit_owner_recipe_path(@recipe)
+  end
+
   private
 
   def params_recipe
