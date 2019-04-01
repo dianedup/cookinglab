@@ -174,11 +174,16 @@
           <% end %>
         </div>
         <div class="add-variant">
-          <h5><span>+</span>Créer une nouvelle variante</h5>
+          <!-- <h5><span>+</span>Créer une nouvelle variante</h5> -->
+          <%= link_to recipe_copies_path(@recipe), method: :post do %>
+            <h5><span>+</span>Créer une nouvelle variante</h5>
+          <% end %>
         </div>
       <% else %>
       <div class="add-variant variant-margin-top">
-        <h5><span>+</span>Créer une nouvelle variante</h5>
+        <%= link_to recipe_copies_path(@recipe), method: :post do %>
+          <h5><span>+</span>Créer une nouvelle variante</h5>
+        <% end %>
       </div>
       <% end %>
     </div>
