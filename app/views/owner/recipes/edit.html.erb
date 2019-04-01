@@ -54,7 +54,7 @@
           <!--------------------------------- NEW DOSE FORM --------------------------------->
           <%= simple_form_for([:owner, step, @dose]) do |new_dose_form|%>
             <div class="form-new-dose">
-              <%= new_dose_form.association :ingredient, label: 'Ingrédient', input_html: { class: 'select2' } %>
+              <%= new_dose_form.association :ingredient, label: 'Ingrédient', input_html: { class: 'select2', id: "new_dose_step_#{step.id}" } %>
               <%= new_dose_form.input :quantity, label: 'quantité' %>
               <%= new_dose_form.input :unit, label: 'unité' %>
               <%= new_dose_form.submit '+ Ajouter', class: "btn btn-secondary btn-new-dose" %>
@@ -78,7 +78,7 @@
 <!--               <div class="new_utensil"> -->
                 <%= simple_form_for([:owner, step, @step_utensil]) do |new_step_utensil_form|%>
                   <div class="form-new-utensil">
-                    <%= new_step_utensil_form.association :utensil, label: false, input_html: { class: 'select2' } %>
+                    <%= new_step_utensil_form.association :utensil, label: false, input_html: { class: 'select2', id: "new_utensil_step_#{step.id}" } %>
                     <%= new_step_utensil_form.submit '+ Ajouter un ustensile', class: "btn btn-secondary btn-new-dose" %>
                   </div>
                 <% end %>
@@ -104,3 +104,7 @@
       <% end %>
     <!------------------------------- END OF NEW STEP FORM ------------------------------->
 </div>
+
+
+
+
