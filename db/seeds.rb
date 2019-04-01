@@ -8,6 +8,7 @@ Utensil.destroy_all
 Step.destroy_all
 Recipe.destroy_all
 User.destroy_all
+Tag.destroy_all
 
 
 puts 'Creating new ingredients'
@@ -25,9 +26,29 @@ lait            = Ingredient.create!(name: "lait")
 graines_pavot   = Ingredient.create!(name: "graines de pavot")
 sucre_glace     = Ingredient.create!(name: "sucre glace")
 lait_coco       = Ingredient.create!(name: "lait de coco")
-beurre_vegetal  = Ingredient.create!(name: "Beurre végétal")
+beurre_vegetal  = Ingredient.create!(name: "beurre végétal")
 farine_riz      = Ingredient.create!(name: "farine de riz")
-
+tomate          = Ingredient.create!(name: "tomate")
+poivre = Ingredient.create!(name: "poivre")
+oignon = Ingredient.create!(name: "oignon")
+gousse_d_ail = Ingredient.create!(name: "gousse d'ail")
+farine_d_avoine = Ingredient.create!(name: "farine d'avoine")
+graines_de_lin= Ingredient.create!(name: "graines de lin")
+baies_surgelees_mixees = Ingredient.create!(name: "baies surgelées mixées")
+yaourt_a_la_grecque = Ingredient.create!(name: "yaourt à la grecque")
+lait_ecreme = Ingredient.create!(name: "lait écrémé")
+crevettes = Ingredient.create!(name: "crevettes")
+flocons_d_avoine = Ingredient.create!(name: "flocons d'avoine")
+amandes_hachees = Ingredient.create!(name: "amandes hachées")
+blanc_d_oeufs = Ingredient.create!(name: "blanc d'oeuf")
+gingembre = Ingredient.create!(name: "gingembre")
+huile_d_arachide = Ingredient.create!(name: "huile_d_arachide")
+curry = Ingredient.create!(name: "curry")
+pomme = Ingredient.create!(name: "pomme")
+pate_de_noix_de_cajou = Ingredient.create!(name: "pâte de noix de cajou")
+miel = Ingredient.create!(name: "miel")
+gousse_de_vanille = Ingredient.create!(name: "gousse de vanille")
+flocons_de_noix_de_coco = Ingredient.create!(name: "flocons de noix de coco")
 
 puts 'Creating new utensils'
 four                = Utensil.create!(name: "four")
@@ -43,6 +64,14 @@ zesteur             = Utensil.create!(name: "zesteur")
 couteau             = Utensil.create!(name: "couteau")
 spatule             = Utensil.create!(name: "spatule")
 grille_a_patisserie = Utensil.create!(name: "grille à patisserie")
+poele = Utensil.create!(name: "poêle")
+fouet_electrique = Utensil.create!(name: "fouet électrique")
+recipient = Utensil.create!(name: "récipient")
+wok = Utensil.create!(name: "wok")
+presse_citron = Utensil.create!(name: "presse citron")
+papier_sulfurise = Utensil.create!(name: "papier sulfurisé")
+plaque_patisserie = Utensil.create!(name: "plaque pâtisserie")
+recipient_refermable = Utensil.create!(name: "récipient refermable")
 
 puts 'Creating new tags'
 allegee = Tag.create!(name: "allégée")
@@ -67,6 +96,7 @@ muesli_suisse                = Recipe.create!(photo: File.open(Rails.root.join('
 macarons_a_la_noix_de_coco   = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/macarons_a_la_noix_de_coco.jpg')), title: "Macarons à la noix de coco", description: "Les macarons de noix de coco sont une vrai bombe de protéines. Ils sont parfaitement adaptées en tant que snakc après vos sessions de sport intensives, mais aussi à tout moment de la journée. De plus, la graisse contenue dans la noix de coco est censée avoir un effet positif sur le cerveau.", prep_time: "30 min", cook_time: "25 min", rest_time: "2 h", user: thierry, kind: "original", published: true, published_on: "2019-03-18", servings: 24, upvote: 3)
 muesli_au_melange_de_baies   = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/muesli_au_melange_de_baies.jpg')), title: "Muesli au mélange de baies", description: "Ce muesli au goût très frais si les baies sont congelés et décongèlent lentement, doit être préparer idéalement la veille au soir en le laissant tremper toute la nuit. dans le cas où le muesli serait trop sec, ajouter du lait et mélanger.", prep_time: "10 min", cook_time: "5 min", rest_time: "8 h", user: thierry, kind: "original", published: true, published_on: "2019-03-24", servings: 1, upvote: 8)
 langue_de_boeuf              = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/langue_de_boeuf.jpg')), title: "Langue de boeuf à la sauce madère", description: "La langue de bœuf... beaucoup d'entre vous diront « Beurk j'aime pas » ! Mais bien cuisinée, ce plat principal est un vrai régal. Facile à réaliser, elle demande un peu de temps de préparation et de cuisson, mais on vous l'assure, ça en vaut le coup ! Une bonne sauce bien onctueuse et gourmande à souhait à base du célèbre vin rouge liquoreux, une langue bien cuite, quelques légumes, la langue de bœuf sauce à la Madère est vraiment à essayer!", prep_time: "10 min", cook_time: "2 h", rest_time: "6 h", user: melanie, kind: "original", published: false, published_on: "2019-03-14", servings: 4, upvote: 7)
+
 
 puts 'Creating steps'
 cake_citron_graines_pavot_step_1    = Step.create!(recipe: cake_citron_graines_pavot, position: 1, content: "Dans un bol, battre vivement le beurre et le sucre jusqu’à obtenir un mélange crémeux. Ajouter ensuite les ingrédients restants dans l’ordre et bien mélanger entre chaque ajout. Verser la préparation dans un moule à cake beurré. Enfourner dans un four préchauffé à 180°C et cuire 40 à 45mn (jusqu’à ce que la lame d’un couteau ressorte propre).  - Laisser le cake tiédir 10mn sans le démouler.")
@@ -104,7 +134,7 @@ Dose.create!(step: cake_citron_graines_pavot_step_1, ingredient: graines_pavot, 
 Dose.create!(step: curry_de_crevettes_doux_step_1, ingredient: tomate, quantity: 1)
 Dose.create!(step: curry_de_crevettes_doux_step_1, ingredient: oignon, quantity: 1)
 Dose.create!(step: curry_de_crevettes_doux_step_1, ingredient: gousse_d_ail, quantity: 2)
-Dose.create!(step: muesli_suisse_step_1, ingredient: amandes_hachées, quantity: 30, unit: 'g')
+Dose.create!(step: muesli_suisse_step_1, ingredient: amandes_hachees, quantity: 30, unit: 'g')
 Dose.create!(step: macarons_a_la_noix_de_coco_step_1, ingredient: blanc_d_oeufs, quantity: 4)
 Dose.create!(step: macarons_a_la_noix_de_coco_step_1, ingredient: sel, quantity: 1, unit: 'pincée')
 Dose.create!(step: muesli_au_melange_de_baies_step_1, ingredient: amandes_hachees, quantity: 30, unit: 'g')
@@ -116,26 +146,26 @@ Dose.create!(step: curry_de_crevettes_doux_step_2, ingredient: huile_d_arachide,
 Dose.create!(step: curry_de_crevettes_doux_step_2, ingredient: curry, quantity: 2, unit: 'cuillère à soupe')
 Dose.create!(step: muesli_suisse_step_2, ingredient: pomme, quantity: 2)
 Dose.create!(step: macarons_a_la_noix_de_coco_step_2, ingredient: flocons_de_noix_de_coco, quantity: 200, unit: 'g')
-Dose.create!(step: macarons_a_la_noix_de_coco_step_2, ingredient: pâte_de_noix_de_cajou, quantity: 1, unit: 'cuillère à café')
+Dose.create!(step: macarons_a_la_noix_de_coco_step_2, ingredient: pate_de_noix_de_cajou, quantity: 1, unit: 'cuillère à café')
 Dose.create!(step: macarons_a_la_noix_de_coco_step_2, ingredient: miel, quantity: 1, unit: 'cuillère à café')
 Dose.create!(step: muesli_au_melange_de_baies_step_2, ingredient: gousse_de_vanille, quantity: 1)
 
 Dose.create!(step: cake_citron_graines_pavot_step_3, ingredient: sucre_glace, quantity: 150, unit: 'g')
 Dose.create!(step: cake_citron_graines_pavot_step_3, ingredient: jus_citron, quantity: 5, unit: 'cl')
-Dose.create!(step: curry_de_crevettes_doux_step_3, ingredient: yaourt_à_la_grecque, quantity: 1)
-Dose.create!(step: curry_de_crevettes_doux_step_3, ingredient: Sel, quantity: 1, unit: 'une pincée')
+Dose.create!(step: curry_de_crevettes_doux_step_3, ingredient: yaourt_a_la_grecque, quantity: 1)
+Dose.create!(step: curry_de_crevettes_doux_step_3, ingredient: sel, quantity: 1, unit: 'une pincée')
 Dose.create!(step: curry_de_crevettes_doux_step_3, ingredient: poivre, quantity: 1, unit: 'une pincée')
 Dose.create!(step: muesli_suisse_step_3, ingredient: citron, quantity: 1)
 Dose.create!(step: muesli_au_melange_de_baies_step_3, ingredient: farine_d_avoine, quantity: 50, unit: 'g')
 Dose.create!(step: muesli_au_melange_de_baies_step_3, ingredient: graines_de_lin, quantity: 30, unit: 'g')
 Dose.create!(step: muesli_au_melange_de_baies_step_3, ingredient: baies_surgelees_mixees, quantity: 150, unit:'g')
-Dose.create!(step: muesli_au_melange_de_baies_step_3, ingredient: yaourt_à_la_grecque, quantity: 250, unit:'g')
+Dose.create!(step: muesli_au_melange_de_baies_step_3, ingredient: yaourt_a_la_grecque, quantity: 250, unit:'g')
 Dose.create!(step: muesli_au_melange_de_baies_step_3, ingredient: lait_ecreme, quantity: 150, unit: 'ml')
 
 Dose.create!(step: curry_de_crevettes_doux_step_4, ingredient: crevettes, quantity: 600, unit: 'g')
 Dose.create!(step: muesli_suisse_step_4, ingredient: flocons_d_avoine, quantity: 50, unit: 'g')
 Dose.create!(step: muesli_suisse_step_4, ingredient: graines_de_lin, quantity: 30, unit: 'g')
-Dose.create!(step: muesli_suisse_step_4, ingredient: yaourt_à_la_grecque_allege, quantity: 250, unit: 'g')
+Dose.create!(step: muesli_suisse_step_4, ingredient: yaourt_a_la_grecque, quantity: 250, unit: 'g')
 Dose.create!(step: muesli_suisse_step_4, ingredient: lait_ecreme, quantity: 150, unit: 'ml')
 
 
@@ -147,10 +177,10 @@ StepUtensil.create!(step: cake_citron_graines_pavot_step_1, utensil: four)
 StepUtensil.create!(step: cake_citron_graines_pavot_step_1, utensil: couteau)
 StepUtensil.create!(step: curry_de_crevettes_doux_step_1, utensil: couteau)
 StepUtensil.create!(step: curry_de_crevettes_doux_step_1, utensil: bol)
-StepUtensil.create!(step: muesli_suisse_step_1, utensil: poêle)
+StepUtensil.create!(step: muesli_suisse_step_1, utensil: poele)
 StepUtensil.create!(step: macarons_a_la_noix_de_coco_step_1, utensil: fouet_electrique)
 StepUtensil.create!(step: macarons_a_la_noix_de_coco_step_1, utensil: recipient)
-StepUtensil.create!(step: muesli_au_melange_de_baies_step_1, utensil: poêle)
+StepUtensil.create!(step: muesli_au_melange_de_baies_step_1, utensil: poele)
 
 StepUtensil.create!(step: cake_citron_graines_pavot_step_2, utensil: fouet)
 StepUtensil.create!(step: cake_citron_graines_pavot_step_2, utensil: bol)
@@ -165,8 +195,8 @@ StepUtensil.create!(step: cake_citron_graines_pavot_step_3, utensil: spatule)
 StepUtensil.create!(step: cake_citron_graines_pavot_step_3, utensil: grille_a_patisserie)
 StepUtensil.create!(step: curry_de_crevettes_doux_step_3, utensil: wok)
 StepUtensil.create!(step: muesli_suisse_step_3, utensil: presse_citron)
-StepUtensil.create!(step: macarons_a_la_noix_de_coco_step_3, utensil: papier_sulfurisé)
-StepUtensil.create!(step: macarons_a_la_noix_de_coco_step_3, utensil: plaque_pâtisserie)
+StepUtensil.create!(step: macarons_a_la_noix_de_coco_step_3, utensil: papier_sulfurise)
+StepUtensil.create!(step: macarons_a_la_noix_de_coco_step_3, utensil: plaque_patisserie)
 StepUtensil.create!(step: muesli_au_melange_de_baies_step_3, utensil: recipient)
 
 StepUtensil.create!(step: muesli_suisse_step_4, utensil: recipient_refermable)
@@ -319,7 +349,6 @@ StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_3, utensil: f
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_3, utensil: bol)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_3, utensil: spatule)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_3, utensil: grille_a_patisserie)
-
 
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_3, tag: allegee)
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_3, tag: version_mini)
