@@ -5,7 +5,36 @@ class Owner::RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(params_recipe)
-    @recipe.save
+    @recipe.user = current_user
+    if @recipe.save
+      if params[:recipe][:tags].present? # => ["1", "2", "3"]
+        checked_tags = params[:recipe][:tags]
+        # pour chaque tag, créer la table de jointure recipe_tags en chopant l'objet Tag
+        checked_tags.each do |tag|
+          RecipeTag.create(recipe: @recipe, tag: Tag.find(tag))
+        end
+      end
+      redirect_to edit_owner_recipe_path(@recipe)
+    else
+      render :new
+    end
+  end
+
+  def edit
+    raise
+  end
+
+  def edit
+    @recipe = Recipe.find(params[:id])
+    @step = Step.new(recipe: @recipe)
+    @dose = Dose.new
+    @step_utensil = StepUtensil.new
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.update!(params_recipe)
+    redirect_to edit_owner_recipe_path(@recipe)
   end
 
   private

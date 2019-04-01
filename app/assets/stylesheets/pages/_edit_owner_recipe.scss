@@ -1,0 +1,142 @@
+.edit-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-subtitle {
+  text-align: center;
+  max-width: 550px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  .recipe_subtitle {
+    margin: auto;
+  }
+
+}
+
+.form-timing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  .form-group {
+    flex: 1 1 30%;
+    margin: 0 10px;
+  }
+}
+
+@media(max-width: 992px) {
+  .form-timing {
+    flex-direction: column;
+    .form-group {
+      width: 80%;
+    }
+  }
+}
+
+.ingredients-list {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+  list-style: none;
+  .ingredients-tags {
+    display: flex;
+    border: #FEF475 solid 1px;
+    padding: 0px 10px;
+    margin: 0px 10px;
+  }
+}
+
+.btn-timing {
+  padding: 5px 10px;
+  margin: 15px 0 30px 10px;
+}
+
+.btn-doses {
+  padding: 5px 10px;
+  margin: 0px 0 20px 10px;
+}
+
+.edit-recipe-division {
+  margin: 30px 0px;
+  border-bottom: 2px dotted $primary;
+  // &:last-of-type {
+  //   border-bottom: none;
+  // }
+
+}
+
+.step-title {
+  margin: 25px 0px 15px 0px;
+  position: relative;
+  .delete-step-button {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    font-size: 20px;
+  }
+}
+
+.margin-bottom-15 {
+  margin-bottom: 15px;
+}
+
+.dose-ingredients {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.form-new-dose {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  .form-group {
+    flex: 1 1 20%;
+    margin: 0 20px 0 0;
+  }
+  .btn-new-dose {
+    padding: 5px 10px;
+    margin: auto 0 0px 10px;
+  }
+}
+
+.steps-utensils {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.utensil {
+}
+
+.form-new-utensil {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .form-group {
+    flex: 1 1 20%;
+    margin: 0 20px 0 0;
+  }
+  .btn-new-dose {
+    padding: 5px 10px;
+    margin: auto 0 0px 10px;
+  }
+}
+
+
+.step-content {
+  margin: 30px 0px;
+}
+
+.ingredient-name {
+  width: 100px;
+  text-align: left;
+}

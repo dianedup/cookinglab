@@ -1,0 +1,110 @@
+<div class="container">
+  <div>
+    <center style="margin: 25px auto;">
+      <h2><%= @recipe.title.capitalize %></h2>
+      <h4 style="opacity: 0.5;">Page d'édition <i class="far fa-edit"></i></h4>
+    </center>
+  </div>
+  <!-------------------------------- EDIT RECIPE FORM 1 -------------------------------->
+  <%= simple_form_for [:owner, @recipe] do |recipe_form|%>
+    <div class="form-subtitle">
+      Sous-titre
+      <%= recipe_form.input :subtitle, label: false, placeholder: '...' %>
+      <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info' %>
+    </div>
+  <% end %>
+  <!------------------------------- END OF RECIPE FORM 1 ------------------------------->
+  <div class="edit-recipe-division">
+    <!------------------------------- EDIT RECIPE FORM 2 ------------------------------->
+    <%= simple_form_for [:owner, @recipe] do |recipe_form|%>
+      <div class="form-inputs">
+        <div class="form-timing">
+          <%= recipe_form.input :prep_time, label: 'Préparation', placeholder: '20 min', error: 'Le temps de préparation est obligatoire' %>
+          <%= recipe_form.input :cook_time, placeholder: '1h30', label: 'Cuisson' %>
+          <%= recipe_form.input :rest_time, label: 'Repos', placeholder: '5h' %>
+        <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info btn-timing' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <!-------------------------------- END OF RECIPE FORM 2 -------------------------------->
+    <% @recipe.steps.order(:position).each do |step| %>
+      <div class="edit-recipe-division">
+        <div class="step-title">
+          <h5>Etape <%= step.position %>/<%= @recipe.steps.count %></h5>
+          <%= link_to owner_step_path(step), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class: "delete-step-button" do %>
+            <i class="fas fa-times"></i>
+          <% end %>
+        </div>
+        <div class="edit-recipe-division-header">
+          <h6 class="margin-bottom-15"><i class="far fa-lemon"></i> Saisie des ingrédients de l'étape avec leur quantité et leur unité de mesure </h6>
+          <% step.doses.order(:created_at).each do |dose| %>
+            <!--------------------------------- EDIT DOSE FORM --------------------------------->
+              <%= simple_form_for([:owner, dose]) do |dose_form|%>
+                <div class="dose-ingredients">
+                  <p class="ingredient-name"><%= dose.ingredient.name %></p>
+                  <%= dose_form.input :quantity, label: false %>
+                  <%= dose_form.input :unit, label: false %>
+                  <%= dose_form.submit 'Mettre à jour', class: "btn btn-info btn-doses" %>
+                  <%= link_to 'Supprimer', owner_dose_path(dose), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-primary btn-doses" %>
+                </div>
+              <% end %>
+            <!------------------------------ END OF DOSE FORM ------------------------------>
+          <% end %>
+          <!--------------------------------- NEW DOSE FORM --------------------------------->
+          <%= simple_form_for([:owner, step, @dose]) do |new_dose_form|%>
+            <div class="form-new-dose">
+              <%= new_dose_form.association :ingredient, label: 'Ingrédient', input_html: { class: 'select2', id: "new_dose_step_#{step.id}" } %>
+              <%= new_dose_form.input :quantity, label: 'quantité' %>
+              <%= new_dose_form.input :unit, label: 'unité' %>
+              <%= new_dose_form.submit '+ Ajouter', class: "btn btn-secondary btn-new-dose" %>
+            </div>
+          <% end %>
+          <!----------------------------- END OF NEW DOSE FORM ----------------------------->
+          <div class="step-content">
+            <h6 class="margin-bottom-15"><i class="fas fa-utensil-spoon"></i> Saisie des ustensiles de cusine nécessaires à l'étape</h6>
+            <div class="steps-utensils">
+              <% step.step_utensils.order(:created_at).each do |step_utensil| %>
+                <!--------------------------------- EDIT STEP_UTENSIL FORM --------------------------------->
+                    <div class="utensil">
+                      <%= step_utensil.utensil.name %>
+                      <%= link_to owner_step_utensil_path(step_utensil), method: :delete, data: { confirm: "Êtes-vous sûr ?" } do %>
+                        <i class="far fa-trash-alt" style="opacity: 0.5"></i>
+                      <% end %>
+                    </div>
+                <!------------------------------ END OF STEP_UTENSIL FORM ------------------------------>
+              <% end %>
+            <!--------------------------------- NEW STEP_UTENSIL FORM --------------------------------->
+<!--               <div class="new_utensil"> -->
+                <%= simple_form_for([:owner, step, @step_utensil]) do |new_step_utensil_form|%>
+                  <div class="form-new-utensil">
+                    <%= new_step_utensil_form.association :utensil, label: false, input_html: { class: 'select2', id: "new_utensil_step_#{step.id}" } %>
+                    <%= new_step_utensil_form.submit '+ Ajouter un ustensile', class: "btn btn-secondary btn-new-dose" %>
+                  </div>
+                <% end %>
+<!--               </div> -->
+            </div>
+          </div>
+          <!----------------------------- END OF NEW STEP_UTENSIL FORM ----------------------------->
+          <!------------------------------- EDIT STEP FORM ------------------------------->
+          <%= simple_form_for([:owner, step]) do |content_form|%>
+            <div class="step-content">
+              <h6 class="margin-bottom-15">Description de l'étape</h6>
+                <%= content_form.input :content, label: false %>
+                <%= content_form.submit 'Mettre à jour la description', class:"btn btn-info btn-doses" %>
+            </div>
+          <% end %>
+            <!---------------------------- END OF EDIT STEP FORM ---------------------------->
+        </div>
+      </div>
+    <% end %>
+    <!----------------------------------- NEW STEP FORM ----------------------------------->
+      <%= simple_form_for [:owner, @recipe, @step] do |f| %>
+        <h5><%= f.submit "+ Ajouter une étape", class: "btn btn-secondary btn-block mb-5" %></h5>
+      <% end %>
+    <!------------------------------- END OF NEW STEP FORM ------------------------------->
+</div>
+
+
+
+
