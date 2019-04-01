@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_085945) do
     t.string "photo"
     t.string "title"
     t.string "subtitle"
-    t.string "description"
+    t.text "description"
     t.string "prep_time"
     t.string "cook_time"
     t.string "rest_time"
