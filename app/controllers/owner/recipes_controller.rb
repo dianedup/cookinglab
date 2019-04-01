@@ -21,10 +21,6 @@ class Owner::RecipesController < ApplicationController
   end
 
   def edit
-    raise
-  end
-
-  def edit
     @recipe = Recipe.find(params[:id])
     @step = Step.new(recipe: @recipe)
     @dose = Dose.new
@@ -33,7 +29,14 @@ class Owner::RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     @recipe.update!(params_recipe)
-    redirect_to edit_owner_recipe_path(@recipe)
+    redirect_to owner_dashboard_path
+  end
+
+  def publish
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe.published = 'true'
+    @recipe.save!
+    redirect_to owner_dashboards_path
   end
 
   private

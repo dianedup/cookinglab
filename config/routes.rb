@@ -1,8 +1,6 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
-  namespace :owner do
-    get 'dashboard/show'
-  end
+
   root to: 'pages#home'
   devise_for :users
 
@@ -15,9 +13,11 @@ Rails.application.routes.draw do
   resources :contributions, only: [:index]
 
   namespace :owner do
-    resource :dashboard, only: [:show]
+    resource :dashboards, only: [:show]
+
 
     resources :recipes, only: [:new, :create, :edit, :update, :destroy] do
+      patch 'publish', to: 'recipes#publish'
       resources :contributions, only: [:new, :create]
       resources :steps, only: [:new, :create]
     end
