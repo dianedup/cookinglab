@@ -11,11 +11,22 @@
   }
 }
 
-.card-link {
+.card-lien {
   text-decoration: none;
   &:hover {
     text-decoration: none;
   }
+}
+
+.variant-card {
+  border-bottom: #FEF475 15px solid;
+  &:last-of-type{
+    margin-bottom: 0px;
+  }
+}
+
+.card-link + .card-link {
+  margin-left: 0px;
 }
 
 .card-recipe-title {

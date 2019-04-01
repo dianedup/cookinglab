@@ -12,6 +12,7 @@ class RecipesController < ApplicationController
       @recipes = Recipe.where(kind: "original")
     end
   end
+
   def show
   end
 
