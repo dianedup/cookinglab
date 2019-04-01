@@ -1,3 +1,7 @@
+.container-show {
+  margin-top: 30px;
+}
+
 .recipe-header {
   position: relative
 }
@@ -86,7 +90,7 @@ table {
 }
 
 .recipe-variants {
-  padding: 15px 15px 0 15px;
+  padding: 15px 15px 0px 15px;
   margin: 15px 0;
   background-color: $secondary;
 }
@@ -104,6 +108,15 @@ table {
   }
 }
 
+
+.upvote {
+  margin-bottom: 5px;
+}
+
+.hidden {
+    display: none;
+  }
+
 .variant-header {
   display: flex;
   justify-content: space-between;
@@ -113,6 +126,7 @@ table {
 
 .add-variant {
   opacity: 0.7;
+  margin-top: 10px;
   margin-left: 10px;
   text-align: center;
   display: flex;
@@ -125,7 +139,7 @@ table {
   span {
     line-height: 1;
     background-color: #FEF475;
-    padding: 3px 7px;
+    padding: 4px 8px 3px 8px;
     border-radius: 50%;
     margin-right: 15px;
   }

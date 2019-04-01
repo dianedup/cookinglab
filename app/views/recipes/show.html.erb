@@ -1,7 +1,6 @@
-<div class="container">
+<div class="container container-show">
   <div class="row">
     <div class="col-sm">
-
       <div class="recipe-header">
         <div class="recipe-photo" style="background-image: url('<%= cl_image_path(@recipe.photo) %>');">
           <div class="tags-list">
@@ -117,10 +116,10 @@
       <% if @recipe.variants.present? || @recipe.kind == 'variant'%>
         <div class="recipe-variants">
           <% if @recipe.kind == 'original' %>
-            <h5 class="text-center">Tester une variante de la recette</h5>
+            <h5 class="text-center">Tester une variante<br>de la recette</h5>
           <% else %>
             <h5 class="text-center">Revenir à la recette originale</h5>
-            <%= link_to recipe_path(@recipe.original_recipe), class: 'card-link' do %>
+            <%= link_to recipe_path(@recipe.original_recipe), class: 'card-link-to-variant' do %>
               <div class="variant-card mb-3">
                 <div class="variant-header">
                   <div class="variant-subtitle"><h5><%= @recipe.original_recipe.subtitle.capitalize %></h5></div>
@@ -148,11 +147,11 @@
               <% end %>
             <% end %>
             <% all_variants_tags.uniq.each do |tag| %>
-              <span class="background-white"><%= tag %></span>
+              <span data-variant-name="<%= tag %>" class="background-white click js-variant-tag"><%= tag %></span>
             <% end %>
           </div>
           <% @recipe.variants.each do |variant| %>
-            <%= link_to recipe_path(variant), class: 'card-link' do %>
+            <%= link_to recipe_path(variant), class: 'card-link-to-variant js-variant-card', data: { 'variant-tags': variant.tags.map(&:name).to_json } do %>
               <div class="variant-card">
                 <div class="variant-header">
                   <div class="variant-subtitle"><h5><%= variant.subtitle.capitalize %></h5></div>
@@ -160,7 +159,9 @@
                     <%= cl_image_tag variant.user.avatar, aspect_ratio: 1, crop: :fill, class: "avatar" %>
                   </div>
                 </div>
-                <i class="fas fa-arrow-up"></i> 12
+                <div class="upvote">
+                  <i class="fas fa-arrow-up"></i> 12
+                </div>
                 <div class="tags-variants">
                   <% variant_tags_list = variant.tags.map do |tag| %>
                     <% tag.name %>
