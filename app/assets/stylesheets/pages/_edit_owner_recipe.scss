@@ -105,6 +105,33 @@
   }
 }
 
+.steps-utensils {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.utensil {
+}
+
+.form-new-utensil {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .form-group {
+    flex: 1 1 20%;
+    margin: 0 20px 0 0;
+  }
+  .btn-new-dose {
+    padding: 5px 10px;
+    margin: auto 0 0px 10px;
+  }
+}
+
+
 .step-content {
   margin: 30px 0px;
 }

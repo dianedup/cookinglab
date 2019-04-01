@@ -21,9 +21,11 @@ Rails.application.routes.draw do
 
     resources :steps, only: [:edit, :update, :destroy] do
       resources :doses, only: [:new, :create]
+      resources :step_utensils, only: [:new, :create]
     end
 
     resources :doses, only: [:update, :destroy]
+    resources :step_utensils, only: [:update, :destroy]
 
     resources :changes_proposals, only: [:show] do
       member do

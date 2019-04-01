@@ -12,6 +12,7 @@ class Owner::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @step = Step.new(recipe: @recipe)
     @dose = Dose.new
+    @step_utensil = StepUtensil.new
   end
 
   def update
