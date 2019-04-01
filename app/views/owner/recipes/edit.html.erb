@@ -54,10 +54,10 @@
           <!--------------------------------- NEW DOSE FORM --------------------------------->
           <%= simple_form_for([:owner, step, @dose]) do |new_dose_form|%>
             <div class="form-new-dose">
-              <%= new_dose_form.association :ingredient, label: 'Ingrédient', include_hidden: false %>
+              <%= new_dose_form.association :ingredient, label: 'Ingrédient', input_html: { class: 'select2' } %>
               <%= new_dose_form.input :quantity, label: 'quantité' %>
               <%= new_dose_form.input :unit, label: 'unité' %>
-              <%= new_dose_form.submit '+ Ajouter une dose', class: "btn btn-secondary btn-new-dose" %>
+              <%= new_dose_form.submit '+ Ajouter', class: "btn btn-secondary btn-new-dose" %>
             </div>
           <% end %>
           <!----------------------------- END OF NEW DOSE FORM ----------------------------->
