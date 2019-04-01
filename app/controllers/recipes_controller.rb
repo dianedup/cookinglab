@@ -4,9 +4,9 @@ class RecipesController < ApplicationController
   def index
 
     if params[:query].present?
-      @recipes = Recipe.where(kind: 'original').global_search(params[:query])
+      @recipes = Recipe.where(kind: 'original', published: true).global_search(params[:query])
     else
-      @recipes = Recipe.where(kind: "original")
+      @recipes = Recipe.where(kind: 'original', published: true)
     end
   end
 
