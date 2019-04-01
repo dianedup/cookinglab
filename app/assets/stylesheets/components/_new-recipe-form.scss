@@ -1,0 +1,40 @@
+// Checkboxes design
+.tag-choices {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.tag-choice {
+  background: $sunny;
+  padding: 18px;
+  opacity: .4;
+  flex: 0 0 30%;
+  text-align: center;
+  border: 2px solid $white;
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+  &.active {
+  background: $sunny;
+  opacity: 1;
+  border: 2px dotted $primary;
+  }
+}
+
+.text-area-description {
+  position: relative;
+}
+
+.quote-icon-open {
+  position: absolute;
+  bottom: 285px; left: 200px;
+  font-size: 25px;
+}
+
+.quote-icon-close {
+  position: absolute;
+  bottom: 223px; right: 200px;
+  font-size: 25px;
+}
