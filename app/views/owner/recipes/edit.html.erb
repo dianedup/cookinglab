@@ -34,9 +34,9 @@
     <%= simple_form_for [:owner, @recipe] do |recipe_form|%>
       <div class="form-inputs">
         <div class="form-timing">
-          <%= recipe_form.input :prep_time, label: 'Préparation', placeholder: '20 min', error: 'Le temps de préparation est obligatoire' %>
-          <%= recipe_form.input :cook_time, placeholder: '1h30', label: 'Cuisson' %>
-          <%= recipe_form.input :rest_time, label: 'Repos', placeholder: '5h' %>
+          <%= recipe_form.input :prep_time, label: 'Préparation', placeholder: 'heures,minutes...', error: 'Le temps de préparation est obligatoire' %>
+          <%= recipe_form.input :cook_time, placeholder: 'heures,minutes...', label: 'Cuisson' %>
+          <%= recipe_form.input :rest_time, label: 'Repos', placeholder: 'heures,minutes...' %>
           <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info btn-timing' %>
         </div>
       </div>
@@ -119,6 +119,9 @@
       <h5><%= f.submit "+ Ajouter une étape", class: "btn btn-secondary btn-block mb-5" %></h5>
     <% end %>
   <!------------------------------- END OF NEW STEP FORM ------------------------------->
+  <div class="text-right edit-ending-button">
+    <%= link_to 'Terminer et revenir au dashboard', owner_dashboards_path, class: "btn btn-info" %>
+  </div>
 </div>
 
 
