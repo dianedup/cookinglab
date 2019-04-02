@@ -3,6 +3,11 @@
   justify-content: space-between;
 }
 
+.recipe-header {
+  margin-top: 50px;
+  margin-bottom: 60px;
+}
+
 .form-subtitle {
   text-align: center;
   max-width: 550px;
@@ -12,7 +17,21 @@
   .recipe_subtitle {
     margin: auto;
   }
+}
 
+.form-servings-wrapper {
+  margin-top: 50px;
+}
+
+.form-servings {
+  max-width: 550px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  p {
+    margin-top: 7px;
+    margin-right: 20px;
+  }
 }
 
 .form-timing {

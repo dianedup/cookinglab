@@ -30,7 +30,7 @@ class Owner::RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     @recipe.update!(params_recipe)
-    redirect_to owner_dashboard_path
+    redirect_to edit_owner_recipe_path(@recipe)
   end
 
   def publish
@@ -43,6 +43,7 @@ class Owner::RecipesController < ApplicationController
   private
 
   def params_recipe
-    params.require(:recipe).permit(:photo, :title, :subtitle, :description, :prep_time, :cook_time, :rest_time, :kind, :published)
+    params.require(:recipe).permit(:photo, :title, :subtitle, :description,
+                                   :prep_time, :cook_time, :rest_time, :kind, :published, :servings)
   end
 end
