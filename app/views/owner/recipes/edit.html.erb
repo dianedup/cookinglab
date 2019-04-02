@@ -14,6 +14,16 @@
     </div>
   <% end %>
   <!------------------------------- END OF RECIPE FORM 1 ------------------------------->
+  <div class="container">
+    <div class="form-photo-wrapper">
+      <%= simple_form_for [:owner, @recipe] do |recipe_form|%>
+        <div class="form-photo">
+          <p>Photo</p>
+          <%= recipe_form.input :photo, label: false %>
+        </div>
+      <% end %>
+    </div>
+  </div>
   <!------------------------------- EDIT RECIPE FORM 2 ------------------------------->
   <div class="form-servings-wrapper">
     <%= simple_form_for [:owner, @recipe] do |recipe_form|%>
@@ -29,13 +39,25 @@
     <% end %>
   </div>
   <!-------------------------------- END OF RECIPE FORM 2 -------------------------------->
+  <div class="form-description-wrapper">
+    <%= simple_form_for [:owner, @recipe] do |recipe_form|%>
+      <div class="form-description">
+        <div>
+          <%= recipe_form.input :description, label: 'Description', placeholder: "Ecrivez un commentaire sur votre recette" %>
+        </div>
+        <div>
+          <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
   <div class="edit-recipe-division">
     <!------------------------------- EDIT RECIPE FORM 3 ------------------------------->
     <%= simple_form_for [:owner, @recipe] do |recipe_form|%>
       <div class="form-inputs">
         <div class="form-timing">
-          <%= recipe_form.input :prep_time, label: 'Préparation', placeholder: 'heures,minutes...', error: 'Le temps de préparation est obligatoire' %>
-          <%= recipe_form.input :cook_time, placeholder: 'heures,minutes...', label: 'Cuisson' %>
+          <%= recipe_form.input :prep_time, label: 'Préparation', placeholder: 'h,min...', error: 'Le temps de préparation est obligatoire' %>
+          <%= recipe_form.input :cook_time, placeholder: 'h,min...', label: 'Cuisson' %>
           <%= recipe_form.input :rest_time, label: 'Repos', placeholder: 'heures,minutes...' %>
           <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info btn-timing' %>
         </div>

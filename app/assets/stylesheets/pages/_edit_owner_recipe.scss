@@ -19,6 +19,23 @@
   }
 }
 
+.form-photo-wrapper {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.form-photo {
+  margin-top: 70px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  p {
+    margin-right: 75px;
+    // margin-left: 165px;
+  }
+}
+
 .form-servings-wrapper {
   margin-top: 50px;
 }
@@ -32,6 +49,12 @@
     margin-top: 7px;
     margin-right: 20px;
   }
+}
+
+.form-description-wrapper {
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .form-timing {
