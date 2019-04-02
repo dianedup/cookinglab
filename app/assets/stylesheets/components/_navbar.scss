@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  border-bottom: 2px dotted #FFE900;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -27,12 +28,12 @@
   }
 }
 
-.partie-gauche {
+.left-side {
   display: flex;
   align-items: center;
 }
 
-.lien-recettes {
+.link-recipe {
   margin-top: 17px;
   margin-left: 60px;
 }
