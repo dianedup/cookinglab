@@ -30,9 +30,9 @@
               <%= cl_image_tag @recipe.user.avatar, aspect_ratio: 1, crop: :fill, class: "avatar"%>
             </div>
           </div>
-          <% if @recipe.kind == 'original' %>
+          <% if @recipe.kind == 'original' && @recipe.user != current_user %>
             <div class="add-changes-proposal">
-              <%= link_to recipe_copies_path(@recipe), method: :post do %>
+              <%= link_to recipe_copies_path(@recipe, recipe_copy_kind: 'changes_proposal'), method: :post do %>
                 <i class="fas fa-user-edit"></i> Proposer à <%= @recipe.user.first_name.capitalize %> des modifications
               <% end %>
             </div>

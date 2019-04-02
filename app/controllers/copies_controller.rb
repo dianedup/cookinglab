@@ -1,14 +1,17 @@
 class CopiesController < ApplicationController
   def create
-    @new_variant = ::Recipes::CreateCopyService.new(params[:recipe_id], current_user.id).call
+    if params[:recipe_copy_kind].nil?
+      @copy = ::Recipes::CreateCopyService.new(params[:recipe_id], current_user.id).call
+    else
+      @copy = ::Recipes::CreateCopyService.new(params[:recipe_id], current_user.id, params[:recipe_copy_kind]).call
+    end
 
-    redirect_to edit_owner_recipe_path(@new_variant)
+    redirect_to edit_owner_recipe_path(@copy)
   end
-
 
   private
 
   def params_variant
-    params.permit(:recipe_id)
+    params.permit(:recipe_id, :recipe_copy_kind)
   end
 end
