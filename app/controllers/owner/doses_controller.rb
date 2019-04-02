@@ -16,7 +16,7 @@ class Owner::DosesController < ApplicationController
     @dose.save!
     respond_to do |format|
       format.html { redirect_to edit_owner_recipe_path(@step.recipe) }
-      format.js
+      format.js {}
     end
   end
 

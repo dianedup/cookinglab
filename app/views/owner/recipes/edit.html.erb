@@ -76,19 +76,13 @@
       </div>
       <div class="edit-recipe-division-header">
         <h6 class="margin-bottom-15"><i class="far fa-lemon"></i> Saisie des ingrédients de l'étape avec leur quantité et leur unité de mesure </h6>
-        <% step.doses.order(:created_at).each do |dose| %>
-          <!--------------------------------- EDIT DOSE FORM --------------------------------->
-            <%= simple_form_for([:owner, dose], remote: true) do |dose_form|%>
-              <div class="dose-ingredients" id="dose-<%= dose.id %>">
-                <p class="ingredient-name"><%= dose.ingredient.name %></p>
-                <%= dose_form.input :quantity, label: false %>
-                <%= dose_form.input :unit, label: false %>
-                <%= dose_form.submit 'Mettre à jour', class: "btn btn-info btn-doses js-update-btn" %>
-                <%= link_to 'Supprimer', owner_dose_path(dose), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, remote: true, class: "btn btn-primary btn-doses js-delete-btn" %>
-              </div>
-            <% end %>
-          <!------------------------------ END OF DOSE FORM ------------------------------>
-        <% end %>
+        <div id="doses-edit">
+          <% step.doses.order(:created_at).each do |dose| %>
+            <!--------------------------------- EDIT DOSE FORM --------------------------------->
+              <%= render 'owner/doses/edit', dose: dose %>
+            <!------------------------------ END OF DOSE FORM ------------------------------>
+          <% end %>
+        </div>
         <!--------------------------------- NEW DOSE FORM --------------------------------->
         <%= simple_form_for([:owner, step, @dose], remote: true) do |new_dose_form|%>
           <div class="form-new-dose">
