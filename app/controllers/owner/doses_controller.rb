@@ -14,7 +14,10 @@ class Owner::DosesController < ApplicationController
       @dose.ingredient = new_ingredient
     end
     @dose.save!
-    redirect_to edit_owner_recipe_path(@step.recipe)
+    respond_to do |format|
+      format.html { redirect_to edit_owner_recipe_path(@step.recipe) }
+      format.js
+    end
   end
 
   def update
@@ -22,17 +25,33 @@ class Owner::DosesController < ApplicationController
     @recipe = @dose.step.recipe
 
     if @dose.update(dose_params)
-      redirect_to edit_owner_recipe_path(@recipe)
+      respond_to do |format|
+        format.html { redirect_to edit_owner_recipe_path(@recipe) }
+        format.js
+      end
     else
-      render 'owner/recipes/edit'
+      respond_to do |format|
+        format.html { render 'owner/recipes/edit' }
+        format.js
+      end
     end
   end
 
   def destroy
     @dose = Dose.find(params[:id])
     @recipe = @dose.step.recipe
-    @dose.destroy
-    redirect_to edit_owner_recipe_path(@recipe)
+    @dose_id = @dose.id
+    if @dose.destroy
+      respond_to do |format|
+        format.html { redirect_to edit_owner_recipe_path(@recipe) }
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html { render 'owner/recipes/edit' }
+        format.js
+      end
+    end
   end
 
   def dose_params
