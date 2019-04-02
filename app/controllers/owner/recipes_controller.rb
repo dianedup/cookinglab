@@ -6,6 +6,13 @@ class Owner::RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(params_recipe)
     @recipe.user = current_user
+    # à insérer dans les views où vous affichez l'image de la recipe
+    # if @recipe.photo.url.nil?
+    #   image_tag("default_image.jpg")
+    # else
+    #   cl_image_tag(@recipe.photo)
+    # end
+
     if @recipe.save
       if params[:recipe][:tags].present? # => ["1", "2", "3"]
         checked_tags = params[:recipe][:tags]

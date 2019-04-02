@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :contributions, only: [:index]
 
   namespace :owner do
-    resource :dashboards, only: [:show]
+    resource :dashboard, only: [:show]
 
 
     resources :recipes, only: [:new, :create, :edit, :update, :destroy] do

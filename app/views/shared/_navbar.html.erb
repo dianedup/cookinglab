@@ -21,7 +21,7 @@
             <%= cl_image_tag current_user.avatar, aspect_ratio: 1, crop: :fill, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               <%= link_to "Mon profile", "#", class: "dropdown-item" %>
-              <%= link_to "Mes recettes", owner_dashboards_path, class: "dropdown-item" %>
+              <%= link_to "Mes recettes", owner_dashboard_path, class: "dropdown-item" %>
               <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
