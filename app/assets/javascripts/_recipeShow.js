@@ -1,5 +1,3 @@
-
-
 const variantsTagsFilters = document.querySelectorAll(".js-variant-tag")
 
 const variantsCards = [...document.querySelectorAll('.js-variant-card')]

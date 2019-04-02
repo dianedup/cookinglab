@@ -2,7 +2,11 @@
   <div class="row">
     <div class="col-sm">
       <div class="recipe-header">
-        <div class="recipe-photo" style="background-image: url('<%= cl_image_path(@recipe.photo) %>');">
+          <% if @recipe.photo.url.nil? %>
+         <div class="recipe-photo" style="background-image: url('<%= image_path "default_image.png" %>')">
+         <% else %>
+        <div class="recipe-photo" style="background-image: url('<%= cl_image_path @recipe.photo %>')">
+          <% end %>
           <div class="tags-list">
             <% @recipe.tags.each do |tag| %>
             <span><%= tag.name %></span>
@@ -93,17 +97,21 @@
             <div class="step">
               <p><span><strong>Etape <%= step.position %>/<%= nb_steps %></strong></span>
                 <br>
-                <i class="far fa-lemon"></i>
-                <% step_ingredients = step.doses.map do |dose| %>
-                    <% "#{dose.quantity} #{dose.unit} #{dose.ingredient.name}" %>
+                <% unless step.doses.empty? %>
+                  <i class="far fa-lemon"></i>
+                  <% step_ingredients = step.doses.map do |dose| %>
+                      <% "#{dose.quantity} #{dose.unit} #{dose.ingredient.name}" %>
+                  <% end %>
+                  <%= step_ingredients.join(' - ') %>
+                  <br>
                 <% end %>
-                <%= step_ingredients.join(' - ') %>
-                <br>
-                <i class="fas fa-utensil-spoon"></i>
-                <% step_utensils_list = step.utensils.map do |utensil| %>
-                  <% utensil.name %>
+                <% unless step.utensils.empty? %>
+                  <i class="fas fa-utensil-spoon"></i>
+                  <% step_utensils_list = step.utensils.map do |utensil| %>
+                    <% utensil.name %>
+                  <% end %>
+                  <%= step_utensils_list.join(' - ') %>
                 <% end %>
-                <%= step_utensils_list.join(' - ') %>
               </p>
               <p>
                 <%= step.content %>
@@ -113,33 +121,18 @@
         </div>
     </div>
     <div class="col-sm-12 col-md-4">
-      <% if @recipe.variants.present? || @recipe.kind == 'variant'%>
-        <div class="recipe-variants">
-          <% if @recipe.kind == 'original' %>
-            <h5 class="text-center">Tester une variante<br>de la recette</h5>
-          <% else %>
-            <h5 class="text-center">Revenir à la recette originale</h5>
-            <%= link_to recipe_path(@recipe.original_recipe), class: 'card-link-to-variant' do %>
-              <div class="variant-card mb-3">
-                <div class="variant-header">
-                  <div class="variant-subtitle"><h5><%= @recipe.original_recipe.subtitle.capitalize %></h5></div>
-                  <div class="author-avatar">
-                    <%= cl_image_tag @recipe.original_recipe.user.avatar, aspect_ratio: 1, crop: :fill, class: "avatar" %>
-                  </div>
-                </div>
-                <i class="fas fa-arrow-up"></i> 12
-                <div class="tags-variants">
-                  <% original_tags_list = @recipe.original_recipe.tags.map do |tag| %>
-                    <% tag.name %>
-                  <% end %>
-                  <% original_tags_list.each do |tag| %>
-                    <span class="variant-span"><%= tag %></span>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
+      <% published_variants = @recipe.variants.select { |variant| variant.published == true } %>
+      <% if @recipe.kind == 'variant' %>
+        <div class="back-to-original-link">
+          <%= link_to recipe_path(@recipe.original_recipe) do %>
+            <h5 class="back-to-original-recipe-text">Revenir à la recette originale</h5>
           <% end %>
-          <div class="tags-variants mb-3">
+        </div>
+      <% end %>
+      <% if published_variants.present? && @recipe.kind == 'original'%>
+        <div class="recipe-variants">
+          <h5 class="text-center mb-3">Tester une variante de la recette</h5>
+          <div class="tags-variants mb-0">
             <% all_variants_tags = [] %>
             <% @recipe.variants.each do |variant| %>
               <% variant.tags.each do |tag| %>
@@ -150,8 +143,8 @@
               <span data-variant-name="<%= tag %>" class="background-white click js-variant-tag"><%= tag %></span>
             <% end %>
           </div>
-          <% @recipe.variants.each do |variant| %>
-            <%= link_to recipe_path(variant), class: 'card-link-to-variant js-variant-card', data: { 'variant-tags': variant.tags.map(&:name).to_json } do %>
+          <% published_variants.each do |variant| %>
+            <%= link_to recipe_path(variant), class: 'card-variant-link js-variant-card', data: { 'variant-tags': variant.tags.map(&:name).to_json } do %>
               <div class="variant-card">
                 <div class="variant-header">
                   <div class="variant-subtitle"><h5><%= variant.subtitle.capitalize %></h5></div>
@@ -175,11 +168,16 @@
           <% end %>
         </div>
         <div class="add-variant">
-          <h5><span>+</span>Créer une nouvelle variante</h5>
+          <!-- <h5><span>+</span>Créer une nouvelle variante</h5> -->
+          <%= link_to recipe_copies_path(@recipe), method: :post do %>
+            <h5><span>+</span>Créer une nouvelle variante</h5>
+          <% end %>
         </div>
       <% else %>
       <div class="add-variant variant-margin-top">
-        <h5><span>+</span>Créer une nouvelle variante</h5>
+        <%= link_to recipe_copies_path(@recipe), method: :post do %>
+          <h5><span>+</span>Créer une nouvelle variante</h5>
+        <% end %>
       </div>
       <% end %>
     </div>

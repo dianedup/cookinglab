@@ -1,5 +1,4 @@
-
-const initMapChoice = () => {
+const initTagsChoice = () => {
   $(document).ready(function(){
     $(".tag-choice").click(function(){
       $(this).toggleClass("active");
@@ -7,4 +6,4 @@ const initMapChoice = () => {
   });
 }
 
-export { initMapChoice };
+export { initTagsChoice };

@@ -1,7 +1,11 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
-  border-bottom: 2px dotted #FFE900;
+  border-bottom: 2px dotted $secondary;
+  padding: 0.2rem 1rem;
+}
+.navbar-lewagon .avatar {
+  cursor: pointer;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -41,6 +45,6 @@
 .nav-link {
   border-bottom: 2px solid $white;
   &:hover {
-    border-bottom: 2px solid $middle_yellow;
+    border-bottom: 2px solid $primary;
   }
 }
