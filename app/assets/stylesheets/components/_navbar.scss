@@ -1,8 +1,11 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
-  border-bottom: 2px dotted #FFE900;
-  padding: 0 1rem;
+  border-bottom: 2px dotted $secondary;
+  padding: 0.2rem 1rem;
+}
+.navbar-lewagon .avatar {
+  cursor: pointer;
 }
 
 .navbar-lewagon .navbar-collapse {
