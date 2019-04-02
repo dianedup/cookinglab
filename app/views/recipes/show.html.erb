@@ -93,17 +93,21 @@
             <div class="step">
               <p><span><strong>Etape <%= step.position %>/<%= nb_steps %></strong></span>
                 <br>
-                <i class="far fa-lemon"></i>
-                <% step_ingredients = step.doses.map do |dose| %>
-                    <% "#{dose.quantity} #{dose.unit} #{dose.ingredient.name}" %>
+                <% unless step.doses.empty? %>
+                  <i class="far fa-lemon"></i>
+                  <% step_ingredients = step.doses.map do |dose| %>
+                      <% "#{dose.quantity} #{dose.unit} #{dose.ingredient.name}" %>
+                  <% end %>
+                  <%= step_ingredients.join(' - ') %>
+                  <br>
                 <% end %>
-                <%= step_ingredients.join(' - ') %>
-                <br>
-                <i class="fas fa-utensil-spoon"></i>
-                <% step_utensils_list = step.utensils.map do |utensil| %>
-                  <% utensil.name %>
+                <% unless step.utensils.empty? %>
+                  <i class="fas fa-utensil-spoon"></i>
+                  <% step_utensils_list = step.utensils.map do |utensil| %>
+                    <% utensil.name %>
+                  <% end %>
+                  <%= step_utensils_list.join(' - ') %>
                 <% end %>
-                <%= step_utensils_list.join(' - ') %>
               </p>
               <p>
                 <%= step.content %>
@@ -123,8 +127,8 @@
       <% end %>
       <% if published_variants.present? && @recipe.kind == 'original'%>
         <div class="recipe-variants">
-          <h5 class="text-center mb-0">Tester une variante de la recette</h5>
-          <div class="tags-variants mb-3">
+          <h5 class="text-center mb-3">Tester une variante de la recette</h5>
+          <div class="tags-variants mb-0">
             <% all_variants_tags = [] %>
             <% @recipe.variants.each do |variant| %>
               <% variant.tags.each do |tag| %>
