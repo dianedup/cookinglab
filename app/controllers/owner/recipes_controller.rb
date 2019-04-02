@@ -37,7 +37,7 @@ class Owner::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @recipe.published = 'true'
     @recipe.save!
-    redirect_to owner_dashboards_path
+    redirect_to owner_dashboard_path
   end
 
   private
