@@ -1,0 +1,10 @@
+.dashboard-actions {
+  display: flex;
+  justify-content: center;
+}
+
+@media(min-width: 992px) {
+  .dashboard-actions {
+    justify-content: flex-end;
+  }
+}
