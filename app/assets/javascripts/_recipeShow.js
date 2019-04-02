@@ -12,6 +12,9 @@ variantsTagsFilters.forEach(variantTagFilter => {
         variantCardToShow.classList.remove('hidden')
       })
     } else {
+      variantsTagsFilters.forEach(variantTagFilter => {
+        variantTagFilter.classList.remove('active')
+      })
       variantTagFilter.classList.add("active");
 
       const variantName = variantTagFilter.dataset.variantName
