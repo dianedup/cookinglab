@@ -3,12 +3,38 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Cooking lab - Au départ une recette commune, à l'arrivée une variante pour chaque occasion</title>
+
+    <!-- Google -->
+
+    <title>Cooking Lab - Au départ une recette commune, à l'arrivée une variante pour chaque occasion</title>
+    <meta name="description" content="A partir d'une recette originale, créer des variantes et partagez-les avec vos proches au sein d'un même cercle.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <%= favicon_link_tag "saucepan-petit.png" %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+
+    <!-- Facebook -->
+
+    <meta property="og:site_name" content="Cooking Lab | Au départ une recette commune, à l'arrivée une variante pour chaque occasion">
+    <meta property="og:title" content="Cooking Lab">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.cookinglab.co/">
+    <meta property="og:image" content="<%= image_path "banner_card_meta.jpg" %>">
+    <meta property="og:description" content="A partir d'une recette originale, créer des variantes et partagez-les avec vos proches au sein d'un même cercle.">
+
+    <!-- Twitter -->
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TDA_76">
+    <meta name="twitter:title" content="Cooking Lab">
+    <meta name="twitter:description" content="A partir d'une recette originale, créer des variantes et partagez-les avec vos proches au sein d'un même cercle.">
+    <meta name="twitter:creator" content="@TDA_76">
+    <meta name="twitter:image:src" content="<%= image_path "banner_card_meta.jpg" %>">
+
+    <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
     <%= render 'shared/navbar' unless controller_name == 'pages' || devise_controller? %>
