@@ -1,7 +1,6 @@
-<div class="container">
+<div class="container container-show">
   <div class="row">
     <div class="col-sm">
-
       <div class="recipe-header">
         <div class="recipe-photo" style="background-image: url('<%= cl_image_path(@recipe.photo) %>');">
           <div class="tags-list">
@@ -114,7 +113,7 @@
         </div>
     </div>
     <div class="col-sm-12 col-md-4">
-      <% published_variants = @recipe.variants.select { |variant| variant.published == false } %>
+      <% published_variants = @recipe.variants.select { |variant| variant.published == true } %>
       <% if @recipe.kind == 'variant' %>
         <div class="back-to-original-link">
           <%= link_to recipe_path(@recipe.original_recipe) do %>
@@ -133,11 +132,11 @@
               <% end %>
             <% end %>
             <% all_variants_tags.uniq.each do |tag| %>
-              <span class="background-white"><%= tag %></span>
+              <span data-variant-name="<%= tag %>" class="background-white click js-variant-tag"><%= tag %></span>
             <% end %>
           </div>
           <% published_variants.each do |variant| %>
-            <%= link_to recipe_path(variant), class: 'card-variant-link' do %>
+            <%= link_to recipe_path(variant), class: 'card-variant-link js-variant-card', data: { 'variant-tags': variant.tags.map(&:name).to_json } do %>
               <div class="variant-card">
                 <div class="variant-header">
                   <div class="variant-subtitle"><h5><%= variant.subtitle.capitalize %></h5></div>
@@ -145,7 +144,9 @@
                     <%= cl_image_tag variant.user.avatar, aspect_ratio: 1, crop: :fill, class: "avatar" %>
                   </div>
                 </div>
-                <i class="fas fa-arrow-up"></i> 12
+                <div class="upvote">
+                  <i class="fas fa-arrow-up"></i> 12
+                </div>
                 <div class="tags-variants">
                   <% variant_tags_list = variant.tags.map do |tag| %>
                     <% tag.name %>

@@ -18,6 +18,17 @@
   }
 }
 
+.variant-card {
+  border-bottom: #FEF475 15px solid;
+  &:last-of-type{
+    margin-bottom: 0px;
+  }
+}
+
+.card-link + .card-link {
+  margin-left: 0px;
+}
+
 .card-recipe-title {
   background-color: $white;
   text-align: center;
@@ -54,8 +65,8 @@
   background-color: $secondary;
   right: 20px;
   bottom: -30px;
-
 }
+
 .card-recipe-description {
   position: relative;
   font-size: 11px;
@@ -77,4 +88,40 @@
 .devise-form-card {
   background-color: $white;
   padding: 25px;
+}
+
+.card-recipe-dashboard {
+  border-bottom: 2px dotted $primary;
+  background-color: $white;
+  max-width: 300px;
+  margin: 60px auto 20px auto;
+}
+
+.card-recipe-options {
+  font-size: 11px;
+  text-align: left;
+  vertical-align: center;
+  .btn-line-behind {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+      &:before {
+        border-top: 2px solid $charcoal;
+        content:"";
+        position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+        top: 50%; left: 0; right: 0; bottom: 0;
+        width: 95%;
+        z-index: -1;
+      } span {
+          /* to hide the lines from behind the text, you have to set the background color the same as the container */
+        background: #fff;
+        padding: 0 10px;
+      }
+  }
+}
+
+.container-subtitle {
+  margin: 15px;
+  height: 60px;
+  width: 60%;
 }

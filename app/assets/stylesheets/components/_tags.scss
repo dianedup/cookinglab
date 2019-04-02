@@ -17,6 +17,17 @@
     margin-right: 10px;
     margin-bottom: 10px;
   }
+
+  span.click {
+    cursor: pointer;
+
+    &:hover {
+    transition-duration: 250ms;
+    animation-timing-function: ease-in-out;
+    transform: scale(1.06);
+  }
+  }
+
   span.background-white {
     background-color: $white;
   }
