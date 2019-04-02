@@ -89,8 +89,25 @@ table {
   padding-bottom: 20px;
 }
 
+.back-to-original-link{
+  &:hover {
+    transition-duration: 250ms;
+    transform: scale(1.05);
+  }
+  a {
+    text-decoration: none;
+  }
+  .back-to-original-recipe-text {
+    text-align: center;
+    padding: 10px;
+    margin-top: 30px;
+    background-color: $info;
+    border: 3px solid $primary;
+  }
+}
+
 .recipe-variants {
-  padding: 15px 15px 0px 15px;
+  padding: 15px;
   margin: 15px 0;
   background-color: $secondary;
 }
@@ -98,6 +115,7 @@ table {
 .variant-card {
   background-color: $white;
   padding: 15px 15px;
+  margin-top: 15px;
   span.variant-span {
     background-color: $secondary;
   }
@@ -135,6 +153,9 @@ table {
     transition-duration: 250ms;
     transform: scale(1.05);
     opacity: 1;
+  }
+  a {
+    text-decoration: none;
   }
   span {
     line-height: 1;
