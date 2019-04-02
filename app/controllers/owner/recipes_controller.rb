@@ -23,15 +23,23 @@ class Owner::RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
-    @step = Step.new(recipe: @recipe)
-    @dose = Dose.new
-    @step_utensil = StepUtensil.new
+    if @recipe.user == current_user
+      @step = Step.new(recipe: @recipe)
+      @dose = Dose.new
+      @step_utensil = StepUtensil.new
+    else
+      redirect_to recipes_path
+    end
   end
 
   def update
     @recipe = Recipe.find(params[:id])
-    @recipe.update!(params_recipe)
-    redirect_to owner_dashboard_path
+    if @recipe.user == current_user
+      @recipe.update!(params_recipe)
+      redirect_to owner_dashboard_path
+    else
+      redirect_to recipes_path
+    end
   end
 
   def publish
