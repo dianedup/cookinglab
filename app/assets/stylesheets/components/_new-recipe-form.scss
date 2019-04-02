@@ -39,31 +39,12 @@
   font-size: 25px;
 }
 
-#recipe_photo {
-  color: red;
-}
-
-.upload-btn-wrapper {
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
-  top: 25px;
-}
-
-.btn-upload-photo {
-  border: 2px solid gray;
-  color: gray;
-  background-color: white;
-  padding: 4px 20px;
-  border-radius: 3px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.upload-btn-wrapper input[type=file] {
-  font-size: 100px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
+.upload-photo {
+  border: #d3d3d3 solid 1px;
+  padding: 7px 20px;
+  cursor: pointer;
+  font-weight: 500;
+  background: white;
+  border-radius: 2px;
+  margin-bottom: 0px !important;
 }

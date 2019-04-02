@@ -7,3 +7,6 @@ initSelect2();
 
 import { initMapChoice } from "../components/tag_choice"
 initMapChoice();
+
+import { previewImageOnFileSelect } from "../components/photo_preview";
+previewImageOnFileSelect();
