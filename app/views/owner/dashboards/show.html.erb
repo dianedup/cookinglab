@@ -10,7 +10,7 @@
     <div class= "col-sm-12 col-md-6 col-lg-4">
       <div class="card-recipe-dashboard">
          <% if recipe.photo.url.nil? %>
-         <div class="card-recipe-image text-center" style="background-image: url('<%= image_tag "default_image.png" %>')">
+         <div class="card-recipe-image text-center" style="background-image: url('<%= image_path "default_image.png" %>')">
          <% else %>
         <div class="card-recipe-image text-center" style="background-image: url('<%= cl_image_path recipe.photo %>')">
           <% end %>

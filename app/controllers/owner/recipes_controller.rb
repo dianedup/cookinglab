@@ -6,12 +6,6 @@ class Owner::RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(params_recipe)
     @recipe.user = current_user
-    # à insérer dans les views où vous affichez l'image de la recipe
-    # if @recipe.photo.url.nil?
-    #   image_tag("default_image.jpg")
-    # else
-    #   cl_image_tag(@recipe.photo)
-    # end
 
     if @recipe.save
       if params[:recipe][:tags].present? # => ["1", "2", "3"]
@@ -44,7 +38,7 @@ class Owner::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @recipe.published = 'true'
     @recipe.save!
-    redirect_to owner_dashboards_path
+    redirect_to owner_dashboard_path
   end
 
   private

@@ -2,7 +2,11 @@
   <div class="row">
     <div class="col-sm">
       <div class="recipe-header">
-        <div class="recipe-photo" style="background-image: url('<%= cl_image_path(@recipe.photo) %>');">
+          <% if @recipe.photo.url.nil? %>
+         <div class="recipe-photo" style="background-image: url('<%= image_path "default_image.png" %>')">
+         <% else %>
+        <div class="recipe-photo" style="background-image: url('<%= cl_image_path @recipe.photo %>')">
+          <% end %>
           <div class="tags-list">
             <% @recipe.tags.each do |tag| %>
             <span><%= tag.name %></span>
