@@ -1,0 +1,11 @@
+function addDose(doseHTML) {
+  const doses = document.getElementById('doses-edit-<%= @dose.step.id %>');
+  doses.insertAdjacentHTML('beforeend', doseHTML);
+}
+
+function refreshForm(innerHTML) {
+  const newDoseForm = document.getElementById('new_dose');
+  newDoseForm.innerHTML = innerHTML;
+}
+
+addDose('<%= j render "owner/doses/edit", dose: @dose %>');

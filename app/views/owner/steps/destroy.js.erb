@@ -1,0 +1,7 @@
+document.querySelector('#step_<%= @step_id %>').remove();
+var stepsLeft = document.querySelectorAll(".js-recipe-step")
+var totalStep = stepsLeft.length
+stepsLeft.forEach( (step, index) => {
+  step.querySelector(".js-recipe-step-position").innerText = index + 1
+  step.querySelector(".js-recipe-step-count").innerText = totalStep
+});

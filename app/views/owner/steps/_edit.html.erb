@@ -1,0 +1,60 @@
+<div class="edit-recipe-division js-recipe-step" id="step_<%= step.id %>">
+  <div class="step-title">
+    <h5>Etape <span class="js-recipe-step-position"><%= step.position %></span>/<span class="js-recipe-step-count"><%= @recipe.steps.count %></span></h5>
+    <%= link_to owner_step_path(step), method: :delete, remote: true, data: { confirm: "Êtes-vous sûr ?" }, class: "delete-step-button" do %>
+      <i class="fas fa-times"></i>
+    <% end %>
+  </div>
+  <div class="edit-recipe-division-header">
+    <h6 class="margin-bottom-15"><i class="far fa-lemon"></i> Saisie des ingrédients de l'étape avec leur quantité et leur unité de mesure </h6>
+    <div id="doses-edit-<%= step.id %>">
+      <% step.doses.order(:created_at).each do |dose| %>
+        <!--------------------------------- EDIT DOSE FORM --------------------------------->
+          <%= render 'owner/doses/edit', dose: dose %>
+        <!------------------------------ END OF DOSE FORM ------------------------------>
+      <% end %>
+    </div>
+    <!--------------------------------- NEW DOSE FORM --------------------------------->
+    <%= simple_form_for([:owner, step, Dose.new], remote: true) do |new_dose_form|%>
+      <div class="form-new-dose">
+        <%= new_dose_form.association :ingredient, label: 'Ingrédient', input_html: { class: 'select2', id: "new_dose_step_#{step.id}" } %>
+        <%= new_dose_form.input :quantity, label: 'quantité' %>
+        <%= new_dose_form.input :unit, label: 'unité' %>
+        <%= new_dose_form.submit '+ Ajouter', class: "btn btn-secondary btn-new-dose js-add-btn" %>
+      </div>
+    <% end %>
+    <!----------------------------- END OF NEW DOSE FORM ----------------------------->
+    <div class="step-content">
+      <h6 class="margin-bottom-15"><i class="fas fa-utensil-spoon"></i> Saisie des ustensiles de cusine nécessaires à l'étape</h6>
+      <div class="steps-utensils">
+        <div class="step-utensils-container" id="step-utensils-index-<%= step.id %>">
+          <% step.step_utensils.order(:created_at).each do |step_utensil| %>
+            <!--------------------------------- EDIT STEP_UTENSIL FORM --------------------------------->
+              <%= render 'owner/step_utensils/edit', step_utensil: step_utensil %>
+            <!------------------------------ END OF STEP_UTENSIL FORM ------------------------------>
+          <% end %>
+        </div>
+      <!--------------------------------- NEW STEP_UTENSIL FORM --------------------------------->
+        <div class="new_utensil">
+          <%= simple_form_for([:owner, step, StepUtensil.new], remote: true) do |new_step_utensil_form|%>
+            <div class="form-new-utensil">
+              <%= new_step_utensil_form.association :utensil, label: false, input_html: { class: 'select2', id: "new_utensil_step_#{step.id}" } %>
+              <%= new_step_utensil_form.submit '+ Ajouter un ustensile', class: "btn btn-secondary btn-new-dose js-add-btn" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!----------------------------- END OF NEW STEP_UTENSIL FORM ----------------------------->
+    <!------------------------------- EDIT STEP FORM ------------------------------->
+    <%= simple_form_for([:owner, step], remote: true) do |content_form|%>
+      <div class="step-content">
+        <h6 class="margin-bottom-15">Description de l'étape</h6>
+          <%= content_form.input :content, label: false %>
+          <%= content_form.submit 'Mettre à jour la description', class: "btn btn-info btn-doses js-update-btn" %>
+      </div>
+    <% end %>
+      <!---------------------------- END OF EDIT STEP FORM ---------------------------->
+  </div>
+</div>
+

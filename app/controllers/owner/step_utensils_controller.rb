@@ -5,16 +5,20 @@ class Owner::StepUtensilsController < ApplicationController
   end
 
   def create
-    @step_utensil = StepUtensil.new(step_utensil_params)
-    @step = Step.find(params[:step_id])
+    @step_utensil      = StepUtensil.new(step_utensil_params)
+    @step              = Step.find(params[:step_id])
     @step_utensil.step = @step
-    utensil = params[:step_utensil][:utensil_id]
+    utensil            = params[:step_utensil][:utensil_id]
+
     if utensil.to_i.zero?
       new_utensil = Utensil.create!(name: params[:step_utensil][:utensil_id])
       @step_utensil.utensil = new_utensil
     end
     @step_utensil.save!
-    redirect_to edit_owner_recipe_path(@step.recipe)
+    respond_to do |format|
+      format.html { redirect_to edit_owner_recipe_path(@step.recipe) }
+      format.js {}
+    end
   end
 
   def update
@@ -31,8 +35,18 @@ class Owner::StepUtensilsController < ApplicationController
   def destroy
     @step_utensil = StepUtensil.find(params[:id])
     @recipe = @step_utensil.step.recipe
-    @step_utensil.destroy
-    redirect_to edit_owner_recipe_path(@recipe)
+    @step_utensil_id = @step_utensil.id
+    if @step_utensil.destroy
+      respond_to do |format|
+        format.html { redirect_to edit_owner_recipe_path(@recipe) }
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html { render 'owner/recipes/edit' }
+        format.js
+      end
+    end
   end
 
   def step_utensil_params

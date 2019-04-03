@@ -1,0 +1,11 @@
+function addUtensil(utensilHTML) {
+  const utensils = document.getElementById('step-utensils-index-<%= @step_utensil.step.id %>');
+  utensils.insertAdjacentHTML('beforeend', utensilHTML);
+}
+
+function refreshForm(innerHTML) {
+  const newUtensilForm = document.getElementById('new_step_utensil');
+  newUtensilForm.innerHTML = innerHTML;
+}
+
+addUtensil('<%= j render "owner/step_utensils/edit", step_utensil: @step_utensil %>');

@@ -37,7 +37,7 @@ class Owner::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     if @recipe.user == current_user
       @recipe.update!(params_recipe)
-      redirect_to owner_dashboard_path
+      redirect_to edit_owner_recipe_path(@recipe)
     else
       redirect_to recipes_path
     end
@@ -54,6 +54,7 @@ class Owner::RecipesController < ApplicationController
   private
 
   def params_recipe
-    params.require(:recipe).permit(:photo, :title, :subtitle, :description, :prep_time, :cook_time, :rest_time, :kind, :published)
+    params.require(:recipe).permit(:photo, :title, :subtitle, :description,
+                                   :prep_time, :cook_time, :rest_time, :kind, :published, :servings)
   end
 end

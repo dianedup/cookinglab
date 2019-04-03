@@ -1,0 +1,17 @@
+function addStep(stepHTML) {
+  const steps = document.getElementById('step-edit');
+  steps.insertAdjacentHTML('beforeend', stepHTML);
+}
+
+function refreshForm(innerHTML) {
+  const newStepForm = document.getElementById('new_step');
+  newStepForm.innerHTML = innerHTML;
+}
+
+addStep('<%= j render "owner/steps/edit", step: @step %>');
+var allSteps = document.querySelectorAll(".js-recipe-step")
+var stepTotal = allSteps.length
+allSteps.forEach( (step, index) => {
+  step.querySelector(".js-recipe-step-position").innerText = index + 1
+  step.querySelector(".js-recipe-step-count").innerText = stepTotal
+});
