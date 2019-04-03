@@ -54,7 +54,7 @@ module Recipes
     end
 
     def create_copy_step(original_step)
-      copy_step = Step.new(original_step.attributes.slice('content'))
+      copy_step = Step.new(original_step.attributes.slice('content', 'position'))
       copy_step.recipe = copy
       copy_step.save!
       return copy_step
