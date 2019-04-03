@@ -14,7 +14,10 @@ class Owner::StepUtensilsController < ApplicationController
       @step_utensil.utensil = new_utensil
     end
     @step_utensil.save!
-    redirect_to edit_owner_recipe_path(@step.recipe)
+    respond_to do |format|
+      format.html { redirect_to edit_owner_recipe_path(@step.recipe) }
+      format.js {}
+    end
   end
 
   def update

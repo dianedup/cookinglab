@@ -149,6 +149,12 @@
   }
 }
 
+.step-utensils-container {
+  display: flex;
+  justify-content: space-between;
+  width: 400px
+}
+
 .steps-utensils {
   display: flex;
   justify-content: space-between;

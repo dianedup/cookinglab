@@ -96,16 +96,13 @@
         <div class="step-content">
           <h6 class="margin-bottom-15"><i class="fas fa-utensil-spoon"></i> Saisie des ustensiles de cusine nécessaires à l'étape</h6>
           <div class="steps-utensils">
-            <% step.step_utensils.order(:created_at).each do |step_utensil| %>
-              <!--------------------------------- EDIT STEP_UTENSIL FORM --------------------------------->
-                  <div class="utensil" id="step_utensil_<%= step_utensil.id %>">
-                    <%= step_utensil.utensil.name %>
-                    <%= link_to owner_step_utensil_path(step_utensil), method: :delete, remote: true do %>
-                      <i class="far fa-trash-alt" style="opacity: 0.5"></i>
-                    <% end %>
-                  </div>
-              <!------------------------------ END OF STEP_UTENSIL FORM ------------------------------>
-            <% end %>
+            <div class="step-utensils-container" id="step-utensils-edit">
+              <% step.step_utensils.order(:created_at).each do |step_utensil| %>
+                <!--------------------------------- EDIT STEP_UTENSIL FORM --------------------------------->
+                  <%= render 'owner/step_utensils/edit', step_utensil: step_utensil %>
+                <!------------------------------ END OF STEP_UTENSIL FORM ------------------------------>
+              <% end %>
+            </div>
           <!--------------------------------- NEW STEP_UTENSIL FORM --------------------------------->
 <!--               <div class="new_utensil"> -->
               <%= simple_form_for([:owner, step, @step_utensil], remote: true) do |new_step_utensil_form|%>
