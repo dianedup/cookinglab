@@ -108,33 +108,16 @@
   margin: 60px auto 20px auto;
 }
 
-.card-recipe-options {
-  font-size: 11px;
-  text-align: left;
-  vertical-align: center;
-  .btn-line-behind {
-    text-align: center;
-    position: relative;
-    z-index: 1;
-      &:before {
-        border-top: 2px solid $charcoal;
-        content:"";
-        position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
-        top: 50%; left: 0; right: 0; bottom: 0;
-        width: 95%;
-        z-index: -1;
-      } span {
-          /* to hide the lines from behind the text, you have to set the background color the same as the container */
-        background: #fff;
-        padding: 0 10px;
-      }
-  }
-}
-
 .container-subtitle {
   margin-top: 5px;
   margin-left: 15px;
   margin-right: 15px;
   height: 60px;
   width: 60%;
+}
+
+.dashboard-link-to-show {
+  &:hover {
+    color: $middle_yellow;
+  }
 }
