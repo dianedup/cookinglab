@@ -12,9 +12,11 @@
          <% else %>
         <div class="card-recipe-image text-center" style="background-image: url('<%= cl_image_path recipe.photo %>')">
           <% end %>
+          <%= link_to recipe_path(recipe), class: 'title-link' do %>
           <div class="card-recipe-title">
             <h2><%= recipe.title %></h2>
           </div>
+          <% end %>
           <span>
             <% if recipe.kind == 'variant' %>
             <div class="variant-count">
@@ -46,13 +48,9 @@
             <% end %>
           </div>
         </div>
-        <div class="card-recipe-options">
-          <%= link_to recipe_path(recipe), class: 'card-link' do %>
-          <p class="btn-line-behind"><span>voir la recette</span></p>
-          <% end %>
-        </div>
       </div>
     </div>
     <% end %>
   </div>
 </div>
+
