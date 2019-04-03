@@ -12,12 +12,14 @@
     <% end %>
   </div>
   <!-------------------------------- EDIT RECIPE FORM 1 -------------------------------->
+  <% if @recipe.kind == 'variant' %>
   <%= simple_form_for [:owner, @recipe] do |recipe_form|%>
     <div class="form-subtitle">
-      Sous-titre
+      Nom de votre variante
       <%= recipe_form.input :subtitle, label: false, placeholder: '...' %>
-      <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info' %>
+      <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info ml-4' %>
     </div>
+  <% end %>
   <% end %>
   <!------------------------------- END OF RECIPE FORM 1 ------------------------------->
   <div class="edit-recipe-division">
