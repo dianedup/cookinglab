@@ -4,3 +4,12 @@
   right: 16px;
   z-index: 1000;
 }
+
+.contribution-warning {
+  background-color: $light-gray;
+  padding: 15px;
+  margin: 15px 10px 30px;
+  text-align: center;
+  border: 2px solid $primary;
+}
+

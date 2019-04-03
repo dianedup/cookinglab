@@ -6,6 +6,7 @@ RecipeTag.destroy_all
 Ingredient.destroy_all
 Utensil.destroy_all
 Step.destroy_all
+ChangesProposal.destroy_all
 Recipe.destroy_all
 User.destroy_all
 Tag.destroy_all
@@ -49,6 +50,8 @@ pate_de_noix_de_cajou   = Ingredient.create!(name: "pâte de noix de cajou")
 miel                    = Ingredient.create!(name: "miel")
 gousse_de_vanille       = Ingredient.create!(name: "gousse de vanille")
 flocons_de_noix_de_coco = Ingredient.create!(name: "flocons de noix de coco")
+gambas                  = Ingredient.create!(name: "gambas")
+lait_amandes             = Ingredient.create!(name: "lait d'amandes")
 
 puts 'Creating new utensils'
 four                  = Utensil.create!(name: "four")
@@ -74,18 +77,22 @@ plaque_patisserie     = Utensil.create!(name: "plaque pâtisserie")
 recipient_refermable  = Utensil.create!(name: "récipient refermable")
 
 puts 'Creating new tags'
-allegee      = Tag.create!(name: "allégée")
-sans_gluten  = Tag.create!(name: "sans gluten")
-sans_lactose = Tag.create!(name: "sans lactose")
-vegan        = Tag.create!(name: "vegan")
-plus_rapide  = Tag.create!(name: "plus rapide")
-version_mini = Tag.create!(name: "version mini")
+allegee           = Tag.create!(name: "allégée")
+sans_gluten       = Tag.create!(name: "sans gluten")
+sans_lactose      = Tag.create!(name: "sans lactose")
+vegan             = Tag.create!(name: "vegan")
+plus_rapide       = Tag.create!(name: "plus rapide")
+version_mini      = Tag.create!(name: "version mini")
+avec_lait_amandes = Tag.create!(name: "avec lait d'amandes")
+avec_gambas       = Tag.create!(name: "avec gambas")
+sans_gingembre    = Tag.create!(name: "sans gingembre")
 
 puts 'Creating new users'
 thierry  = User.create!(first_name: "thierry", last_name: "de azevedo", email: "tda@cuisine.com", password: "azerty", avatar: File.open(Rails.root.join('db/fixtures/avatars/thierry.jpg')))
 diane    = User.create!(first_name: "diane", last_name: "du payrat", email: "ddp@cuisine.com", password: "azerty", avatar: File.open(Rails.root.join('db/fixtures/avatars/diane.jpg')))
 melanie  = User.create!(first_name: "melanie", last_name: "rat", email: "mr@cuisine.com", password: "azerty", avatar: File.open(Rails.root.join('db/fixtures/avatars/melanie.jpg')))
 matthias = User.create!(first_name: "matthias", last_name: "geoffroy", email: "mg@cuisine.com", password: "azerty", avatar: File.open(Rails.root.join('db/fixtures/avatars/matthias.jpg')))
+mamie    = User.create!(first_name: "mamie", last_name: "brigitte", email: "mb@cuisine.com", password: "azerty", avatar: File.open(Rails.root.join('db/fixtures/avatars/mamie.jpg')))
 
 puts 'Creating new recipes'
 cake_citron_graines_pavot    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/cake_citron_pavot.jpg')), title: "Cake au citron et graines de pavot", subtitle: "originale",
@@ -227,13 +234,22 @@ RecipeTag.create!(recipe: cake_citron_graines_pavot, tag: allegee)
 ################################################################################
 
 puts 'Creating recipe variant 1'
-cake_citron_graines_pavot_variant_1    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/cake_citron_pavot_sans_lactose.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Sans lactose", description: "J'aime beaucoup la recette de cake au citron et graines de pavot de Diane et j'ai voulu la tenter sans lactose. Un vrai délice aussi pour les allergiques !", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, user: matthias, original_recipe: cake_citron_graines_pavot)
+cake_citron_graines_pavot_variant_1    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/cake_citron_pavot_sans_lactose.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Sans lactose", description: "J'aime beaucoup la recette de cake au citron et graines de pavot de Diane et j'ai voulu la tenter sans lactose. Un vrai délice aussi pour les allergiques !", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, published_on: "2019-04-02", user: matthias, original_recipe: cake_citron_graines_pavot, servings: 4, upvote: 4)
+curry_de_crevettes_doux_variant_1      = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/curry_de_crevettes_doux.jpg')), title: "Curry de crevettes doux", subtitle: "Sans gingembre", description: "J'aime beaucoup cette recette de curry de crevettes doux de Diane et j'ai voulu la tenter sans gingembre. Un vrai délice aussi pour les allergiques !", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, published_on: "2019-04-02", user: matthias, original_recipe: curry_de_crevettes_doux, servings: 4, upvote: 5)
+muesli_suisse_variant_1                = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/muesli_suisse.jpg')), title: "Muesli Suisse", subtitle: "au lait d'amandes", description: "Intolérant au lait de vache, j'ai adapté cette recette de Matthias avec du lait d'amandes. Délicieux et adapté à mon régime sportif!", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, user: thierry, published_on: "2019-04-02", original_recipe: muesli_suisse, servings: 4, upvote: 6)
 
 
 cake_citron_graines_pavot_variant_1_step_1 = Step.create!(recipe: cake_citron_graines_pavot_variant_1, position: 1, content: "Dans un bol, battre vivement le beurre végétal (d'amande, de noix de cajou, ou de noisette) et le sucre jusqu’à obtenir un mélange crémeux. Ajouter ensuite les ingrédients restants dans l’ordre et bien mélanger entre chaque ajout. Verser la préparation dans un moule à cake beurré. Enfourner dans un four préchauffé à 180°C et cuire 40 à 45mn (jusqu’à ce que la lame d’un couteau ressorte propre).  - Laisser le cake tiédir 10mn sans le démouler.")
 cake_citron_graines_pavot_variant_1_step_2 = Step.create!(recipe: cake_citron_graines_pavot_variant_1, position: 2, content: "Pendant ce temps, mélanger les ingredients du 1er glaçage : 80g de sucre glace et le jus d'un demi citron, on doit obtenir un mélange plutôt liquide. Piquer le cake avec le couteau et verser doucement ce glaçage sur le dessus du cake toujours dans son moule pour l'imbiber. Laisser le cake absorber le glaçage et refroidir pendant environ 20 min.")
 cake_citron_graines_pavot_variant_1_step_3 = Step.create!(recipe: cake_citron_graines_pavot_variant_1, position: 3, content: "Démouler ensuite le cake et le poser sur une grille à pâtisserie. Mélanger les ingrédients du 2e glaçage : 150g de sucre glace et le jus d’un demi citron, on doit il obtenir un mélange pas trop liquide et bien blanc (ajouter un peu de sucre glace si il est trop liquide). Verser doucement la moitié du glaçage blanc sur le dessus du cake, étaler jusqu’aux bords avec une spatule. Verser ensuite le reste du glaçage blanc sur le dessus du cake et le laisser couler sur les bords. Parsemer immédiatement de graines de pavots et de zestes de citron pour décorer le glaçage. Laisser ensuite le glaçage figer 12h sur la grille à pâtisserie sans le toucher.")
-
+curry_de_crevettes_doux_variant_1_step_1   = Step.create!(recipe: curry_de_crevettes_doux_variant_1, position: 1, content: "Couper la tomate en petits morceaux, peler et écraser les gousses d'ail, émincer les oignons.")
+curry_de_crevettes_doux_variant_1_step_2   = Step.create!(recipe: curry_de_crevettes_doux_variant_1, position: 2, content: "Dans une sauteuse ou un wok, chauffer l'huile. Mélanger ail, oignons et curry.")
+curry_de_crevettes_doux_variant_1_step_3   = Step.create!(recipe: curry_de_crevettes_doux_variant_1, position: 3, content: "Quand les oignons sont translucides, mettre la tomate, le lait de coco et le yaourt à la grecque. Saler, poivrer, mélanger, mettre un couvercle et laisser mijoter pendant 15 minutes.")
+curry_de_crevettes_doux_variant_1_step_4   = Step.create!(recipe: curry_de_crevettes_doux_variant_1, position: 4, content: "Rajouter les crevettes et laisser cuire pendant 2 à 3 minutes. Servir avec du riz.")
+muesli_suisse_variant_1_step_1             = Step.create!(recipe: muesli_suisse_variant_1, position: 1, content: "Griller les amandes dans une poêle sans matière grasse pendant environ 4 minutes à feu moyen.")
+muesli_suisse_variant_1_step_2             = Step.create!(recipe: muesli_suisse_variant_1, position: 2, content: "Vider et couper les pommes.")
+muesli_suisse_variant_1_step_3             = Step.create!(recipe: muesli_suisse_variant_1, position: 3, content: "Pressez le citron.")
+muesli_suisse_variant_1_step_4             = Step.create!(recipe: muesli_suisse_variant_1, position: 4, content: "Mélanger les flocons d'avoine, les graines de lin, les amandes grillées, les morceaux de pommes avec le yaourt à la grecque allégé, le lait d'amandes et le jus de citron, puis saupoudrer la cannelle.")
 
 Dose.create!(step: cake_citron_graines_pavot_variant_1_step_1, ingredient: beurre_vegetal, quantity: 100, unit: 'g')
 Dose.create!(step: cake_citron_graines_pavot_variant_1_step_1, ingredient: sucre, quantity: 150, unit: 'g')
@@ -245,34 +261,59 @@ Dose.create!(step: cake_citron_graines_pavot_variant_1_step_1, ingredient: levur
 Dose.create!(step: cake_citron_graines_pavot_variant_1_step_1, ingredient: sel, quantity: 2, unit: 'pincée')
 Dose.create!(step: cake_citron_graines_pavot_variant_1_step_1, ingredient: lait_coco, quantity: 5, unit: 'cl')
 Dose.create!(step: cake_citron_graines_pavot_variant_1_step_1, ingredient: graines_pavot, quantity: 2, unit: 'cuillères à soupe')
+Dose.create!(step: curry_de_crevettes_doux_variant_1_step_1, ingredient: tomate, quantity: 1)
+Dose.create!(step: curry_de_crevettes_doux_variant_1_step_1, ingredient: oignon, quantity: 1)
+Dose.create!(step: curry_de_crevettes_doux_variant_1_step_1, ingredient: gousse_d_ail, quantity: 2)
+Dose.create!(step: muesli_suisse_variant_1_step_1, ingredient: amandes_hachees, quantity: 30, unit: 'g')
 
 Dose.create!(step: cake_citron_graines_pavot_variant_1_step_2, ingredient: sucre_glace, quantity: 80, unit: 'g')
 Dose.create!(step: cake_citron_graines_pavot_variant_1_step_2, ingredient: jus_citron, quantity: 5, unit: 'cl')
+Dose.create!(step: curry_de_crevettes_doux_variant_1_step_2, ingredient: huile_d_arachide, quantity: 3, unit: 'cuillère à soupe')
+Dose.create!(step: curry_de_crevettes_doux_variant_1_step_2, ingredient: curry, quantity: 2, unit: 'cuillère à soupe')
+Dose.create!(step: muesli_suisse_variant_1_step_2, ingredient: pomme, quantity: 2)
 
 Dose.create!(step: cake_citron_graines_pavot_variant_1_step_3, ingredient: sucre_glace, quantity: 150, unit: 'g')
 Dose.create!(step: cake_citron_graines_pavot_variant_1_step_3, ingredient: jus_citron, quantity: 5, unit: 'cl')
+Dose.create!(step: curry_de_crevettes_doux_variant_1_step_3, ingredient: yaourt_a_la_grecque, quantity: 1)
+Dose.create!(step: curry_de_crevettes_doux_variant_1_step_3, ingredient: sel, quantity: 1, unit: 'une pincée')
+Dose.create!(step: curry_de_crevettes_doux_variant_1_step_3, ingredient: poivre, quantity: 1, unit: 'une pincée')
+Dose.create!(step: muesli_suisse_variant_1_step_3, ingredient: citron, quantity: 1)
 
-
+Dose.create!(step: curry_de_crevettes_doux_variant_1_step_4, ingredient: crevettes, quantity: 600, unit: 'g')
+Dose.create!(step: muesli_suisse_variant_1_step_4, ingredient: flocons_d_avoine, quantity: 50, unit: 'g')
+Dose.create!(step: muesli_suisse_variant_1_step_4, ingredient: graines_de_lin, quantity: 30, unit: 'g')
+Dose.create!(step: muesli_suisse_variant_1_step_4, ingredient: yaourt_a_la_grecque, quantity: 250, unit: 'g')
+Dose.create!(step: muesli_suisse_variant_1_step_4, ingredient: lait_amandes, quantity: 150, unit: 'ml')
 
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_1_step_1, utensil: bol)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_1_step_1, utensil: fouet)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_1_step_1, utensil: moule)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_1_step_1, utensil: four)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_1_step_1, utensil: couteau)
+StepUtensil.create!(step: curry_de_crevettes_doux_variant_1_step_1, utensil: couteau)
+StepUtensil.create!(step: curry_de_crevettes_doux_variant_1_step_1, utensil: bol)
+StepUtensil.create!(step: muesli_suisse_variant_1_step_1, utensil: poele)
 
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_1_step_2, utensil: fouet)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_1_step_2, utensil: bol)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_1_step_2, utensil: couteau)
+StepUtensil.create!(step: curry_de_crevettes_doux_variant_1_step_2, utensil: wok)
+StepUtensil.create!(step: muesli_suisse_variant_1_step_2, utensil: couteau)
 
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_1_step_3, utensil: fouet)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_1_step_3, utensil: bol)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_1_step_3, utensil: spatule)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_1_step_3, utensil: grille_a_patisserie)
+StepUtensil.create!(step: curry_de_crevettes_doux_variant_1_step_3, utensil: wok)
+StepUtensil.create!(step: muesli_suisse_variant_1_step_3, utensil: presse_citron)
 
+StepUtensil.create!(step: muesli_suisse_variant_1_step_4, utensil: recipient_refermable)
 
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_1, tag: allegee)
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_1, tag: sans_lactose)
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_1, tag: vegan)
+RecipeTag.create!(recipe: curry_de_crevettes_doux_variant_1, tag: sans_gingembre)
+RecipeTag.create!(recipe: muesli_suisse_variant_1, tag: avec_lait_amandes)
 
 
 ################################################################################
@@ -280,11 +321,17 @@ RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_1, tag: vegan)
 ################################################################################
 
 puts 'Creating recipe variant 2'
-cake_citron_graines_pavot_variant_2    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/cake_citron_pavot_sans_gluten.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Sans gluten", description: "Super recette, merci Diane, et moi je préfère cette version sans gluten. Goutez-y, vous verrez c'est super bon !", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, user: melanie, original_recipe: cake_citron_graines_pavot)
+cake_citron_graines_pavot_variant_2    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/cake_citron_pavot_sans_gluten.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Sans gluten", description: "Super recette, merci Diane, et moi je préfère cette version sans gluten. Goutez-y, vous verrez c'est super bon !", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, published_on: "2019-04-02", user: melanie, original_recipe: cake_citron_graines_pavot, servings: 4, upvote: 3)
+curry_de_crevettes_doux_variant_2      = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/curry_de_crevettes_doux.jpg')), title: "Curry de crevettes doux", subtitle: "avec gambas", description: "J'aime beaucoup cette recette de curry de crevettes de ma nièce, Diane, mais je préfère les gambas. J'ai donc adapté la recette en passant les gambas à la plancha au préalable!", prep_time: "20 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, published_on: "2019-04-02", user: thierry, original_recipe: curry_de_crevettes_doux, servings: 4, upvote: 4)
 
 cake_citron_graines_pavot_variant_2_step_1 = Step.create!(recipe: cake_citron_graines_pavot_variant_2, position: 1, content: "Dans un bol, battre vivement le beurre et le sucre jusqu’à obtenir un mélange crémeux. Ajouter ensuite les ingrédients restants dans l’ordre et bien mélanger entre chaque ajout. Je vous recommande ici la farine de riz qui donnera une bonne texture au cake. Verser la préparation dans un moule à cake beurré. Enfourner dans un four préchauffé à 180°C et cuire 40 à 45mn (jusqu’à ce que la lame d’un couteau ressorte propre).  - Laisser le cake tiédir 10mn sans le démouler.")
 cake_citron_graines_pavot_variant_2_step_2 = Step.create!(recipe: cake_citron_graines_pavot_variant_2, position: 2, content: "Pendant ce temps, mélanger les ingredients du 1er glaçage : 80g de sucre glace et le jus d'un demi citron, on doit obtenir un mélange plutôt liquide. Piquer le cake avec le couteau et verser doucement ce glaçage sur le dessus du cake toujours dans son moule pour l'imbiber. Laisser le cake absorber le glaçage et refroidir pendant environ 20 min.")
 cake_citron_graines_pavot_variant_2_step_3 = Step.create!(recipe: cake_citron_graines_pavot_variant_2, position: 3, content: "Démouler ensuite le cake et le poser sur une grille à pâtisserie. Mélanger les ingrédients du 2e glaçage : 150g de sucre glace et le jus d’un demi citron, on doit il obtenir un mélange pas trop liquide et bien blanc (ajouter un peu de sucre glace si il est trop liquide). Verser doucement la moitié du glaçage blanc sur le dessus du cake, étaler jusqu’aux bords avec une spatule. Verser ensuite le reste du glaçage blanc sur le dessus du cake et le laisser couler sur les bords. Parsemer immédiatement de graines de pavots et de zestes de citron pour décorer le glaçage. Laisser ensuite le glaçage figer 12h sur la grille à pâtisserie sans le toucher.")
+curry_de_crevettes_doux_variant_2_step_1   = Step.create!(recipe: curry_de_crevettes_doux_variant_2, position: 1, content: "Couper la tomate en petits morceaux, peler et écraser les gousses d'ail, émincer les oignons et passer les gambas à la plancha 5 minutes.")
+curry_de_crevettes_doux_variant_2_step_2   = Step.create!(recipe: curry_de_crevettes_doux_variant_2, position: 2, content: "Dans une sauteuse ou un wok, chauffer l'huile. Mélanger ail, oignons et curry.")
+curry_de_crevettes_doux_variant_2_step_3   = Step.create!(recipe: curry_de_crevettes_doux_variant_2, position: 3, content: "Quand les oignons sont translucides, mettre la tomate, le lait de coco et le yaourt à la grecque. Saler, poivrer, mélanger, mettre un couvercle et laisser mijoter pendant 15 minutes.")
+curry_de_crevettes_doux_variant_2_step_4   = Step.create!(recipe: curry_de_crevettes_doux_variant_2, position: 4, content: "Rajouter les gambas et laisser cuire pendant 2 à 3 minutes. Servir avec du riz.")
+
 
 Dose.create!(step: cake_citron_graines_pavot_variant_2_step_1, ingredient: beurre, quantity: 100, unit: 'g')
 Dose.create!(step: cake_citron_graines_pavot_variant_2_step_1, ingredient: sucre, quantity: 150, unit: 'g')
@@ -296,39 +343,56 @@ Dose.create!(step: cake_citron_graines_pavot_variant_2_step_1, ingredient: levur
 Dose.create!(step: cake_citron_graines_pavot_variant_2_step_1, ingredient: sel, quantity: 2, unit: 'pincée')
 Dose.create!(step: cake_citron_graines_pavot_variant_2_step_1, ingredient: lait, quantity: 5, unit: 'cl')
 Dose.create!(step: cake_citron_graines_pavot_variant_2_step_1, ingredient: graines_pavot, quantity: 2, unit: 'cuillères à soupe')
+Dose.create!(step: curry_de_crevettes_doux_variant_2_step_1, ingredient: tomate, quantity: 1)
+Dose.create!(step: curry_de_crevettes_doux_variant_2_step_1, ingredient: oignon, quantity: 1)
+Dose.create!(step: curry_de_crevettes_doux_variant_2_step_1, ingredient: gousse_d_ail, quantity: 2)
+Dose.create!(step: curry_de_crevettes_doux_variant_2_step_1, ingredient: gambas, quantity: 800, unit: 'g')
 
 Dose.create!(step: cake_citron_graines_pavot_variant_2_step_2, ingredient: sucre_glace, quantity: 80, unit: 'g')
 Dose.create!(step: cake_citron_graines_pavot_variant_2_step_2, ingredient: jus_citron, quantity: 5, unit: 'cl')
+Dose.create!(step: curry_de_crevettes_doux_variant_2_step_2, ingredient: huile_d_arachide, quantity: 3, unit: 'cuillère à soupe')
+Dose.create!(step: curry_de_crevettes_doux_variant_2_step_2, ingredient: curry, quantity: 2, unit: 'cuillère à soupe')
 
 Dose.create!(step: cake_citron_graines_pavot_variant_2_step_3, ingredient: sucre_glace, quantity: 150, unit: 'g')
 Dose.create!(step: cake_citron_graines_pavot_variant_2_step_3, ingredient: jus_citron, quantity: 5, unit: 'cl')
+Dose.create!(step: curry_de_crevettes_doux_variant_2_step_3, ingredient: yaourt_a_la_grecque, quantity: 1)
+Dose.create!(step: curry_de_crevettes_doux_variant_2_step_3, ingredient: sel, quantity: 1, unit: 'une pincée')
+Dose.create!(step: curry_de_crevettes_doux_variant_2_step_3, ingredient: poivre, quantity: 1, unit: 'une pincée')
 
+Dose.create!(step: curry_de_crevettes_doux_variant_2_step_4, ingredient: gambas, quantity: 800, unit: 'g')
 
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_2_step_1, utensil: bol)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_2_step_1, utensil: fouet)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_2_step_1, utensil: moule)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_2_step_1, utensil: four)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_2_step_1, utensil: couteau)
+StepUtensil.create!(step: curry_de_crevettes_doux_variant_2_step_1, utensil: couteau)
+StepUtensil.create!(step: curry_de_crevettes_doux_variant_2_step_1, utensil: bol)
 
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_2_step_2, utensil: fouet)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_2_step_2, utensil: bol)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_2_step_2, utensil: couteau)
+StepUtensil.create!(step: curry_de_crevettes_doux_variant_2_step_2, utensil: wok)
+
 
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_2_step_3, utensil: fouet)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_2_step_3, utensil: bol)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_2_step_3, utensil: spatule)
 StepUtensil.create!(step: cake_citron_graines_pavot_variant_2_step_3, utensil: grille_a_patisserie)
+StepUtensil.create!(step: curry_de_crevettes_doux_variant_2_step_3, utensil: wok)
 
 
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_2, tag: allegee)
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_2, tag: sans_gluten)
+RecipeTag.create!(recipe: curry_de_crevettes_doux_variant_2, tag: avec_gambas)
 
 ################################################################################
 # VARIANT 3
 ################################################################################
 
 puts 'Creating recipe variant 3'
-cake_citron_graines_pavot_variant_3    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/mini_cakes_au_citron.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Version mini et sans graines de pavot", description: "Et voici un version mini, à partager et à emporter ! Et comme je ne suis pas très graines de pavot, j'ai fait sans.", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, user: thierry, original_recipe: cake_citron_graines_pavot)
+cake_citron_graines_pavot_variant_3    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/mini_cakes_au_citron.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Version mini et sans graines de pavot", description: "Et voici une version mini, à partager et à emporter ! Et comme je ne suis pas très graines de pavot, j'ai fait sans.", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, user: thierry, original_recipe: cake_citron_graines_pavot, servings: 4, upvote: 5)
+
 
 cake_citron_graines_pavot_variant_3_step_1 = Step.create!(recipe: cake_citron_graines_pavot_variant_3, position: 1, content: "Dans un bol, battre vivement le beurre et le sucre jusqu’à obtenir un mélange crémeux. Ajouter ensuite les ingrédients restants dans l’ordre et bien mélanger entre chaque ajout. Verser la préparation dans un moule à cake beurré. Enfourner dans un four préchauffé à 180°C et cuire 40 à 45mn (jusqu’à ce que la lame d’un couteau ressorte propre).  - Laisser le cake tiédir 10mn sans le démouler.")
 cake_citron_graines_pavot_variant_3_step_2 = Step.create!(recipe: cake_citron_graines_pavot_variant_3, position: 2, content: "Pendant ce temps, mélanger les ingredients du 1er glaçage : 80g de sucre glace et le jus d'un demi citron, on doit obtenir un mélange plutôt liquide. Piquer le cake avec le couteau et verser doucement ce glaçage sur le dessus du cake toujours dans son moule pour l'imbiber. Laisser le cake absorber le glaçage et refroidir pendant environ 20 min.")

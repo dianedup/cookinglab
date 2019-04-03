@@ -4,14 +4,23 @@
       <h2><%= @recipe.title.capitalize %></h2>
       <h4 style="opacity: 0.5;">Page d'édition <i class="far fa-edit"></i></h4>
     </center>
+    <% if @recipe.kind == 'changes_proposal' %>
+      <div class="contribution-warning">
+        <h6><i class="far fa-lightbulb"></i> Vous êtes en mode 'contribution'.</h6>
+        Les changements que vous allez effectuer ici seront proposés à <%= @recipe.original_recipe.user.first_name.capitalize %>. Il/elle pourra s'il/elle le souhaite les intégrer dans la recette originale.
+      </div>
+    <% end %>
   </div>
   <!-------------------------------- EDIT RECIPE FORM 1 -------------------------------->
-  <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
-    <div class="form-subtitle">
-      Sous-titre
-      <%= recipe_form.input :subtitle, label: false, placeholder: '...' %>
-      <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info js-update-btn' %>
-    </div>
+
+  <% if @recipe.kind == 'variant' %>
+     <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
+      <div class="form-subtitle">
+        Nom de votre variante
+        <%= recipe_form.input :subtitle, label: false, placeholder: '...' %>
+        <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info js-update-btn' %>
+      </div>
+    <% end %>
   <% end %>
   <!------------------------------- END OF RECIPE FORM 1 ------------------------------->
   <div class="container">
@@ -76,6 +85,16 @@
     <h5><%= f.submit "+ Ajouter une étape", class: "btn btn-secondary btn-block mb-5 js-add-btn" %></h5>
   <% end %>
   <!------------------------------- END OF NEW STEP FORM ------------------------------->
+  <% if @recipe.kind == 'changes_proposal' %>
+    <div class="edit-actions">
+      <%= simple_form_for [:owner, @recipe, @contribution], url: owner_recipe_contributions_path(@recipe), method: :post do |f| %>
+        <%= f.input :message, label: "Expliquer vos changements à #{@recipe.original_recipe.user.first_name.capitalize}" %>
+        <%= button_tag type: 'submit', class: 'link-to-new-changes-proposal' do %>
+          <i class="far fa-paper-plane"></i> Soumettre mes changements</h5>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
   <div class="text-right edit-ending-button">
     <%= link_to 'Terminer et revenir au dashboard', owner_dashboard_path, class: "btn btn-info" %>
   </div>

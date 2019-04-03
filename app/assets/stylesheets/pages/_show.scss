@@ -65,6 +65,24 @@
   }
 }
 
+.add-changes-proposal{
+  font-size: 15px;
+  padding: 5px;
+  margin-top: 10px;
+  background-color: $info;
+
+  opacity: 0.8;
+  display: inline-block;
+  &:hover {
+    transition-duration: 250ms;
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+
 .timing {
   p {
     margin-bottom: 0;
