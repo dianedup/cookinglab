@@ -1,4 +1,4 @@
-<%= simple_form_for([:owner, dose], remote: true) do |dose_form|%>
+<%= simple_form_for([:owner, dose], remote: true, defaults: { input_html: { class: 'is-valid' } }) do |dose_form|%>
   <div class="dose-ingredients" id="dose-<%= dose.id %>">
     <p class="ingredient-name"><%= dose.ingredient.name %></p>
     <%= dose_form.input :quantity, label: false %>
