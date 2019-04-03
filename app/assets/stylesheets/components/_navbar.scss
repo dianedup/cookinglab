@@ -35,16 +35,26 @@
 .left-side {
   display: flex;
   align-items: center;
+  .recipes-index {
+    margin-top: 3px;
+  }
 }
 
-.link-recipe {
-  margin-top: 17px;
-  margin-left: 60px;
+.right-side {
+  display: flex;
+  align-items: center;
+  .my-recipes {
+    margin-right: 20px;
+    margin-top: 3px;
+  }
 }
 
-.nav-link {
+.navbar-link {
+  color: rgba(0, 0, 0, 0.5);
   border-bottom: 2px solid $white;
   &:hover {
+    color: #39454E;
+    color: rgba(0, 0, 0, 0.5);
     border-bottom: 2px solid $primary;
   }
 }
