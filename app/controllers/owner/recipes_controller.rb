@@ -6,6 +6,7 @@ class Owner::RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(params_recipe)
     @recipe.user = current_user
+
     if @recipe.save
       if params[:recipe][:tags].present? # => ["1", "2", "3"]
         checked_tags = params[:recipe][:tags]
@@ -22,23 +23,31 @@ class Owner::RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
-    @step = Step.new(recipe: @recipe)
-    @dose = Dose.new
-    @step_utensil = StepUtensil.new
-    @contribution = ChangesProposal.new(recipe: @recipe)
+    if @recipe.user == current_user
+      @step = Step.new(recipe: @recipe)
+      @dose = Dose.new
+      @step_utensil = StepUtensil.new
+      @contribution = ChangesProposal.new(recipe: @recipe)
+    else
+      redirect_to recipes_path
+    end
   end
 
   def update
     @recipe = Recipe.find(params[:id])
-    @recipe.update!(params_recipe)
-    redirect_to owner_dashboard_path
+    if @recipe.user == current_user
+      @recipe.update!(params_recipe)
+      redirect_to owner_dashboard_path
+    else
+      redirect_to recipes_path
+    end
   end
 
   def publish
     @recipe = Recipe.find(params[:recipe_id])
     @recipe.published = 'true'
     @recipe.save!
-    redirect_to owner_dashboards_path
+    redirect_to owner_dashboard_path
   end
 
   private

@@ -26,4 +26,16 @@ class Recipe < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
+
+  def published_variants
+    self.variants.select { |variant| variant.published }
+  end
+
+  def has_more_than_one_variant
+    self.published_variants.count > 1
+  end
+
+  def has_one_variant
+    self.published_variants.count == 1
+  end
 end
