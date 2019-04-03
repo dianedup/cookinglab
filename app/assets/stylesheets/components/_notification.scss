@@ -1,0 +1,84 @@
+.changes-proposals-review-box {
+  background-color: rgb(247, 247, 247);
+  padding: 30px 50px 20px 50px;
+  margin: 40px 0;
+  position: relative;
+  border: 2px dotted $primary;
+
+  .changes-proposals-box-title {
+    background-color: $glitter;
+    position: absolute;
+    top: -25px;
+    left: 250px;
+    right: 250px;
+    // border: 2px dotted $primary;
+    h4 {
+      padding-top: 10px;
+    }
+  }
+}
+
+
+.notification-dashboard {
+  overflow: hidden;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 8px;
+  background: white;
+  // border: 2px solid $primary;
+  position: relative;
+  &:hover {
+    transition-duration: 250ms;
+    animation-timing-function: ease-in-out;
+    transform: scale(1.02);
+  }
+  img {
+    height: 100%;
+    width: 200px;
+    object-fit: cover;
+  }
+  h6 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+  }
+  p {
+    font-size: 12px;
+    line-height: 1.4;
+    margin-bottom: 0;
+    margin-top: 8px;
+  }
+  .notification-content {
+    flex-grow: 1;
+    padding: 10px 16px;
+    margin: 10px;
+    .notifications-actions {
+      p {
+        margin-top: 0;
+        font-size: 14px;
+      }
+      a {
+        color: $primary;
+      }
+    }
+
+    .notification-content-title {
+      position: absolute;
+      top: 10px;
+      left: 120px;
+      padding: 8px;
+      margin: 5px;
+      background-color: $white;
+      h5 {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .notification-status-box {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+  }
+}
