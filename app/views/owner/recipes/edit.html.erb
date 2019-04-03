@@ -67,10 +67,10 @@
   </div>
   <!-------------------------------- END OF RECIPE FORM 3 -------------------------------->
   <% @recipe.steps.order(:position).each do |step| %>
-    <div class="edit-recipe-division">
+    <div class="edit-recipe-division" id="step_<%= step.id %>">
       <div class="step-title">
         <h5>Etape <%= step.position %>/<%= @recipe.steps.count %></h5>
-        <%= link_to owner_step_path(step), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class: "delete-step-button" do %>
+        <%= link_to owner_step_path(step), method: :delete, remote: true, data: { confirm: "Êtes-vous sûr ?" }, class: "delete-step-button" do %>
           <i class="fas fa-times"></i>
         <% end %>
       </div>
