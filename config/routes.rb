@@ -1,6 +1,10 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
 
+  namespace :owner do
+    get 'changes_proposals/accept'
+    get 'changes_proposals/refuse'
+  end
   root to: 'pages#home'
   devise_for :users
 

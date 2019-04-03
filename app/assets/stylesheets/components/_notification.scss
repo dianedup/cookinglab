@@ -1,0 +1,17 @@
+.notification-actions-cp {
+    display: flex;
+    transition: ease .3s;
+    height: 100%;
+    width: 120px;
+    font-size: 30px;
+    a {
+      color: $secondary;
+      margin-left: 10px;
+    }
+    .accept:hover {
+      color: $green;
+    }
+    .deny:hover {
+      color: $danger;
+    }
+}
