@@ -1,4 +1,23 @@
 // Checkboxes design
+
+.photo-upload-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  .recipe-title-input-box {
+    flex: 1 0 auto;
+    margin: 0 30px;
+  }
+  .photo-upload-input-box {
+    margin: 0 30px;
+  }
+  .photo-preview-box {
+    margin: 0 30px 1rem 30px;
+  }
+}
+
 .tag-choices {
   display: flex;
   justify-content: space-between;

@@ -1,40 +1,42 @@
 <div class="container">
-  <button class="btn mt-4"><i class="fas fa-arrow-left"></i><%= link_to ' Retour à mes recettes', owner_dashboard_path %></button>
   <div class="row">
-    <div class="col-sm form-basics">
-      <h1 class="mt-3 text-center mb-5">Créer une nouvelle recette</h1>
-      <%= simple_form_for [:owner, @recipe] do |f| %>
-      <div class="form-row">
-        <div class="col-sm-12 col-md-6">
-          <%= f.input :title, label: 'Titre de votre recette', :required => false %>
-        </div>
-        <div class="col-sm-12 col-md-6 d-flex align-items-end pt-3">
-          <%= f.input :photo, input_html: { class: 'hidden', id: 'photo-input'}, label_html: { class: 'upload-photo'}, label: '📷 Télécharger une photo'%>
-        </div>
-        <div class="col-sm-12 col-md-6 d-flex align-items-end pt-3">
-          <%= image_tag "", width: 100, class: "hidden", id: "photo-preview" %>
-        </div>
-        <div class="form-group">
-          <div style="position: relative;">
-            <i class="fas fa-quote-left" style="position: absolute; left: 20px; top: 23px"></i>
-            <%= f.input :description, label: "Décrivez-nous son origine", :required => false %>
-            <i class="fas fa-quote-right" style="position: absolute; right: 20px; bottom: -8px;"></i>
+    <div class="col-sm">
+      <button class="btn mt-4"><i class="fas fa-arrow-left"></i><%= link_to ' Retour à mes recettes', owner_dashboard_path %></button>
+      <div class="col-sm form-basics">
+        <h1 class="mt-3 text-center mb-5">Créer une nouvelle recette</h1>
+        <%= simple_form_for [:owner, @recipe] do |f| %>
+          <div class="photo-upload-box">
+              <div class="recipe-title-input-box">
+                <%= f.input :title, label: 'Titre de votre recette', required: false %>
+              </div>
+              <div class="photo-upload-input-box">
+                <%= f.input :photo, input_html: { class: 'hidden', id: 'photo-input'}, label_html: { class: 'upload-photo'}, label: '📷 Télécharger une photo'%>
+              </div>
+              <div class="photo-preview-box">
+                <%= image_tag "", width: 100, class: "hidden", id: "photo-preview" %>
+              </div>
           </div>
-          <label class="control-label check_boxes optional">Sélectionner des tags correspondants à votre recette (optionnel)</label>
-          <div class="tag-choices">
-            <% Tag.all.each do |tag| %>
-            <div>
-              <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>">
-              <label class="tag-choice" for="recipe_tag_<%= tag.id %>">
-                <%= tag.name %>
-              </label>
+          <div class="form-group">
+            <div style="position: relative;">
+              <i class="fas fa-quote-left" style="position: absolute; left: 20px; top: 23px"></i>
+              <%= f.input :description, label: "Décrivez-nous son origine", :required => false %>
+              <i class="fas fa-quote-right" style="position: absolute; right: 20px; bottom: -8px;"></i>
             </div>
-            <% end %>
+            <label class="control-label check_boxes optional">Sélectionner des tags correspondants à votre recette (optionnel)</label>
+            <div class="tag-choices">
+              <% Tag.all.each do |tag| %>
+                <div>
+                  <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>">
+                  <label class="tag-choice" for="recipe_tag_<%= tag.id %>">
+                    <%= tag.name %>
+                  </label>
+                </div>
+              <% end %>
+            </div>
           </div>
-        </div>
-        <div class="dashboard-actions">
-        <%= f.submit 'Suivant', class: "btn btn-info" %>
-        </div>
+          <div class="dashboard-actions">
+          <%= f.submit 'Suivant', class: "btn btn-info" %>
+          </div>
         <% end %>
       </div>
     </div>
