@@ -140,3 +140,26 @@
   width: 100px;
   text-align: left;
 }
+
+.edit-actions {
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: $light-gray;
+  border: 2px solid $primary;
+  .link-to-new-changes-proposal {
+    padding: 10px;
+    border: 2px solid $primary;
+    background-color: $glitter;
+    &:hover {
+      transition-duration: 250ms;
+      transform: scale(1.05);
+    }
+    a {
+      // color: $white;
+      text-decoration: none;
+      h5 {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

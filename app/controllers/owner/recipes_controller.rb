@@ -27,6 +27,7 @@ class Owner::RecipesController < ApplicationController
       @step = Step.new(recipe: @recipe)
       @dose = Dose.new
       @step_utensil = StepUtensil.new
+      @contribution = ChangesProposal.new(recipe: @recipe)
     else
       redirect_to recipes_path
     end
