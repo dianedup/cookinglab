@@ -5,10 +5,11 @@ class Owner::StepUtensilsController < ApplicationController
   end
 
   def create
-    @step_utensil = StepUtensil.new(step_utensil_params)
-    @step = Step.find(params[:step_id])
+    @step_utensil      = StepUtensil.new(step_utensil_params)
+    @step              = Step.find(params[:step_id])
     @step_utensil.step = @step
-    utensil = params[:step_utensil][:utensil_id]
+    utensil            = params[:step_utensil][:utensil_id]
+
     if utensil.to_i.zero?
       new_utensil = Utensil.create!(name: params[:step_utensil][:utensil_id])
       @step_utensil.utensil = new_utensil

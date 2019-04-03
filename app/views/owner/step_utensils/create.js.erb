@@ -1,5 +1,5 @@
 function addUtensil(utensilHTML) {
-  const utensils = document.getElementById('step-utensils-edit');
+  const utensils = document.getElementById('step-utensils-index-<%= @step_utensil.step.id %>');
   utensils.insertAdjacentHTML('beforeend', utensilHTML);
 }
 

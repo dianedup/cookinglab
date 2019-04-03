@@ -14,8 +14,11 @@ class Owner::StepsController < ApplicationController
     else
       @step.position = @recipe.steps.count + 1
     end
-    @step.save
-    redirect_to edit_owner_recipe_path(@recipe)
+    @step.save!
+    respond_to do |format|
+      format.html { redirect_to edit_owner_recipe_path(@recipe) }
+      format.js {}
+    end
   end
 
   def update
@@ -37,8 +40,11 @@ class Owner::StepsController < ApplicationController
     @recipe = @step.recipe
     @step_id = @step.id
     if @step.destroy
+      reorder_steps_positions
       respond_to do |format|
-        format.html { reorder_steps_positions redirect_to edit_owner_recipe_path(@recipe) }
+        format.html do
+          redirect_to edit_owner_recipe_path(@recipe)
+        end
         format.js
       end
     else

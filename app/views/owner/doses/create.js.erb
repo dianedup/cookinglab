@@ -1,5 +1,5 @@
 function addDose(doseHTML) {
-  const doses = document.getElementById('doses-edit');
+  const doses = document.getElementById('doses-edit-<%= @dose.step.id %>');
   doses.insertAdjacentHTML('beforeend', doseHTML);
 }
 
