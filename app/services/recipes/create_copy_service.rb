@@ -30,7 +30,7 @@ module Recipes
 
     def create_copy
       @copy = Recipe.new(
-        original_recipe.attributes.slice('title', 'prep_time', 'cook_time', 'rest_time')
+        original_recipe.attributes.slice('title', 'prep_time', 'cook_time', 'rest_time', 'servings')
       )
 
       # Add to new copy :
