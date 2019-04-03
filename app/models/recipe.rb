@@ -9,7 +9,7 @@ class Recipe < ApplicationRecord
   has_many :variants, -> { where(kind: 'variant') }, class_name: "Recipe", foreign_key: "original_recipe_id", dependent: :destroy
 
   mount_uploader :photo, PhotoUploader
-  
+
   include PgSearch
   pg_search_scope :global_search,
                   against: [:title],
@@ -19,7 +19,19 @@ class Recipe < ApplicationRecord
                   using: {
                     tsearch: { prefix: true }
                   }
-  
+
   validates :title, presence: true
   validates :description, presence: true
+
+  def published_variants
+    self.variants.select { |variant| variant.published }
+  end
+
+  def has_more_than_one_variant
+    self.published_variants.count > 1
+  end
+
+  def has_one_variant
+    self.published_variants.count == 1
+  end
 end

@@ -23,10 +23,10 @@
                 <h2><%= recipe.title %></h2>
               </div>
               <%= cl_image_tag recipe.user.avatar, aspect_ratio: 1, crop: :fill, class: "avatar-bordered avatar-in-card" %>
-              <% if recipe.variants.count > 1 %>
-                <span class="variant-count"><%= recipe.variants.count %> variantes</span>
-              <% elsif recipe.variants.count == 1 %>
-                <span class="variant-count"><%= recipe.variants.count %>variante</span>
+              <% if recipe.has_more_than_one_variant %>
+                <span class="variant-count"><%= recipe.published_variants.count %> variantes</span>
+              <% elsif recipe.has_one_variant %>
+                <span class="variant-count"><%= recipe.published_variants.count %>variante</span>
               <% else %>
               <% end %>
             </div>
