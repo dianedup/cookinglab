@@ -110,7 +110,14 @@
       <% end %>
     <!------------------------------- END OF NEW STEP FORM ------------------------------->
     <% if @recipe.kind == 'changes_proposal' %>
-      <%= link_to ,  %>
+      <div class="edit-actions">
+        <%= simple_form_for [:owner, @recipe, @contribution], url: owner_recipe_contributions_path(@recipe), method: :post do |f| %>
+          <%= f.input :message, label: "Expliquer vos changements à #{@recipe.user.first_name.capitalize}" %>
+          <%= button_tag type: 'submit', class: 'link-to-new-changes-proposal' do %>
+            <i class="far fa-paper-plane"></i> Soumettre mes changements</h5>
+          <% end %>
+        <% end %>
+      </div>
     <% end %>
 </div>
 

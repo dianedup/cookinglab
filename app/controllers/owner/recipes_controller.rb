@@ -25,6 +25,7 @@ class Owner::RecipesController < ApplicationController
     @step = Step.new(recipe: @recipe)
     @dose = Dose.new
     @step_utensil = StepUtensil.new
+    @contribution = ChangesProposal.new(recipe: @recipe)
   end
 
   def update

@@ -6,10 +6,10 @@
 }
 
 .contribution-warning {
-  background-color: $primary;
-  color: $white;
+  background-color: $light-gray;
   padding: 15px;
   margin: 15px 10px 30px;
   text-align: center;
+  border: 2px solid $primary;
 }
 
