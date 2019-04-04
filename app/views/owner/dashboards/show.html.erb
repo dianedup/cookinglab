@@ -5,33 +5,42 @@
   </div>
   <div class="row">
     <% @recipes.each do |recipe| %>
-    <div class= "col-sm-12 col-md-6 col-lg-4">
-      <div class="card-recipe-dashboard">
-         <% if recipe.photo.url.nil? %>
-         <div class="card-recipe-image text-center" style="background-image: url('<%= image_path "default_image.png" %>')">
-         <% else %>
-        <div class="card-recipe-image text-center" style="background-image: url('<%= cl_image_path recipe.photo %>')">
-          <% end %>
-          <%= link_to recipe_path(recipe), class: 'dashboard-link-to-show' do %>
-          <div class="card-recipe-title">
-            <h2><%= recipe.title %></h2>
-          </div>
-          <% end %>
+      <div class= "col-sm-12 col-md-6 col-lg-4">
+        <div class="card-recipe-dashboard">
+           <% if recipe.photo.url.nil? %>
+             <div class="card-recipe-image text-center" style="background-image: url('<%= image_path "default_image.png" %>')">
+          <% else %>
+            <div class="card-recipe-image text-center" style="background-image: url('<%= cl_image_path recipe.photo %>')">
+            <% end %>
+            <% if recipe.published == true %>
+              <%= link_to recipe_path(recipe), class: 'dashboard-link-to-show' do %>
+                <div class="card-recipe-title">
+                  <h2><%= recipe.title %></h2>
+                </div>
+              <% end %>
+            <% else %>
+              <%= link_to recipe_path(recipe) do %>
+              <div class="card-recipe-title">
+                <h2><%= recipe.title %></h2>
+              </div>
+              <% end %>
+              <% end %>
           <span>
             <% if recipe.kind == 'variant' %>
-            <div class="variant-count">
-            variante
-            </div>
+              <div class="variant-count">
+              variante
+              </div>
             <% else %>
-            <div class="variant-orginal">
-            originale
-            </div>
+              <div class="variant-orginal">
+              originale
+              </div>
             <% end %>
           </span>
         </div>
+
         <div class="container-subtitle">
           <% if recipe.kind == 'variant' %>
-          <p class="myrecipe-card-subtitle"><%= recipe.subtitle.capitalize.truncate(45, omission: '...') %></p>
+            <p class="myrecipe-card-subtitle"><%= recipe.subtitle.capitalize.truncate(45, omission: '...') %></p>
           <% end %>
         </div>
         <div class="d-flex justify-content-around">
