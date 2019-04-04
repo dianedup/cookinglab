@@ -10,6 +10,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @doses = @recipe.doses.select("SUM(quantity) AS quantity, unit, ingredient_id").group("unit, ingredient_id")
   end
 
   private
