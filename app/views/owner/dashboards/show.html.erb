@@ -52,5 +52,52 @@
     </div>
     <% end %>
   </div>
+  <div class="row">
+    <div class="col-sm">
+      <div class="changes-proposals-review-box" id="changes-proposals">
+        <div class="changes-proposals-box-title">
+          <h4 class="text-center">Propositions de changements</h4>
+        </div>
+        <% if @changes_proposals.empty? %>
+          <center>Vous n'avez pas de propositions de modifications pour le moment</center>
+
+        <% end %>
+        <% @changes_proposals.each do |changes_proposal| %>
+          <h6>Proposition de <%= changes_proposal.recipe.user.first_name.capitalize %></h6>
+          <div class="notification-dashboard mb-4">
+            <%= cl_image_tag changes_proposal.recipe.photo, width: 600, aspect_ratio: 1, crop: :fill%>
+            <div class="notification-content">
+              <div class="notification-content-title">
+                <h5><%= changes_proposal.recipe.title %></h5>
+              </div>
+              <p><%= changes_proposal.message %></p>
+              <% if changes_proposal.status == 'pending' %>
+                <div class="notifications-actions mt-2">
+                  <p>
+                  <%= link_to accept_owner_changes_proposal_path(changes_proposal), method: :patch, class: 'card-link' do %>
+                    Accepter <i class="fas fa-check"></i>
+                  <% end %>
+                  <%= link_to deny_owner_changes_proposal_path(changes_proposal), method: :patch, class: 'card-link' do %>
+                    Refuser <i class="fas fa-times"></i>
+                  <% end %>
+                  </p>
+                </div>
+              <% end %>
+            </div>
+            <div class="notification-status-box">
+              <% if  changes_proposal.status == 'pending' %>
+                <i class="fas fa-hourglass-half"></i>
+              <% elsif changes_proposal.status == 'accepted' %>
+                <i class="fas fa-check"></i>
+              <% elsif changes_proposal.status == 'denied' %>
+                <i class="fas fa-ban"></i>
+              <% else %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 

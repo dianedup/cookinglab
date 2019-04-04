@@ -73,19 +73,17 @@
           <h5>Ingrédients</h5>
           <% if @recipe.servings == 1 %>
             <p><strong>Portion <%= @recipe.servings %></strong></p>
-          <% elsif @recipe.servings > 1%>
+          <% elsif @recipe.servings && @recipe.servings > 1 %>
             <p><strong>Portions <%= @recipe.servings %></strong></p>
           <% else %>
           <% end %>
           <table>
             <tbody>
-              <% @recipe.steps.each do |step| %>
-                <% step.doses.each do |dose| %>
-                  <tr>
-                    <td class="dose amount"><%= dose.quantity %> <%= dose.unit %></td>
-                    <td class="dose"><%= dose.ingredient.name %></td>
-                  </tr>
-                <% end %>
+              <% @doses.each do |dose| %>
+                <tr>
+                  <td class="dose amount"><%= dose.quantity %> <%= dose.unit %></td>
+                  <td class="dose"><%= dose.ingredient.name %></td>
+                </tr>
               <% end %>
             </tbody>
           </table>

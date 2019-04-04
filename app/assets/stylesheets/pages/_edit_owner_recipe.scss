@@ -12,8 +12,7 @@
   text-align: center;
   max-width: 555px;
   margin: auto;
-  display: flex;
-  align-items: center;
+  // display: flex;
   .recipe_subtitle {
     margin: auto;
   }
@@ -24,6 +23,7 @@
   text-align: center;
   align-items: center;
   justify-content: space-around;
+  margin-top: 50px;
 }
 
 .form-photo {
@@ -152,7 +152,7 @@
 .step-utensils-container {
   display: flex;
   justify-content: space-between;
-  width: 400px
+  width: 500px;
 }
 
 .steps-utensils {

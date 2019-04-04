@@ -11,6 +11,7 @@ class RecipesController < ApplicationController
 
   def show
     @steps = @recipe.steps.order("position asc")
+    @doses = @recipe.doses.select("SUM(quantity) AS quantity, unit, ingredient_id").group("unit, ingredient_id")
   end
 
   def upvote
@@ -23,7 +24,7 @@ class RecipesController < ApplicationController
       format.js {}
     end
   end
-
+    
   private
 
   def set_recipe
