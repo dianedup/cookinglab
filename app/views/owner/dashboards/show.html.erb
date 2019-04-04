@@ -54,7 +54,7 @@
   </div>
   <div class="row">
     <div class="col-sm">
-      <div class="changes-proposals-review-box">
+      <div class="changes-proposals-review-box" id="changes-proposals">
         <div class="changes-proposals-box-title">
           <h4 class="text-center">Propositions de changements</h4>
         </div>
@@ -74,10 +74,10 @@
               <% if changes_proposal.status == 'pending' %>
                 <div class="notifications-actions mt-2">
                   <p>
-                  <%= link_to edit_owner_recipe_path(changes_proposal.recipe), class: 'card-link' do %>
+                  <%= link_to accept_owner_changes_proposal_path(changes_proposal), method: :patch, class: 'card-link' do %>
                     Accepter <i class="fas fa-check"></i>
                   <% end %>
-                  <%= link_to edit_owner_recipe_path(changes_proposal.recipe), class: 'card-link' do %>
+                  <%= link_to deny_owner_changes_proposal_path(changes_proposal), method: :patch, class: 'card-link' do %>
                     Refuser <i class="fas fa-times"></i>
                   <% end %>
                   </p>
@@ -90,7 +90,7 @@
               <% elsif changes_proposal.status == 'accepted' %>
                 <i class="fas fa-check"></i>
               <% elsif changes_proposal.status == 'denied' %>
-                <i class="fas fa-times"></i>
+                <i class="fas fa-ban"></i>
               <% else %>
               <% end %>
             </div>

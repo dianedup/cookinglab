@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :copies, only: [:create]
   end
 
-  resources :contributions, only: [:index]
+  # resources :contributions, only: [:index]
 
   namespace :owner do
     resource :dashboard, only: [:show]
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources :changes_proposals, only: [:show] do
       member do
         patch :accept
-        patch :refuse
+        patch :deny
       end
     end
   end
