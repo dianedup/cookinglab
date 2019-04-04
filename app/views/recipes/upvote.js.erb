@@ -1,0 +1,7 @@
+function addUpvote(upvoteHTML) {
+  const upvote = document.getElementById('upvote-recipe');
+  upvote.innerHTML = upvoteHTML;
+}
+
+
+addUpvote('<%= j render "upvote" %>')

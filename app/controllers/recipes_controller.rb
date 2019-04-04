@@ -10,6 +10,18 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @steps = @recipe.steps.order("position asc")
+  end
+
+  def upvote
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe.upvote += 1
+    @recipe.save
+
+    respond_to do |format|
+      format.html {redirect_to recipe_path(@recipe)}
+      format.js {}
+    end
   end
 
   private

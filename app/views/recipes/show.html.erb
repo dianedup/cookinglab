@@ -1,7 +1,7 @@
 <div class="container container-show">
   <div class="row">
     <div class="col-sm">
-      <div class="recipe-header">
+      <div class="show-recipe-header">
           <% if @recipe.photo.url.nil? %>
          <div class="recipe-photo" style="background-image: url('<%= image_path "default_image.png" %>')">
          <% else %>
@@ -12,6 +12,9 @@
             <span><%= tag.name %></span>
             <% end %>
           </div>
+          <div id="upvote-recipe">
+            <%= render 'upvote' %>
+          </div>
         </div>
         <div class="recipe-title-card">
           <h2><%= @recipe.title.capitalize %></h2>
@@ -19,7 +22,6 @@
         </div>
         <div class="recipe-date"><%= @recipe.published_on.strftime("%d/%m/%Y") %></div>
       </div>
-
     </div>
   </div>
   <div class="row">
@@ -46,21 +48,21 @@
           <div class="row text-center">
             <div class="col-sm">
               <p>
-                <%= @recipe.prep_time.nil? ? '-' : @recipe.prep_time %>
+                <strong><%= @recipe.prep_time.nil? ? '-' : @recipe.prep_time %></strong>
                 <br>
                 Préparation
               </p>
             </div>
             <div class="col-sm">
               <p>
-                <%= @recipe.cook_time.nil? ? '-' : @recipe.cook_time %>
+                <strong><%= @recipe.cook_time.nil? ? '-' : @recipe.cook_time %></strong>
                 <br>
                 Cuisson
               </p>
             </div>
             <div class="col-sm">
               <p>
-                <%= @recipe.rest_time.nil? ? '-' : @recipe.rest_time %>
+                <strong><%= @recipe.rest_time.nil? ? '-' : @recipe.rest_time %></strong>
                 <br>
                 Repos
               </p>
@@ -105,7 +107,7 @@
         <div class="recipe-division instructions">
           <h5>Instructions</h5>
           <% nb_steps = @recipe.steps.count %>
-          <% @recipe.steps.each do |step| %>
+          <% @steps.each do |step| %>
             <div class="step">
               <p><span><strong>Etape <%= step.position %>/<%= nb_steps %></strong></span>
                 <br>
@@ -133,7 +135,7 @@
         </div>
     </div>
     <div class="col-sm-12 col-md-4">
-      <% published_variants = @recipe.variants.select { |variant| variant.published == true } %>
+      <% published_variants = @recipe.variants.where(published: true).order("upvote desc") %>
       <% if @recipe.kind == 'variant' %>
         <div class="back-to-original-link">
           <%= link_to recipe_path(@recipe.original_recipe) do %>
@@ -165,7 +167,7 @@
                   </div>
                 </div>
                 <div class="upvote">
-                  <i class="fas fa-arrow-up"></i> <%= variant.upvote %>
+                  <i class="far fa-heart"></i> <%= variant.upvote %>
                 </div>
                 <div class="tags-variants">
                   <% variant_tags_list = variant.tags.map do |tag| %>

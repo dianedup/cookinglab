@@ -1,0 +1,5 @@
+<div class="btn-upvote">
+  <%= link_to recipe_upvote_path(@recipe), method: :post, remote: true do %>
+    <i class="far fa-heart"></i> <%= @recipe.upvote %>
+  <% end %>
+</div>
