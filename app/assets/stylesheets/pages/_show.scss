@@ -105,7 +105,15 @@ table {
   &:last-of-type {
     border-bottom: none;
   }
+
+  .title-step {
+    margin-bottom: 15px;
+  }
   padding-bottom: 20px;
+}
+
+.timing-content {
+  font-weight: bold;
 }
 
 .back-to-original-link{
