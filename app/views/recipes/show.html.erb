@@ -48,22 +48,19 @@
           <div class="row text-center">
             <div class="col-sm">
               <p>
-                <strong><%= @recipe.prep_time.nil? ? '-' : @recipe.prep_time %></strong>
-                <br>
+                <h6 class="timing-content"><%= @recipe.prep_time.nil? ? '-' : @recipe.prep_time %></h6>
                 Préparation
               </p>
             </div>
             <div class="col-sm">
               <p>
-                <strong><%= @recipe.cook_time.nil? ? '-' : @recipe.cook_time %></strong>
-                <br>
+                <h6 class="timing-content"><%= @recipe.cook_time.nil? ? '-' : @recipe.cook_time %></h6>
                 Cuisson
               </p>
             </div>
             <div class="col-sm">
               <p>
-                <strong><%= @recipe.rest_time.nil? ? '-' : @recipe.rest_time %></strong>
-                <br>
+                <h6 class="timing-content"><%= @recipe.rest_time.nil? ? '-' : @recipe.rest_time %></h6>
                 Repos
               </p>
             </div>
@@ -107,8 +104,10 @@
           <% nb_steps = @recipe.steps.count %>
           <% @steps.each do |step| %>
             <div class="step">
-              <p><span><strong>Etape <%= step.position %>/<%= nb_steps %></strong></span>
-                <br>
+              <div class="title-step">
+                Etape <%= step.position %>/<%= nb_steps %>
+              </div>
+              <p>
                 <% unless step.doses.empty? %>
                   <i class="far fa-lemon"></i>
                   <% step_ingredients = step.doses.map do |dose| %>
