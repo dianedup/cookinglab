@@ -15,7 +15,7 @@
       <% end %>
     </div>
     <!--------------------------------- NEW DOSE FORM --------------------------------->
-    <%= simple_form_for([:owner, step, Dose.new], remote: true )  do |new_dose_form|%>
+    <%= simple_form_for([:owner, step, Dose.new], remote: true)  do |new_dose_form|%>
       <div class="form-new-dose">
         <%= new_dose_form.association :ingredient, label: 'Ingrédient', input_html: { class: 'select2', id: "new_dose_step_#{step.id}" } %>
         <%= new_dose_form.input :quantity, label: 'quantité' %>
