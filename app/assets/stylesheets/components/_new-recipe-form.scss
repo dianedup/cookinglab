@@ -20,17 +20,17 @@
 
 .tag-choices {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
 
 .tag-choice {
   background: $sunny;
-  padding: 18px;
+  padding: 13px;
   opacity: .4;
   flex: 0 0 30%;
   text-align: center;
   border: 2px solid $white;
+  margin-right: 10px;
   &:hover {
     opacity: 1;
     cursor: pointer;

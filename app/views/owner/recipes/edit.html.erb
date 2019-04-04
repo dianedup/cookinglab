@@ -1,59 +1,58 @@
 <div class="container">
   <div class="recipe-header">
     <center style="margin: 25px auto;">
-      <h2><%= @recipe.title.capitalize %></h2>
-      <h4 style="opacity: 0.5;">Page d'édition <i class="far fa-edit"></i></h4>
+    <h2><%= @recipe.title.capitalize %></h2>
+    <h4 style="opacity: 0.5;">Page d'édition <i class="far fa-edit"></i></h4>
     </center>
     <% if @recipe.kind == 'changes_proposal' %>
-      <div class="contribution-warning">
-        <h6><i class="far fa-lightbulb"></i> Vous êtes en mode 'contribution'.</h6>
-        Les changements que vous allez effectuer ici seront proposés à <%= @recipe.original_recipe.user.first_name.capitalize %>. Il/elle pourra s'il/elle le souhaite les intégrer dans la recette originale.
-      </div>
+    <div class="contribution-warning">
+      <h6><i class="far fa-lightbulb"></i> Vous êtes en mode 'contribution'.</h6>
+      Les changements que vous allez effectuer ici seront proposés à <%= @recipe.original_recipe.user.first_name.capitalize %>. Il/elle pourra s'il/elle le souhaite les intégrer dans la recette originale.
+    </div>
     <% end %>
   </div>
   <!-------------------------------- EDIT RECIPE FORM 1 -------------------------------->
   <% if @recipe.kind == 'variant' %>
     <div class="text-center mb-2">Nom de votre variante</div>
-     <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
+    <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
       <div class="form-subtitle">
         <%= recipe_form.input :subtitle, label: false, placeholder: '...' %>
         <div><%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info mt-2 js-update-btn' %></div>
       </div>
     <% end %>
   <% end %>
-
   <!------------------------------- END OF RECIPE FORM 1 ------------------------------->
-    <div class=" d-flex justify-content-around">
-      <div class="row">
+  <div class=" d-flex justify-content-around">
+    <div class="row">
       <div class="col">
-    <div class="form-photo-wrapper">
-      <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
-        <div class="photo-upload-input-box">
-          <%= recipe_form.input :photo, input_html: { class: 'hidden', id: 'photo-input'}, label_html: { class: 'upload-photo'}, label: '📷 Télécharger une photo'%>
-        </div>
-        <div class="photo-preview-box">
-          <%= image_tag "", width: 100, class: "hidden", id: "photo-preview" %>
-        </div>
-      <% end %>
-      </div>
-        </div>
-  <!------------------------------- EDIT RECIPE FORM 2 ------------------------------->
-  <div class="col">
-  <div class="form-servings-wrapper">
-    <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
-      <div class="form-servings">
-        <p>Portions</p>
-        <div>
-          <%= recipe_form.input :servings, label: false, placeholder: '4' %>
-        </div>
-        <div>
-          <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info ml-3 js-update-btn' %>
+        <div class="form-photo-wrapper">
+          <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
+          <div class="photo-upload-input-box">
+            <%= recipe_form.input :photo, input_html: { class: 'hidden', id: 'photo-input'}, label_html: { class: 'upload-photo'}, label: '📷 Télécharger une photo'%>
+          </div>
+          <div class="photo-preview-box">
+            <%= image_tag "", width: 100, class: "hidden", id: "photo-preview" %>
+          </div>
+          <% end %>
         </div>
       </div>
-    <% end %>
-  </div>
-</div>
-</div>
+      <!------------------------------- EDIT RECIPE FORM 2 ------------------------------->
+      <div class="col">
+        <div class="form-servings-wrapper">
+          <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
+            <div class="form-servings">
+              <p>Portions</p>
+              <div>
+                <%= recipe_form.input :servings, label: false, placeholder: '4' %>
+              </div>
+              <div>
+                <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info ml-3 js-update-btn' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
   <!-------------------------------- END OF RECIPE FORM 2 -------------------------------->
   <div class="form-description-wrapper">
@@ -71,6 +70,26 @@
   <div class="edit-recipe-division">
     <!------------------------------- EDIT RECIPE FORM 3 ------------------------------->
     <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
+      <label>Quels tags correspondent à votre recette ?</label>
+      <div class="tag-choices">
+        <% Tag.all.each do |tag| %>
+          <div>
+            <% if @recipe.tags.include?(tag) %>
+              <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>" checked>
+            <% else %>
+              <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>">
+            <% end %>
+            <label class="tag-choice <%= "active" if @recipe.tags.include?(tag) %>" for="recipe_tag_<%= tag.id %>">
+              <%= tag.name %>
+            </label>
+          </div>
+        <% end %>
+      </div>
+      <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info js-update-btn mb-4' %>
+    <% end %>
+    <!------------------------------- END OF EDIT RECIPE FORM 3 ------------------------------->
+    <!------------------------------- EDIT RECIPE FORM 4 ------------------------------->
+    <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
       <div class="form-inputs">
         <div class="form-timing">
           <%= recipe_form.input :prep_time, label: 'Préparation (h,min)', error: 'Le temps de préparation est obligatoire' %>
@@ -80,35 +99,31 @@
         </div>
       </div>
     <% end %>
-
   </div>
-  <!-------------------------------- END OF RECIPE FORM 3 -------------------------------->
+  <!-------------------------------- END OF RECIPE FORM 4 -------------------------------->
   <div id="step-edit">
     <% @recipe.steps.order(:position).each do |step| %>
-      <%= render 'owner/steps/edit', step: step %>
+    <%= render 'owner/steps/edit', step: step %>
     <% end %>
   </div>
   <!----------------------------------- NEW STEP FORM ----------------------------------->
   <%= simple_form_for([:owner, @recipe, @step], remote: true, url: owner_recipe_steps_path(@recipe)) do |f| %>
-    <h5><%= f.submit "+ Ajouter une étape", class: "btn btn-secondary btn-block mb-5 js-add-btn" %></h5>
+  <h5><%= f.submit "+ Ajouter une étape", class: "btn btn-secondary btn-block mb-5 js-add-btn" %></h5>
   <% end %>
   <!------------------------------- END OF NEW STEP FORM ------------------------------->
   <% if @recipe.kind == 'changes_proposal' %>
-    <div class="edit-actions">
-      <%= simple_form_for [:owner, @recipe, @contribution], url: owner_recipe_contributions_path(@recipe), method: :post do |f| %>
-        <%= f.input :message, label: "Expliquer vos changements à #{@recipe.original_recipe.user.first_name.capitalize}" %>
-        <%= button_tag type: 'submit', class: 'link-to-new-changes-proposal' do %>
-          <i class="far fa-paper-plane"></i> Soumettre mes changements</h5>
-        <% end %>
-      <% end %>
-    </div>
+  <div class="edit-actions">
+    <%= simple_form_for [:owner, @recipe, @contribution], url: owner_recipe_contributions_path(@recipe), method: :post do |f| %>
+    <%= f.input :message, label: "Expliquer vos changements à #{@recipe.original_recipe.user.first_name.capitalize}" %>
+    <%= button_tag type: 'submit', class: 'link-to-new-changes-proposal' do %>
+    <i class="far fa-paper-plane"></i> Soumettre mes changements</h5>
+    <% end %>
+    <% end %>
+  </div>
   <% end %>
   <div class="text-right edit-ending-button">
     <%= link_to 'Terminer et revenir à mes recettes', owner_dashboard_path, class: "btn btn-info" %>
   </div>
 </div>
 </div>
-  </div>
-
-
-
+</div>
