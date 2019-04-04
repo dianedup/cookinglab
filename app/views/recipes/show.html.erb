@@ -71,7 +71,7 @@
           <h5>Ingrédients</h5>
           <% if @recipe.servings == 1 %>
             <p><strong>Portion <%= @recipe.servings %></strong></p>
-          <% elsif @recipe.servings > 1 %>
+          <% elsif @recipe.servings && @recipe.servings > 1 %>
             <p><strong>Portions <%= @recipe.servings %></strong></p>
           <% else %>
           <% end %>
