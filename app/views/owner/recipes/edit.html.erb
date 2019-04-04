@@ -12,28 +12,33 @@
     <% end %>
   </div>
   <!-------------------------------- EDIT RECIPE FORM 1 -------------------------------->
-
   <% if @recipe.kind == 'variant' %>
+    <div class="text-center mb-2">Nom de votre variante</div>
      <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
       <div class="form-subtitle">
-        Nom de votre variante
         <%= recipe_form.input :subtitle, label: false, placeholder: '...' %>
-        <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info js-update-btn' %>
+        <div><%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info mt-2 js-update-btn' %></div>
       </div>
     <% end %>
   <% end %>
+
   <!------------------------------- END OF RECIPE FORM 1 ------------------------------->
-  <div class="container">
+    <div class=" d-flex justify-content-around">
+      <div class="row">
+      <div class="col">
     <div class="form-photo-wrapper">
       <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
-        <div class="form-photo">
-          <p>Photo</p>
-          <%= recipe_form.input :photo, label: false %>
+        <div class="photo-upload-input-box">
+          <%= recipe_form.input :photo, input_html: { class: 'hidden', id: 'photo-input'}, label_html: { class: 'upload-photo'}, label: '📷 Télécharger une photo'%>
+        </div>
+        <div class="photo-preview-box">
+          <%= image_tag "", width: 100, class: "hidden", id: "photo-preview" %>
         </div>
       <% end %>
-    </div>
-  </div>
+      </div>
+        </div>
   <!------------------------------- EDIT RECIPE FORM 2 ------------------------------->
+  <div class="col">
   <div class="form-servings-wrapper">
     <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
       <div class="form-servings">
@@ -42,10 +47,13 @@
           <%= recipe_form.input :servings, label: false, placeholder: '4' %>
         </div>
         <div>
-          <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info js-update-btn' %>
+          <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info ml-3 js-update-btn' %>
         </div>
       </div>
     <% end %>
+  </div>
+</div>
+</div>
   </div>
   <!-------------------------------- END OF RECIPE FORM 2 -------------------------------->
   <div class="form-description-wrapper">
@@ -99,7 +107,8 @@
     <%= link_to 'Terminer et revenir à mes recettes', owner_dashboard_path, class: "btn btn-info" %>
   </div>
 </div>
-
+</div>
+  </div>
 
 
 
