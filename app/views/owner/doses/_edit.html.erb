@@ -5,7 +5,7 @@
     </div>
     <%= dose_form.input :quantity, label: false %>
     <%= dose_form.input :unit, label: false, input_html: { value: display_dose_unit(dose) } %>
-    <%= dose_form.submit 'Mettre à jour', class: "btn btn-info btn-doses js-update-btn" %>
+    <%= dose_form.submit 'Modifier', class: "btn btn-info btn-doses js-update-btn" %>
     <%= link_to owner_dose_path(dose), method: :delete, remote: true do %>
       <i class="far fa-trash-alt" style="opacity: 0.5"></i>
     <% end %>
