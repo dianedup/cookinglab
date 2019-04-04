@@ -12,8 +12,8 @@
     <% end %>
   </div>
   <!-------------------------------- EDIT RECIPE FORM 1 -------------------------------->
-  <div class="text-center mb-2">Nom de votre variante</div>
   <% if @recipe.kind == 'variant' %>
+    <div class="text-center mb-2">Nom de votre variante</div>
      <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
       <div class="form-subtitle">
         <%= recipe_form.input :subtitle, label: false, placeholder: '...' %>
