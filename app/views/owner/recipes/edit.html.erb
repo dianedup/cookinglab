@@ -70,7 +70,7 @@
   <div class="edit-recipe-division">
     <!------------------------------- EDIT RECIPE FORM 3 ------------------------------->
     <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
-    <label>Quel tags correspondent le mieux à votre recette ?</label>
+    <label>Quels tags correspondent à votre recette ?</label>
     <div class="tag-choices">
       <% Tag.all.each do |tag| %>
       <div>
