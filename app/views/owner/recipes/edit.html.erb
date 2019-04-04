@@ -17,7 +17,7 @@
      <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
       <div class="form-subtitle">
         <%= recipe_form.input :subtitle, label: false, placeholder: '...' %>
-        <div><%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info mt-2 js-update-btn' %></div>
+        <div><%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info mt-2 js-update-btn' %></div>
       </div>
     <% end %>
   <% end %>
@@ -47,7 +47,7 @@
           <%= recipe_form.input :servings, label: false, placeholder: '4' %>
         </div>
         <div>
-          <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info ml-3 js-update-btn' %>
+          <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info ml-3 js-update-btn' %>
         </div>
       </div>
     <% end %>
@@ -63,7 +63,7 @@
           <%= recipe_form.input :description, label: 'Description', placeholder: "Ecrivez un commentaire sur votre recette" %>
         </div>
         <div>
-          <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info js-update-btn' %>
+          <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info js-update-btn' %>
         </div>
       </div>
     <% end %>
@@ -76,7 +76,7 @@
           <%= recipe_form.input :prep_time, label: 'Préparation (h,min)', error: 'Le temps de préparation est obligatoire' %>
           <%= recipe_form.input :cook_time, label: 'Cuisson (h,min)' %>
           <%= recipe_form.input :rest_time, label: 'Repos (h,min)' %>
-          <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info btn-timing js-update-btn' %>
+          <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info btn-timing js-update-btn' %>
         </div>
       </div>
     <% end %>
