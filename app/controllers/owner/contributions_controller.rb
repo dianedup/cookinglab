@@ -10,7 +10,8 @@ class Owner::ContributionsController < ApplicationController
     @contribution.recipe = @recipe
     @contribution.status = 'pending'
     @contribution.save
-    redirect_to contributions_path
+    flash[:notice] = 'Merci ! Votre proposition a bien été envoyée.'
+    redirect_to recipe_path(@recipe.original_recipe)
   end
 
   private
