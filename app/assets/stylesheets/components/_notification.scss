@@ -3,18 +3,25 @@
   padding: 30px 50px 20px 50px;
   margin: 40px 0;
   position: relative;
-  border: 2px dotted $primary;
+  border: 2px solid $primary;
 
   .changes-proposals-box-title {
-    background-color: $glitter;
+    background-color: $white;
+    border: 2px dotted $primary;
+    margin-bottom: 15px;
+    h4 {
+      padding-top: 10px;
+    }
+  }
+}
+
+@media(min-width: 992px) {
+  .changes-proposals-box-title {
     position: absolute;
     top: -25px;
     left: 250px;
     right: 250px;
-    // border: 2px dotted $primary;
-    h4 {
-      padding-top: 10px;
-    }
+    border: 2px dotted $primary;
   }
 }
 
@@ -64,9 +71,6 @@
     }
 
     .notification-content-title {
-      position: absolute;
-      top: 10px;
-      left: 120px;
       padding: 8px;
       margin: 5px;
       background-color: $white;
@@ -75,6 +79,21 @@
       }
     }
   }
+
+ @media(min-width: 992px) {
+  .notification-content-title {
+    position: absolute;
+    top: 10px;
+    left: 120px;
+    padding: 8px;
+    margin: 5px;
+    background-color: $white;
+    h5 {
+      margin-bottom: 0;
+    }
+  }
+
+ }
 
   .notification-status-box {
     position: absolute;
