@@ -37,6 +37,15 @@ class Owner::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     if @recipe.user == current_user
       @recipe.update!(params_recipe)
+
+      if params[:recipe][:tags].present? # => ["1", "2", "3"]
+        @recipe.recipe_tags.destroy_all
+
+        checked_tags = params[:recipe][:tags]
+        checked_tags.each do |tag|
+          RecipeTag.create(recipe: @recipe, tag: Tag.find(tag))
+        end
+      end
       redirect_to edit_owner_recipe_path(@recipe)
     else
       redirect_to recipes_path
