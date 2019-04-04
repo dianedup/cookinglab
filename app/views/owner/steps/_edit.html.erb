@@ -51,7 +51,7 @@
     <!------------------------------- EDIT STEP FORM ------------------------------->
     <%= simple_form_for([:owner, step], remote: true) do |content_form|%>
       <div class="step-description-content">
-        <h6 class="margin-bottom-15">Description de l'étape</h6>
+        <h6 class="margin-bottom-15"><i class="fas fa-pencil-alt"></i> Description de l'étape</h6>
           <%= content_form.input :content, label: false %>
           <%= content_form.submit 'Enregistrer la description', class: "btn btn-info js-update-btn" %>
       </div>
