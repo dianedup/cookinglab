@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources :changes_proposals, only: [:show] do
       member do
         patch :accept
-        patch :refuse
+        patch :deny
       end
     end
   end
