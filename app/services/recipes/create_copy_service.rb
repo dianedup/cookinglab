@@ -44,6 +44,9 @@ module Recipes
       @copy.original_recipe = original_recipe
       @copy.subtitle        = ""
       @copy.description     = "Proposez votre description"
+      original_recipe.tags.each do |tag|
+        @copy.tags << tag
+      end
 
       # Remote upload a photo identical to the one from original:
       #    - photo

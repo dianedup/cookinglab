@@ -74,8 +74,12 @@
     <div class="tag-choices">
       <% Tag.all.each do |tag| %>
       <div>
-        <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>">
-        <label class="tag-choice" for="recipe_tag_<%= tag.id %>">
+        <% if @recipe.tags.include?(tag) %>
+          <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>" checked>
+        <% else %>
+          <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>">
+        <% end %>
+        <label class="tag-choice <%= "active" if @recipe.tags.include?(tag) %>" for="recipe_tag_<%= tag.id %>">
           <%= tag.name %>
         </label>
       </div>

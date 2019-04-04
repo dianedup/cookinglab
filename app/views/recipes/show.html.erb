@@ -17,7 +17,7 @@
           <h2><%= @recipe.title.capitalize %></h2>
           <h5 style="opacity: 0.5;"><%= @recipe.subtitle.capitalize %></h5>
         </div>
-        <div class="recipe-date"><%= @recipe.published_on.strftime("%d/%m/%Y") %></div>
+        <div class="recipe-date"><%= @recipe.published_on.strftime("%d/%m/%Y") if @recipe.published %></div>
       </div>
 
     </div>
