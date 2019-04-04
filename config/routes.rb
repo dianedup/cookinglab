@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :recipes, only: [:index, :show] do
     resources :copies, only: [:create]
+    post 'upvote'
   end
 
   # resources :contributions, only: [:index]

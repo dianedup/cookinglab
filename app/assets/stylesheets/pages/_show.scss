@@ -2,8 +2,9 @@
   margin-top: 40px;
 }
 
-.recipe-header {
+.show-recipe-header {
   position: relative;
+  margin-bottom: 20px;
 }
 
 .recipe-photo {
@@ -104,7 +105,15 @@ table {
   &:last-of-type {
     border-bottom: none;
   }
+
+  .title-step {
+    margin-bottom: 15px;
+  }
   padding-bottom: 20px;
+}
+
+.timing-content {
+  font-weight: bold;
 }
 
 .back-to-original-link{
@@ -185,4 +194,24 @@ table {
 }
 .variant-margin-top {
   margin-top: 30px;
+}
+.btn-upvote {
+  position: absolute;
+  background-color: $info;
+  color: $primary;
+  padding: 5px 10px;
+  right: 15px;
+  bottom: 10px;
+
+  &:hover {
+    transition-duration: 250ms;
+    animation-timing-function: ease-in-out;
+    transform: scale(1.05);
+    border: 1px solid $primary;
+    opacity: 1;
+  a {
+    text-decoration: none;
+  }
+  }
+
 }

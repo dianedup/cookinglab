@@ -1,7 +1,7 @@
 <div class="container container-show">
   <div class="row">
     <div class="col-sm">
-      <div class="recipe-header">
+      <div class="show-recipe-header">
           <% if @recipe.photo.url.nil? %>
          <div class="recipe-photo" style="background-image: url('<%= image_path "default_image.png" %>')">
          <% else %>
@@ -12,6 +12,9 @@
             <span><%= tag.name %></span>
             <% end %>
           </div>
+          <div id="upvote-recipe">
+            <%= render 'upvote' %>
+          </div>
         </div>
         <div class="recipe-title-card">
           <h2><%= @recipe.title.capitalize %></h2>
@@ -19,7 +22,6 @@
         </div>
         <div class="recipe-date"><%= @recipe.published_on.strftime("%d/%m/%Y") %></div>
       </div>
-
     </div>
   </div>
   <div class="row">
@@ -46,22 +48,19 @@
           <div class="row text-center">
             <div class="col-sm">
               <p>
-                <%= @recipe.prep_time.nil? ? '-' : @recipe.prep_time %>
-                <br>
+                <h6 class="timing-content"><%= @recipe.prep_time.nil? ? '-' : @recipe.prep_time %></h6>
                 Préparation
               </p>
             </div>
             <div class="col-sm">
               <p>
-                <%= @recipe.cook_time.nil? ? '-' : @recipe.cook_time %>
-                <br>
+                <h6 class="timing-content"><%= @recipe.cook_time.nil? ? '-' : @recipe.cook_time %></h6>
                 Cuisson
               </p>
             </div>
             <div class="col-sm">
               <p>
-                <%= @recipe.rest_time.nil? ? '-' : @recipe.rest_time %>
-                <br>
+                <h6 class="timing-content"><%= @recipe.rest_time.nil? ? '-' : @recipe.rest_time %></h6>
                 Repos
               </p>
             </div>
@@ -71,19 +70,17 @@
           <h5>Ingrédients</h5>
           <% if @recipe.servings == 1 %>
             <p><strong>Portion <%= @recipe.servings %></strong></p>
-          <% elsif @recipe.servings > 1%>
+          <% elsif @recipe.servings && @recipe.servings > 1 %>
             <p><strong>Portions <%= @recipe.servings %></strong></p>
           <% else %>
           <% end %>
           <table>
             <tbody>
-              <% @recipe.steps.each do |step| %>
-                <% step.doses.each do |dose| %>
-                  <tr>
-                    <td class="dose amount"><%= dose.quantity %> <%= dose.unit %></td>
-                    <td class="dose"><%= dose.ingredient.name %></td>
-                  </tr>
-                <% end %>
+              <% @doses.each do |dose| %>
+                <tr>
+                  <td class="dose amount"><%= dose.quantity %> <%= dose.unit %></td>
+                  <td class="dose"><%= dose.ingredient.name %></td>
+                </tr>
               <% end %>
             </tbody>
           </table>
@@ -105,10 +102,12 @@
         <div class="recipe-division instructions">
           <h5>Instructions</h5>
           <% nb_steps = @recipe.steps.count %>
-          <% @recipe.steps.each do |step| %>
+          <% @steps.each do |step| %>
             <div class="step">
-              <p><span><strong>Etape <%= step.position %>/<%= nb_steps %></strong></span>
-                <br>
+              <div class="title-step">
+                Etape <%= step.position %>/<%= nb_steps %>
+              </div>
+              <p>
                 <% unless step.doses.empty? %>
                   <i class="far fa-lemon"></i>
                   <% step_ingredients = step.doses.map do |dose| %>
@@ -133,7 +132,7 @@
         </div>
     </div>
     <div class="col-sm-12 col-md-4">
-      <% published_variants = @recipe.variants.select { |variant| variant.published == true } %>
+      <% published_variants = @recipe.variants.where(published: true).order("upvote desc") %>
       <% if @recipe.kind == 'variant' %>
         <div class="back-to-original-link">
           <%= link_to recipe_path(@recipe.original_recipe) do %>
@@ -165,7 +164,7 @@
                   </div>
                 </div>
                 <div class="upvote">
-                  <i class="fas fa-arrow-up"></i> <%= variant.upvote %>
+                  <i class="far fa-heart"></i> <%= variant.upvote %>
                 </div>
                 <div class="tags-variants">
                   <% variant_tags_list = variant.tags.map do |tag| %>

@@ -1,5 +1,5 @@
 <div class="utensil" id="step_utensil_<%= step_utensil.id %>">
-  <%= step_utensil.utensil.name %>
+  <span><%= step_utensil.utensil.name %></span>
   <%= link_to owner_step_utensil_path(step_utensil), method: :delete, remote: true do %>
     <i class="far fa-trash-alt" style="opacity: 0.5"></i>
   <% end %>

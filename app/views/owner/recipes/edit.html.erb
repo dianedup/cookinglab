@@ -13,13 +13,13 @@
   </div>
   <!-------------------------------- EDIT RECIPE FORM 1 -------------------------------->
   <% if @recipe.kind == 'variant' %>
-  <div class="text-center mb-2">Nom de votre variante</div>
-  <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
-  <div class="form-subtitle">
-    <%= recipe_form.input :subtitle, label: false, placeholder: '...' %>
-    <div><%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info mt-2 js-update-btn' %></div>
-  </div>
-  <% end %>
+    <div class="text-center mb-2">Nom de votre variante</div>
+    <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
+      <div class="form-subtitle">
+        <%= recipe_form.input :subtitle, label: false, placeholder: '...' %>
+        <div><%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info mt-2 js-update-btn' %></div>
+      </div>
+    <% end %>
   <% end %>
   <!------------------------------- END OF RECIPE FORM 1 ------------------------------->
   <div class=" d-flex justify-content-around">
@@ -40,15 +40,15 @@
       <div class="col">
         <div class="form-servings-wrapper">
           <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
-          <div class="form-servings">
-            <p>Portions</p>
-            <div>
-              <%= recipe_form.input :servings, label: false, placeholder: '4' %>
+            <div class="form-servings">
+              <p>Portions</p>
+              <div>
+                <%= recipe_form.input :servings, label: false, placeholder: '4' %>
+              </div>
+              <div>
+                <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info ml-3 js-update-btn' %>
+              </div>
             </div>
-            <div>
-              <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info ml-3 js-update-btn' %>
-            </div>
-          </div>
           <% end %>
         </div>
       </div>
@@ -57,47 +57,47 @@
   <!-------------------------------- END OF RECIPE FORM 2 -------------------------------->
   <div class="form-description-wrapper">
     <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
-    <div class="form-description">
-      <div>
-        <%= recipe_form.input :description, label: 'Description', placeholder: "Ecrivez un commentaire sur votre recette" %>
+      <div class="form-description">
+        <div>
+          <%= recipe_form.input :description, label: 'Description', placeholder: "Ecrivez un commentaire sur votre recette" %>
+        </div>
+        <div>
+          <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info js-update-btn' %>
+        </div>
       </div>
-      <div>
-        <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info js-update-btn' %>
-      </div>
-    </div>
     <% end %>
   </div>
   <div class="edit-recipe-division">
     <!------------------------------- EDIT RECIPE FORM 3 ------------------------------->
     <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
-    <label>Quels tags correspondent à votre recette ?</label>
-    <div class="tag-choices">
-      <% Tag.all.each do |tag| %>
-      <div>
-        <% if @recipe.tags.include?(tag) %>
-          <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>" checked>
-        <% else %>
-          <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>">
+      <label>Quels tags correspondent à votre recette ?</label>
+      <div class="tag-choices">
+        <% Tag.all.each do |tag| %>
+          <div>
+            <% if @recipe.tags.include?(tag) %>
+              <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>" checked>
+            <% else %>
+              <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>">
+            <% end %>
+            <label class="tag-choice <%= "active" if @recipe.tags.include?(tag) %>" for="recipe_tag_<%= tag.id %>">
+              <%= tag.name %>
+            </label>
+          </div>
         <% end %>
-        <label class="tag-choice <%= "active" if @recipe.tags.include?(tag) %>" for="recipe_tag_<%= tag.id %>">
-          <%= tag.name %>
-        </label>
       </div>
-      <% end %>
-    </div>
-    <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info js-update-btn mb-4' %>
+      <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info js-update-btn mb-4' %>
     <% end %>
     <!------------------------------- END OF EDIT RECIPE FORM 3 ------------------------------->
     <!------------------------------- EDIT RECIPE FORM 4 ------------------------------->
     <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
-    <div class="form-inputs">
-      <div class="form-timing">
-        <%= recipe_form.input :prep_time, label: 'Préparation (h,min)', error: 'Le temps de préparation est obligatoire' %>
-        <%= recipe_form.input :cook_time, label: 'Cuisson (h,min)' %>
-        <%= recipe_form.input :rest_time, label: 'Repos (h,min)' %>
-        <%= recipe_form.button :submit, 'Mettre à jour', class: 'btn btn-info btn-timing js-update-btn' %>
+      <div class="form-inputs">
+        <div class="form-timing">
+          <%= recipe_form.input :prep_time, label: 'Préparation (h,min)', error: 'Le temps de préparation est obligatoire' %>
+          <%= recipe_form.input :cook_time, label: 'Cuisson (h,min)' %>
+          <%= recipe_form.input :rest_time, label: 'Repos (h,min)' %>
+          <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info btn-timing js-update-btn' %>
+        </div>
       </div>
-    </div>
     <% end %>
   </div>
   <!-------------------------------- END OF RECIPE FORM 4 -------------------------------->

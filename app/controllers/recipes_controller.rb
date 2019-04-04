@@ -10,8 +10,21 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @steps = @recipe.steps.order("position asc")
+    @doses = @recipe.doses.select("SUM(quantity) AS quantity, unit, ingredient_id").group("unit, ingredient_id")
   end
 
+  def upvote
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe.upvote += 1
+    @recipe.save
+
+    respond_to do |format|
+      format.html {redirect_to recipe_path(@recipe)}
+      format.js {}
+    end
+  end
+    
   private
 
   def set_recipe

@@ -31,7 +31,7 @@
         </div>
         <div class="container-subtitle">
           <% if recipe.kind == 'variant' %>
-          <p class="pl-1"><%= recipe.subtitle %></p>
+          <p class="myrecipe-card-subtitle"><%= recipe.subtitle.capitalize.truncate(45, omission: '...') %></p>
           <% end %>
         </div>
         <div class="d-flex justify-content-around">
