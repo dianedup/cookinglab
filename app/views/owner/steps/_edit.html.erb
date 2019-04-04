@@ -24,34 +24,36 @@
       </div>
     <% end %>
     <!----------------------------- END OF NEW DOSE FORM ----------------------------->
-    <div class="step-content">
+    <div class="step-utensil-content">
       <h6 class="margin-bottom-15"><i class="fas fa-utensil-spoon"></i> Saisie des ustensiles de cusine nécessaires</h6>
-      <div class="steps-utensils">
-        <div class="step-utensils-container" id="step-utensils-index-<%= step.id %>">
-          <% step.step_utensils.order(:created_at).each do |step_utensil| %>
-            <!--------------------------------- EDIT STEP_UTENSIL FORM --------------------------------->
-              <%= render 'owner/step_utensils/edit', step_utensil: step_utensil %>
-            <!------------------------------ END OF STEP_UTENSIL FORM ------------------------------>
-          <% end %>
-        </div>
+      <div class="step-utensils-container" id="step-utensils-index-<%= step.id %>">
+        <% step.step_utensils.order(:created_at).each do |step_utensil| %>
+          <!--------------------------------- EDIT STEP_UTENSIL FORM --------------------------------->
+            <%= render 'owner/step_utensils/edit', step_utensil: step_utensil %>
+          <!------------------------------ END OF STEP_UTENSIL FORM ------------------------------>
+        <% end %>
+      </div>
       <!--------------------------------- NEW STEP_UTENSIL FORM --------------------------------->
-        <div class="new_utensil">
-          <%= simple_form_for([:owner, step, StepUtensil.new], remote: true) do |new_step_utensil_form|%>
-            <div class="form-new-utensil">
+      <div class="new_utensil">
+        <%= simple_form_for([:owner, step, StepUtensil.new], remote: true) do |new_step_utensil_form|%>
+          <div class="form-new-utensil">
+            <div>
               <%= new_step_utensil_form.association :utensil, label: false, input_html: { class: 'select2', id: "new_utensil_step_#{step.id}" } %>
+            </div>
+            <div class="utensil-add-button">
               <%= new_step_utensil_form.submit '+ Ajouter', class: "btn btn-secondary btn-new-dose js-add-btn" %>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div>
     <!----------------------------- END OF NEW STEP_UTENSIL FORM ----------------------------->
     <!------------------------------- EDIT STEP FORM ------------------------------->
     <%= simple_form_for([:owner, step], remote: true) do |content_form|%>
-      <div class="step-content">
+      <div class="step-description-content">
         <h6 class="margin-bottom-15">Description de l'étape</h6>
           <%= content_form.input :content, label: false %>
-          <%= content_form.submit 'Modifier la description', class: "btn btn-info js-update-btn" %>
+          <%= content_form.submit 'Enregistrer la description', class: "btn btn-info js-update-btn" %>
       </div>
     <% end %>
       <!---------------------------- END OF EDIT STEP FORM ---------------------------->

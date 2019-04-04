@@ -113,7 +113,7 @@
 }
 
 .step-title {
-  margin: 25px 0px 15px 0px;
+  margin: 40px 0px 40px 0px;
   position: relative;
   .delete-step-button {
     position: absolute;
@@ -148,50 +148,52 @@
     margin: 0 20px 0 0;
   }
   .btn-new-dose {
-    padding: 5px 10px;
-    margin: auto 0 0px 10px;
+    margin: auto 0 0px 0px;
   }
 }
 
 .step-utensils-container {
   display: flex;
-  justify-content: space-between;
-  width: 500px;
-}
-
-.steps-utensils {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   text-align: center;
   flex-wrap: wrap;
 }
 
 .utensil {
-}
-
-.form-new-utensil {
+  margin-right: 30px;
+  margin-bottom: 10px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  .form-group {
-    flex: 1 1 20%;
-    margin: 0 20px 0 0;
-  }
-  .btn-new-dose {
-    padding: 5px 10px;
-    margin: auto 0 0px 10px;
+  span {
+    margin-right: 10px;
   }
 }
 
+.new_utensil {
+  margin-top: 10px;
+  .form-new-utensil {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .utensil-add-button {
+      margin-left: 20px;
+    }
+    .form-group {
+      margin-bottom: 0px;
+    }
+  }
+}
 
-.step-content {
-  margin: 30px 0px;
+.step-utensil-content {
+  margin-top: 40px;
+}
+
+.step-description-content {
+  margin-top: 20px;
+  margin-bottom: 60px;
 }
 
 .ingredient-name {
-  width: 282px;
+  width: 302px;
   text-align: left;
 }
 
