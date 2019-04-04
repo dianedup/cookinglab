@@ -99,8 +99,7 @@
 }
 
 .btn-doses {
-  padding: 5px 10px;
-  margin: 0px 0 20px 10px;
+  height: 38px;
 }
 
 .edit-recipe-division {
@@ -132,6 +131,10 @@
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  margin: 20px 0px;
+  .form-group {
+    margin-bottom: 0px;
+  }
 }
 
 .form-new-dose {
@@ -187,7 +190,7 @@
 }
 
 .ingredient-name {
-  width: 100px;
+  width: 180px;
   text-align: left;
 }
 

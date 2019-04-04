@@ -1,9 +1,13 @@
 <%= simple_form_for([:owner, dose], remote: true, defaults: { input_html: { class: 'is-valid' } }) do |dose_form|%>
   <div class="dose-ingredients" id="dose-<%= dose.id %>">
-    <p class="ingredient-name"><%= dose.ingredient.name %></p>
+    <div class="ingredient-name">
+      <span><%= dose.ingredient.name %></span>
+    </div>
     <%= dose_form.input :quantity, label: false %>
     <%= dose_form.input :unit, label: false, input_html: { value: display_dose_unit(dose) } %>
     <%= dose_form.submit 'Mettre à jour', class: "btn btn-info btn-doses js-update-btn" %>
-    <%= link_to 'Supprimer', owner_dose_path(dose), method: :delete, remote: true, class: "btn btn-primary btn-doses js-delete-btn" %>
+    <%= link_to owner_dose_path(dose), method: :delete, remote: true do %>
+      <i class="far fa-trash-alt" style="opacity: 0.5"></i>
+    <% end %>
   </div>
 <% end %>
