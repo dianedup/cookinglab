@@ -106,8 +106,16 @@ table {
     border-bottom: none;
   }
 
+  p {
+    line-height: 1.5;
+  }
+
+  .ingredients-and-utensils {
+    margin-bottom: 30px;
+  }
+
   .title-step {
-    margin-bottom: 15px;
+    margin-bottom: 30px;
   }
   padding-bottom: 20px;
 }
