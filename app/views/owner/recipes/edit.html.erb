@@ -22,36 +22,35 @@
     <% end %>
   <% end %>
   <!------------------------------- END OF RECIPE FORM 1 ------------------------------->
-  <div class=" d-flex justify-content-around">
-    <div class="row">
-      <div class="col">
-        <div class="form-photo-wrapper">
-          <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
-          <div class="photo-upload-input-box">
-            <%= recipe_form.input :photo, input_html: { class: 'hidden', id: 'photo-input'}, label_html: { class: 'upload-photo'}, label: '📷 Télécharger une photo'%>
-          </div>
-          <div class="photo-preview-box">
-            <%= image_tag "", width: 100, class: "hidden", id: "photo-preview" %>
-          </div>
-          <%# end %>
-        </div>
-      </div>
-      <!------------------------------- EDIT RECIPE FORM 2 ------------------------------->
-      <div class="col">
-        <div class="form-servings-wrapper">
-          <%#= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
-            <div class="form-servings">
-              <p>Portions</p>
-              <div>
-                <%= recipe_form.input :servings, label: false, placeholder: '4' %>
+    <div class=" d-flex justify-content-around">
+      <div class="row">
+        <div class="col">
+          <div class="form-photo-wrapper">
+            <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
+              <div class="photo-upload-input-box">
+                <%= recipe_form.input :photo, input_html: { class: 'hidden', id: 'photo-input'}, label_html: { class: 'upload-photo'}, label: '📷 Télécharger une photo'%>
               </div>
-              <!-- <div> -->
-                <%#= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info ml-3 js-update-btn' %>
-              <!-- </div> -->
-            </div>
-          <%# end %>
+              <div class="photo-preview-box">
+                <%= image_tag "", width: 100, class: "hidden", id: "photo-preview" %>
+              </div>
+          </div>
         </div>
-      </div>
+      <!------------------------------- EDIT RECIPE FORM 2 ------------------------------->
+        <div class="col">
+          <div class="form-servings-wrapper">
+            <%#= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
+              <div class="form-servings">
+                <p>Portions</p>
+                <div>
+                  <%= recipe_form.input :servings, label: false, placeholder: '4' %>
+                </div>
+                <!-- <div> -->
+                  <%#= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info ml-3 js-update-btn' %>
+                <!-- </div> -->
+              </div>
+            <%# end %>
+          </div>
+        </div>
     </div>
   </div>
   <!-------------------------------- END OF RECIPE FORM 2 -------------------------------->
@@ -70,21 +69,23 @@
   <div class="edit-recipe-division">
     <!------------------------------- EDIT RECIPE FORM 3 ------------------------------->
     <%#= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
+    <% if @recipe.kind == 'variant' %>
       <label>Quels tags correspondent à votre recette ?</label>
-      <div class="tag-choices mb-3">
-        <% Tag.all.each do |tag| %>
-          <div>
-            <% if @recipe.tags.include?(tag) %>
-              <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>" checked>
-            <% else %>
-              <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>">
-            <% end %>
-            <label class="tag-choice <%= "active" if @recipe.tags.include?(tag) %>" for="recipe_tag_<%= tag.id %>">
-              <%= tag.name %>
-            </label>
-          </div>
-        <% end %>
-      </div>
+        <div class="tag-choices mb-3">
+          <% Tag.all.each do |tag| %>
+            <div>
+              <% if @recipe.tags.include?(tag) %>
+                <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>" checked>
+              <% else %>
+                <input type="checkbox" class="d-none" value="<%= tag.id %>" name="recipe[tags][]" id="recipe_tag_<%= tag.id %>">
+              <% end %>
+              <label class="tag-choice <%= "active" if @recipe.tags.include?(tag) %>" for="recipe_tag_<%= tag.id %>">
+                <%= tag.name %>
+              </label>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
       <%#= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info js-update-btn mb-4' %>
     <%# end %>
     <!------------------------------- END OF EDIT RECIPE FORM 3 ------------------------------->
