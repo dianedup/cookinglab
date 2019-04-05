@@ -4,8 +4,12 @@ function addUtensil(utensilHTML) {
 }
 
 function refreshForm(innerHTML) {
-  const newUtensilForm = document.getElementById('new_step_utensil');
+  const newUtensilForm = document.getElementById('new-step-utensil-<%= @step_utensil.step.id %>');
   newUtensilForm.innerHTML = innerHTML;
 }
 
 addUtensil('<%= j render "owner/step_utensils/edit", step_utensil: @step_utensil %>');
+
+refreshForm('<%= j render "owner/step_utensils/create", step: @step_utensil.step %>')
+
+window.initSelect2();

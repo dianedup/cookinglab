@@ -1,0 +1,8 @@
+<%= simple_form_for([:owner, step, Dose.new], remote: true, html: { id: "new-dose-#{step.id}" }) do |new_dose_form| %>
+  <div class="form-new-dose">
+    <%= new_dose_form.association :ingredient, label: 'Ingrédient', input_html: { class: 'select2', id: "new_dose_step_#{step.id}" } %>
+    <%= new_dose_form.input :quantity, label: 'quantité' %>
+    <%= new_dose_form.input :unit, label: 'unité' %>
+    <%= new_dose_form.submit '+ Ajouter', class: "btn btn-secondary btn-new-dose js-add-btn" %>
+  </div>
+<% end %>
