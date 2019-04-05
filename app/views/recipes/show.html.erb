@@ -104,16 +104,17 @@
           <% nb_steps = @recipe.steps.count %>
           <% @steps.each do |step| %>
             <div class="step">
-              <div class="title-step">
+              <h6 class="title-step">
                 Etape <%= step.position %>/<%= nb_steps %>
-              </div>
-              <p>
+              </h6>
+              <p class="ingredients-and-utensils">
                 <% unless step.doses.empty? %>
                   <i class="far fa-lemon"></i>
                   <% step_ingredients = step.doses.map do |dose| %>
                       <% "#{dose.quantity} #{dose.unit} #{dose.ingredient.name}" %>
                   <% end %>
                   <%= step_ingredients.join(' - ') %>
+                  <br>
                   <br>
                 <% end %>
                 <% unless step.utensils.empty? %>
