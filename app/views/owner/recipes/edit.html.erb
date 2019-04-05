@@ -17,7 +17,7 @@
     <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
       <div class="form-subtitle">
         <%= recipe_form.input :subtitle, label: false, placeholder: '...' %>
-        <div><%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info mt-2 js-update-btn' %></div>
+        <!-- <div><%#= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info mt-2 js-update-btn' %></div> -->
       </div>
     <% end %>
   <% end %>
@@ -33,45 +33,45 @@
           <div class="photo-preview-box">
             <%= image_tag "", width: 100, class: "hidden", id: "photo-preview" %>
           </div>
-          <% end %>
+          <%# end %>
         </div>
       </div>
       <!------------------------------- EDIT RECIPE FORM 2 ------------------------------->
       <div class="col">
         <div class="form-servings-wrapper">
-          <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
+          <%#= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
             <div class="form-servings">
               <p>Portions</p>
               <div>
                 <%= recipe_form.input :servings, label: false, placeholder: '4' %>
               </div>
-              <div>
-                <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info ml-3 js-update-btn' %>
-              </div>
+              <!-- <div> -->
+                <%#= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info ml-3 js-update-btn' %>
+              <!-- </div> -->
             </div>
-          <% end %>
+          <%# end %>
         </div>
       </div>
     </div>
   </div>
   <!-------------------------------- END OF RECIPE FORM 2 -------------------------------->
   <div class="form-description-wrapper">
-    <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
+    <%#= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
       <div class="form-description">
         <div>
-          <%= recipe_form.input :description, label: 'Description', placeholder: "Ecrivez un commentaire sur votre recette" %>
+          <%= recipe_form.input :description, label: 'Description', placeholder: "Ecrivez un commentaire sur votre recette", required: false%>
         </div>
-        <div>
-          <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info js-update-btn' %>
-        </div>
+        <!-- <div> -->
+          <%#= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info js-update-btn' %>
+        <!-- </div> -->
       </div>
-    <% end %>
+    <%# end %>
   </div>
   <div class="edit-recipe-division">
     <!------------------------------- EDIT RECIPE FORM 3 ------------------------------->
-    <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
+    <%#= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
       <label>Quels tags correspondent à votre recette ?</label>
-      <div class="tag-choices">
+      <div class="tag-choices mb-3">
         <% Tag.all.each do |tag| %>
           <div>
             <% if @recipe.tags.include?(tag) %>
@@ -85,17 +85,19 @@
           </div>
         <% end %>
       </div>
-      <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info js-update-btn mb-4' %>
-    <% end %>
+      <%#= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info js-update-btn mb-4' %>
+    <%# end %>
     <!------------------------------- END OF EDIT RECIPE FORM 3 ------------------------------->
     <!------------------------------- EDIT RECIPE FORM 4 ------------------------------->
-    <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
+    <%#= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
       <div class="form-inputs">
         <div class="form-timing">
           <%= recipe_form.input :prep_time, label: 'Préparation (h,min)', error: 'Le temps de préparation est obligatoire' %>
           <%= recipe_form.input :cook_time, label: 'Cuisson (h,min)' %>
           <%= recipe_form.input :rest_time, label: 'Repos (h,min)' %>
-          <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info btn-timing js-update-btn' %>
+          <div class="w-100 text-center mt-3">
+          <%= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info btn-timing js-update-btn pl-5 pr-5 p-2' %>
+          </div>
         </div>
       </div>
     <% end %>
