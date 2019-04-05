@@ -4,8 +4,12 @@ function addDose(doseHTML) {
 }
 
 function refreshForm(innerHTML) {
-  const newDoseForm = document.getElementById('new_dose');
-  newDoseForm.innerHTML = innerHTML;
+  const newDoseForm = document.getElementById('new-dose-<%= @dose.step.id %>');
+  newDoseForm.outerHTML = innerHTML;
 }
 
 addDose('<%= j render "owner/doses/edit", dose: @dose %>');
+
+refreshForm('<%= j render "owner/doses/create", step: @dose.step %>')
+
+window.initSelect2();

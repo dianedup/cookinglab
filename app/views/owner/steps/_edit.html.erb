@@ -15,14 +15,7 @@
       <% end %>
     </div>
     <!--------------------------------- NEW DOSE FORM --------------------------------->
-    <%= simple_form_for([:owner, step, Dose.new], remote: true) do |new_dose_form|%>
-      <div class="form-new-dose">
-        <%= new_dose_form.association :ingredient, label: 'Ingrédient', input_html: { class: 'select2', id: "new_dose_step_#{step.id}" } %>
-        <%= new_dose_form.input :quantity, label: 'quantité' %>
-        <%= new_dose_form.input :unit, label: 'unité' %>
-        <%= new_dose_form.submit '+ Ajouter', class: "btn btn-secondary btn-new-dose js-add-btn" %>
-      </div>
-    <% end %>
+      <%= render 'owner/doses/create', step: step %>
     <!----------------------------- END OF NEW DOSE FORM ----------------------------->
     <div class="step-utensil-content">
       <h6 class="margin-bottom-15"><i class="fas fa-utensil-spoon"></i> Saisie des ustensiles de cusine nécessaires</h6>
