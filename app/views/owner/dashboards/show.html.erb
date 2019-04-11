@@ -5,6 +5,7 @@
   </div>
   <div class="row">
     <% @recipes.each do |recipe| %>
+    <% if recipe.kind == 'original' || recipe.kind == 'variant' %>
       <div class= "col-sm-12 col-md-6 col-lg-4">
         <div class="card-recipe-dashboard">
            <% if recipe.photo.url.nil? %>
@@ -19,22 +20,23 @@
                 </div>
               <% end %>
             <% else %>
-              <%= link_to recipe_path(recipe) do %>
               <div class="card-recipe-title">
                 <h2><%= recipe.title %></h2>
               </div>
               <% end %>
-              <% end %>
           <span>
-            <% if recipe.kind == 'variant' %>
-              <div class="variant-count">
+
+            <% case recipe.kind %>
+            <% when 'variant' %>
+            <div class="variant-count">
               variante
               </div>
-            <% else %>
-              <div class="variant-orginal">
+            <% when 'original' %>
+            <div class="variant-orginal">
               originale
               </div>
             <% end %>
+
           </span>
         </div>
         <div class="container-subtitle">
@@ -55,9 +57,18 @@
             <p class="text-center">Modifier <i class="fas fa-pen"></i></p>
             <% end %>
           </div>
+          <div>
+            <% if recipe.kind == 'original' %>
+              <%= link_to owner_recipe_path(recipe),
+              method: :delete do %>
+              <i class="far fa-trash-alt"></i>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
+    <% end %>
     <% end %>
   </div>
 

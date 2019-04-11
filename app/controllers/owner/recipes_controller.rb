@@ -1,4 +1,6 @@
 class Owner::RecipesController < ApplicationController
+  before_action :set_recipe, only: [:edit, :update, :destroy]
+
   def new
     @recipe = Recipe.new
   end
@@ -22,7 +24,6 @@ class Owner::RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
     if @recipe.user == current_user
       @step = Step.new(recipe: @recipe)
       @dose = Dose.new
@@ -34,7 +35,6 @@ class Owner::RecipesController < ApplicationController
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
     if @recipe.user == current_user
       @recipe.update!(params_recipe)
 
@@ -60,10 +60,25 @@ class Owner::RecipesController < ApplicationController
     redirect_to owner_dashboard_path
   end
 
+  def destroy
+    if @recipe.kind == 'original'
+      if @recipe.variants.count == 0
+        @recipe.destroy!
+      else
+        flash[:notice] = "Suppression impossible, cette recette possède actuellement des variantes."
+      end
+    end
+    redirect_to owner_dashboard_path
+  end
+
   private
 
   def params_recipe
     params.require(:recipe).permit(:photo, :title, :subtitle, :description,
                                    :prep_time, :cook_time, :rest_time, :kind, :published, :servings)
+  end
+
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
   end
 end
