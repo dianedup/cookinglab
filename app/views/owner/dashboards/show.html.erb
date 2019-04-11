@@ -5,7 +5,6 @@
   </div>
   <div class="row">
     <% @recipes.each do |recipe| %>
-<<<<<<< HEAD
       <div class= "col-sm-12 col-md-6 col-lg-4">
         <div class="card-recipe-dashboard">
            <% if recipe.photo.url.nil? %>
@@ -36,39 +35,8 @@
               originale
               </div>
             <% end %>
-=======
-    <div class= "col-sm-12 col-md-6 col-lg-4">
-      <div class="card-recipe-dashboard">
-        <% if recipe.photo.url.nil? %>
-          <div class="card-recipe-image text-center" style="background-image: url('<%= image_path "default_image.png" %>')">
-        <% else %>
-          <div class="card-recipe-image text-center" style="background-image: url('<%= cl_image_path recipe.photo %>')">
-        <% end %>
-        <% if recipe.published == true %>
-          <%= link_to recipe_path(recipe), class: 'dashboard-link-to-show' do %>
-          <div class="card-recipe-title">
-            <h2><%= recipe.title %></h2>
-          </div>
-        <% end %>
-        <% else %>
-          <div class="card-recipe-title">
-            <h2><%= recipe.title %></h2>
-          </div>
-        <% end %>
-          <span>
-          <% if recipe.kind == 'variant' %>
-            <div class="variant-count">
-            variante
-            </div>
-          <% else %>
-            <div class="variant-orginal">
-            originale
-            </div>
-          <% end %>
->>>>>>> df153b1997ebf903149c6f3b351ff95662f45052
           </span>
         </div>
-
         <div class="container-subtitle">
           <% if recipe.kind == 'variant' %>
             <p class="myrecipe-card-subtitle"><%= recipe.subtitle.capitalize.truncate(45, omission: '...') %></p>
@@ -111,7 +79,7 @@
               <div class="notification-content-title">
                 <h5><%= changes_proposal.recipe.title %></h5>
               </div>
-              <p><%= changes_proposal.message %></p>
+              <p class="mb-5"><%= changes_proposal.message %></p>
               <% if changes_proposal.status == 'pending' %>
                 <div class="notifications-actions mt-2">
                   <p>
