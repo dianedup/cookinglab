@@ -19,7 +19,7 @@ oeuf                    = Ingredient.create!(name: "oeuf")
 sucre_vanillé           = Ingredient.create!(name: "sucre vanillé")
 beurre                  = Ingredient.create!(name: "beurre")
 farine                  = Ingredient.create!(name: "farine")
-myrtilles               = Ingredient.create!(name: "beurre")
+myrtilles               = Ingredient.create!(name: "myrtilles")
 sucre                   = Ingredient.create!(name: "sucre")
 sel                     = Ingredient.create!(name: "sel")
 levure_chimique         = Ingredient.create!(name: "levure chimique")
@@ -52,6 +52,7 @@ gousse_de_vanille       = Ingredient.create!(name: "gousse de vanille")
 flocons_de_noix_de_coco = Ingredient.create!(name: "flocons de noix de coco")
 gambas                  = Ingredient.create!(name: "gambas")
 lait_amandes             = Ingredient.create!(name: "lait d'amandes")
+jaune_oeuf             = Ingredient.create!(name: "jaune d'oeuf")
 
 puts 'Creating new utensils'
 four                  = Utensil.create!(name: "four")
@@ -84,8 +85,8 @@ vegan             = Tag.create!(name: "vegan")
 plus_rapide       = Tag.create!(name: "plus rapide")
 version_mini      = Tag.create!(name: "version mini")
 avec_lait_amandes = Tag.create!(name: "avec lait d'amandes")
-avec_gambas       = Tag.create!(name: "avec gambas")
-sans_gingembre    = Tag.create!(name: "sans gingembre")
+doux              = Tag.create!(name: "doux")
+epice             = Tag.create!(name: "épicé")
 
 puts 'Creating new users'
 thierry  = User.create!(first_name: "thierry", last_name: "de azevedo", email: "tda@cuisine.com", password: "azerty", avatar: File.open(Rails.root.join('db/fixtures/avatars/thierry.jpg')))
@@ -97,7 +98,7 @@ mamie    = User.create!(first_name: "mamie", last_name: "brigitte", email: "mb@c
 puts 'Creating new recipes'
 cake_citron_graines_pavot    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/cake_citron_pavot.jpg')), title: "Cake au citron et graines de pavot", subtitle: "originale",
                              description: "Aujourd'hui je vous propose la recette d'un cake extraordinaire! Un délicieux cake au citron bien moelleux, humide, bien parfumé et pas trop sucré. Bref c'est une véritable tuerie, après le cake anglais aux fruits confits, c'est mon 2e cake préféré! ",
-                             prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "original", published: true, user: diane, published_on: "2019-03-23", servings: 4, upvote: 5)
+                             prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "original", published: true, user: mamie, published_on: "2019-03-23", servings: 4, upvote: 5)
 tarte_au_fraise              = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/tarte_aux_fraises.jpg')), title: "Tarte aux fraises", subtitle: "originale",
                              description: "Une pâte brisée maison, une bonne crème pâtissière à la vanille et des belles fraises, c’est tout ce qu’il vous faut pour réaliser cette recette de tarte aux fraises facile à la maison. Réutilisez cette base de tarte pour décliner en tarte aux framboises, aux mûres, aux myrtilles… ou tout autre fruit qu’il vaut mieux manger cru que cuit au four.",
                              prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", user: thierry, kind: "original", published: true, published_on: "2019-03-15", servings: 6, upvote: 7)
@@ -112,7 +113,7 @@ muesli_suisse                = Recipe.create!(photo: File.open(Rails.root.join('
                              prep_time: "10 min", cook_time: "5 min", rest_time: "12 h", user: matthias, kind: "original", published: true, published_on: "2019-03-29", servings: 4, upvote:9)
 macarons_a_la_noix_de_coco   = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/macarons_a_la_noix_de_coco.jpg')), title: "Macarons à la noix de coco", subtitle: "originale",
                              description: "Les macarons de noix de coco sont une vrai bombe de protéines. Ils sont parfaitement adaptées en tant que snakc après vos sessions de sport intensives, mais aussi à tout moment de la journée. De plus, la graisse contenue dans la noix de coco est censée avoir un effet positif sur le cerveau.",
-                             prep_time: "30 min", cook_time: "25 min", rest_time: "2 h", user: matthias, kind: "original", published: true, published_on: "2019-03-18", servings: 24, upvote: 3)
+                             prep_time: "30 min", cook_time: "25 min", rest_time: "2 h", user: diane, kind: "original", published: true, published_on: "2019-03-18", servings: 24, upvote: 3)
 muesli_au_melange_de_baies   = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/muesli_au_melange_de_baies.jpg')), title: "Muesli au mélange de baies", subtitle: "originale",
                              description: "Ce muesli au goût très frais si les baies sont congelés et décongèlent lentement, doit être préparer idéalement la veille au soir en le laissant tremper toute la nuit. dans le cas où le muesli serait trop sec, ajouter du lait et mélanger.",
                              prep_time: "10 min", cook_time: "5 min", rest_time: "8 h", user: thierry, kind: "original", published: true, published_on: "2019-03-24", servings: 1, upvote: 8)
@@ -140,6 +141,10 @@ macarons_a_la_noix_de_coco_step_4   = Step.create!(recipe: macarons_a_la_noix_de
 muesli_au_melange_de_baies_step_1   = Step.create!(recipe: muesli_au_melange_de_baies, position: 1, content: "Griller les amandes dans une poêle sans matière grasse environ 4 minutes.")
 muesli_au_melange_de_baies_step_2   = Step.create!(recipe: muesli_au_melange_de_baies, position: 2, content: "Emincer finement la gousse de vanille.")
 muesli_au_melange_de_baies_step_3   = Step.create!(recipe: muesli_au_melange_de_baies, position: 3, content: "Mélanger la farine d'avoine, les graines de lin, les amandes grillées, les baies et une gousse de vanille avec le yaourt à la grecque et le lait.")
+tarte_au_fraise_step_1              = Step.create!(recipe: tarte_au_fraise, position: 1, content: "Faire la pâte sablée en mélangeant les ingrédients. L'étaler dans un moule. Piquer avec une fourchette. La faire cuire pendant environ 20 minutes à 180 °C.")
+tarte_au_fraise_step_2              = Step.create!(recipe: tarte_au_fraise, position: 2, content: "Faire chauffer le lait. Battre les jaunes d'oeuf et le sucre, et ajouter la farine. Verser le lait bouillant tout en remuant. Une fois que la crème a épaissie, retirer du feu, puis mettre le beurre en fouettant vivement. Laisser refroidir.")
+tarte_au_fraise_step_3              = Step.create!(recipe: tarte_au_fraise, position: 3, content: "Laver les fraises et les couper dans le sens de la longueur.")
+tarte_au_fraise_step_4              = Step.create!(recipe: tarte_au_fraise, position: 4, content: "Pour finir, Sur le fond de pâte (refroidie), déposer la crème pâtissière, puis les fraises. A déguster frais. Bon appétit !")
 
 
 
@@ -161,6 +166,11 @@ Dose.create!(step: muesli_suisse_step_1, ingredient: amandes_hachees, quantity: 
 Dose.create!(step: macarons_a_la_noix_de_coco_step_1, ingredient: blanc_d_oeufs, quantity: 4)
 Dose.create!(step: macarons_a_la_noix_de_coco_step_1, ingredient: sel, quantity: 1, unit: 'pincée')
 Dose.create!(step: muesli_au_melange_de_baies_step_1, ingredient: amandes_hachees, quantity: 30, unit: 'g')
+Dose.create!(step: tarte_au_fraise_step_1, ingredient: farine, quantity: 200, unit: 'g')
+Dose.create!(step: tarte_au_fraise_step_1, ingredient: beurre, quantity: 100, unit: 'g')
+Dose.create!(step: tarte_au_fraise_step_1, ingredient: sucre, quantity: 80, unit: 'g')
+Dose.create!(step: tarte_au_fraise_step_1, ingredient: sel, quantity: 1, unit: 'pincée')
+Dose.create!(step: tarte_au_fraise_step_1, ingredient: oeuf, quantity: 1)
 
 Dose.create!(step: cake_citron_graines_pavot_step_2, ingredient: sucre_glace, quantity: 80, unit: 'g')
 Dose.create!(step: cake_citron_graines_pavot_step_2, ingredient: jus_citron, quantity: 5, unit: 'cl')
@@ -172,6 +182,12 @@ Dose.create!(step: macarons_a_la_noix_de_coco_step_2, ingredient: flocons_de_noi
 Dose.create!(step: macarons_a_la_noix_de_coco_step_2, ingredient: pate_de_noix_de_cajou, quantity: 1, unit: 'cuillère à café')
 Dose.create!(step: macarons_a_la_noix_de_coco_step_2, ingredient: miel, quantity: 1, unit: 'cuillère à café')
 Dose.create!(step: muesli_au_melange_de_baies_step_2, ingredient: gousse_de_vanille, quantity: 1)
+Dose.create!(step: tarte_au_fraise_step_2, ingredient: lait, quantity: 50, unit: 'cl')
+Dose.create!(step: tarte_au_fraise_step_2, ingredient: farine, quantity: 50, unit: 'g')
+Dose.create!(step: tarte_au_fraise_step_2, ingredient: beurre, quantity: 50, unit: 'g')
+Dose.create!(step: tarte_au_fraise_step_2, ingredient: sucre, quantity: 100, unit: 'g')
+Dose.create!(step: tarte_au_fraise_step_2, ingredient: jaune_oeuf, quantity: 3)
+
 
 Dose.create!(step: cake_citron_graines_pavot_step_3, ingredient: sucre_glace, quantity: 150, unit: 'g')
 Dose.create!(step: cake_citron_graines_pavot_step_3, ingredient: jus_citron, quantity: 5, unit: 'cl')
@@ -234,7 +250,7 @@ RecipeTag.create!(recipe: cake_citron_graines_pavot, tag: allegee)
 ################################################################################
 
 puts 'Creating recipe variant 1'
-cake_citron_graines_pavot_variant_1    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/cake_citron_pavot_sans_lactose.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Sans lactose", description: "J'aime beaucoup la recette de cake au citron et graines de pavot de Diane et j'ai voulu la tenter sans lactose. Un vrai délice aussi pour les allergiques !", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, published_on: "2019-04-02", user: matthias, original_recipe: cake_citron_graines_pavot, servings: 4, upvote: 4)
+cake_citron_graines_pavot_variant_1    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/cake_citron_pavot_sans_lactose.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Sans lactose", description: "J'aime beaucoup la recette de cake au citron et graines de pavot de Diane et j'ai voulu la tenter sans lactose. Un vrai délice aussi pour les allergiques !", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, published_on: "2019-04-02", user: diane, original_recipe: cake_citron_graines_pavot, servings: 4, upvote: 8)
 curry_de_crevettes_doux_variant_1      = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/curry_de_crevettes_doux.jpg')), title: "Curry de crevettes doux", subtitle: "Sans gingembre", description: "J'aime beaucoup cette recette de curry de crevettes doux de Diane et j'ai voulu la tenter sans gingembre. Un vrai délice aussi pour les allergiques !", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, published_on: "2019-04-02", user: matthias, original_recipe: curry_de_crevettes_doux, servings: 4, upvote: 5)
 muesli_suisse_variant_1                = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/muesli_suisse.jpg')), title: "Muesli Suisse", subtitle: "au lait d'amandes", description: "Intolérant au lait de vache, j'ai adapté cette recette de Matthias avec du lait d'amandes. Délicieux et adapté à mon régime sportif!", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, user: thierry, published_on: "2019-04-02", original_recipe: muesli_suisse, servings: 4, upvote: 6)
 
@@ -312,7 +328,7 @@ StepUtensil.create!(step: muesli_suisse_variant_1_step_4, utensil: recipient_ref
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_1, tag: allegee)
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_1, tag: sans_lactose)
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_1, tag: vegan)
-RecipeTag.create!(recipe: curry_de_crevettes_doux_variant_1, tag: sans_gingembre)
+RecipeTag.create!(recipe: curry_de_crevettes_doux_variant_1, tag: doux)
 RecipeTag.create!(recipe: muesli_suisse_variant_1, tag: avec_lait_amandes)
 
 
@@ -321,7 +337,7 @@ RecipeTag.create!(recipe: muesli_suisse_variant_1, tag: avec_lait_amandes)
 ################################################################################
 
 puts 'Creating recipe variant 2'
-cake_citron_graines_pavot_variant_2    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/cake_citron_pavot_sans_gluten.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Sans gluten", description: "Super recette, merci Diane, et moi je préfère cette version sans gluten. Goutez-y, vous verrez c'est super bon !", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, published_on: "2019-04-02", user: melanie, original_recipe: cake_citron_graines_pavot, servings: 4, upvote: 3)
+cake_citron_graines_pavot_variant_2    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/cake_citron_pavot_sans_gluten.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Avec farine sans gluten", description: "Super recette, merci Diane. Mais moi, je préfère cette version sans gluten. Goutez-y, vous verrez c'est super bon !", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, published_on: "2019-04-02", user: melanie, original_recipe: cake_citron_graines_pavot, servings: 4, upvote: 5)
 curry_de_crevettes_doux_variant_2      = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/curry_de_crevettes_doux.jpg')), title: "Curry de crevettes doux", subtitle: "avec gambas", description: "J'aime beaucoup cette recette de curry de crevettes de ma nièce, Diane, mais je préfère les gambas. J'ai donc adapté la recette en passant les gambas à la plancha au préalable!", prep_time: "20 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, published_on: "2019-04-02", user: thierry, original_recipe: curry_de_crevettes_doux, servings: 4, upvote: 4)
 
 cake_citron_graines_pavot_variant_2_step_1 = Step.create!(recipe: cake_citron_graines_pavot_variant_2, position: 1, content: "Dans un bol, battre vivement le beurre et le sucre jusqu’à obtenir un mélange crémeux. Ajouter ensuite les ingrédients restants dans l’ordre et bien mélanger entre chaque ajout. Je vous recommande ici la farine de riz qui donnera une bonne texture au cake. Verser la préparation dans un moule à cake beurré. Enfourner dans un four préchauffé à 180°C et cuire 40 à 45mn (jusqu’à ce que la lame d’un couteau ressorte propre).  - Laisser le cake tiédir 10mn sans le démouler.")
@@ -384,19 +400,19 @@ StepUtensil.create!(step: curry_de_crevettes_doux_variant_2_step_3, utensil: wok
 
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_2, tag: allegee)
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_2, tag: sans_gluten)
-RecipeTag.create!(recipe: curry_de_crevettes_doux_variant_2, tag: avec_gambas)
+RecipeTag.create!(recipe: curry_de_crevettes_doux_variant_2, tag: epice)
 
 ################################################################################
 # VARIANT 3
 ################################################################################
 
 puts 'Creating recipe variant 3'
-cake_citron_graines_pavot_variant_3    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/mini_cakes_au_citron.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Version mini et sans graines de pavot", description: "Et voici une version mini, à partager et à emporter ! Et comme je ne suis pas très graines de pavot, j'ai fait sans.", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, published_on: "2019-04-02", user: thierry, original_recipe: cake_citron_graines_pavot, servings: 4, upvote: 5)
-
+cake_citron_graines_pavot_variant_3    = Recipe.create!(photo: File.open(Rails.root.join('db/fixtures/recipes/mini_cakes_au_citron.jpg')), title: "Cake au citron et graines de pavot", subtitle: "Version mini et sans graines de pavot", description: "Et voici une version mini, à partager et à emporter ! Et comme je ne suis pas très graines de pavot, j'ai fait sans.", prep_time: "10 min", cook_time: "55 min", rest_time: "12 h", kind: "variant", published: true, published_on: "2019-04-02", user: thierry, original_recipe: cake_citron_graines_pavot, servings: 4, upvote: 11)
 
 cake_citron_graines_pavot_variant_3_step_1 = Step.create!(recipe: cake_citron_graines_pavot_variant_3, position: 1, content: "Dans un bol, battre vivement le beurre et le sucre jusqu’à obtenir un mélange crémeux. Ajouter ensuite les ingrédients restants dans l’ordre et bien mélanger entre chaque ajout. Verser la préparation dans un moule à cake beurré. Enfourner dans un four préchauffé à 180°C et cuire 40 à 45mn (jusqu’à ce que la lame d’un couteau ressorte propre).  - Laisser le cake tiédir 10mn sans le démouler.")
 cake_citron_graines_pavot_variant_3_step_2 = Step.create!(recipe: cake_citron_graines_pavot_variant_3, position: 2, content: "Pendant ce temps, mélanger les ingredients du 1er glaçage : 80g de sucre glace et le jus d'un demi citron, on doit obtenir un mélange plutôt liquide. Piquer le cake avec le couteau et verser doucement ce glaçage sur le dessus du cake toujours dans son moule pour l'imbiber. Laisser le cake absorber le glaçage et refroidir pendant environ 20 min.")
 cake_citron_graines_pavot_variant_3_step_3 = Step.create!(recipe: cake_citron_graines_pavot_variant_3, position: 3, content: "Démouler ensuite le cake et le poser sur une grille à pâtisserie. Mélanger les ingrédients du 2e glaçage : 150g de sucre glace et le jus d’un demi citron, on doit il obtenir un mélange pas trop liquide et bien blanc (ajouter un peu de sucre glace si il est trop liquide). Verser doucement la moitié du glaçage blanc sur le dessus du cake, étaler jusqu’aux bords avec une spatule. Verser ensuite le reste du glaçage blanc sur le dessus du cake et le laisser couler sur les bords. Parsemer de zestes de citron pour décorer le glaçage. Laisser ensuite le glaçage figer 12h sur la grille à pâtisserie sans le toucher.")
+
 
 Dose.create!(step: cake_citron_graines_pavot_variant_3_step_1, ingredient: beurre, quantity: 100, unit: 'g')
 Dose.create!(step: cake_citron_graines_pavot_variant_3_step_1, ingredient: sucre, quantity: 150, unit: 'g')
@@ -433,5 +449,53 @@ StepUtensil.create!(step: cake_citron_graines_pavot_variant_3_step_3, utensil: g
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_3, tag: allegee)
 RecipeTag.create!(recipe: cake_citron_graines_pavot_variant_3, tag: version_mini)
 
+################################################################################
+# CHANGES PROPOSAL 1
+################################################################################
+
+curry_de_crevettes_doux_cp_1 = Recipe.create!(
+  photo: File.open(Rails.root.join('db/fixtures/recipes/curry_de_crevettes_doux.jpg')),
+  title: "Curry de crevettes doux",
+  description: "J'aime beaucoup cette recette de curry de crevettes doux de Diane et j'ai voulu la tenter sans gingembre. Un vrai délice aussi pour les allergiques !",
+  prep_time: "10 min",
+  cook_time: "55 min",
+  rest_time: "12 h",
+  kind: "changes_proposal",
+  user: melanie,
+  original_recipe: curry_de_crevettes_doux,
+  servings: 4,
+)
+# --- Steps and dependents data creation --- #
+curry_de_crevettes_doux_step_1      = Step.create!(recipe: curry_de_crevettes_doux_cp_1, position: 1, content: "Couper la tomate en petits morceaux, peler et écraser les gousses d'ail, émincer les oignons.")
+curry_de_crevettes_doux_step_2      = Step.create!(recipe: curry_de_crevettes_doux_cp_1, position: 2, content: "Dans une sauteuse ou un wok, chauffer l'huile. Mélanger ail, oignons, gingembre et curry.")
+curry_de_crevettes_doux_step_3      = Step.create!(recipe: curry_de_crevettes_doux_cp_1, position: 3, content: "Quand les oignons sont translucides, mettre la tomate, le lait de coco et le yaourt à la grecque. Saler, poivrer, mélanger, mettre un couvercle et laisser mijoter pendant 15 minutes.")
+curry_de_crevettes_doux_step_4      = Step.create!(recipe: curry_de_crevettes_doux_cp_1, position: 4, content: "Rajouter les crevettes et laisser cuire pendant 2 à 3 minutes à feu très doux en remuant régulièrement. Servir avec du riz.")
+
+Dose.create!(step: curry_de_crevettes_doux_step_1, ingredient: tomate, quantity: 1)
+Dose.create!(step: curry_de_crevettes_doux_step_1, ingredient: oignon, quantity: 1)
+Dose.create!(step: curry_de_crevettes_doux_step_1, ingredient: gousse_d_ail, quantity: 2)
+
+Dose.create!(step: curry_de_crevettes_doux_step_2, ingredient: gingembre, quantity: 30, unit: 'g')
+Dose.create!(step: curry_de_crevettes_doux_step_2, ingredient: huile_d_arachide, quantity: 3, unit: 'cuillère à soupe')
+Dose.create!(step: curry_de_crevettes_doux_step_2, ingredient: curry, quantity: 2, unit: 'cuillère à soupe')
+
+Dose.create!(step: curry_de_crevettes_doux_step_3, ingredient: yaourt_a_la_grecque, quantity: 1)
+Dose.create!(step: curry_de_crevettes_doux_step_3, ingredient: sel, quantity: 1, unit: 'pincée')
+Dose.create!(step: curry_de_crevettes_doux_step_3, ingredient: poivre, quantity: 1, unit: 'pincée')
+
+Dose.create!(step: curry_de_crevettes_doux_step_4, ingredient: crevettes, quantity: 600, unit: 'g')
+
+StepUtensil.create!(step: curry_de_crevettes_doux_step_1, utensil: couteau)
+StepUtensil.create!(step: curry_de_crevettes_doux_step_1, utensil: bol)
+
+StepUtensil.create!(step: curry_de_crevettes_doux_step_2, utensil: wok)
+
+StepUtensil.create!(step: curry_de_crevettes_doux_step_3, utensil: wok)
+
+cp1 = ChangesProposal.create!(
+  recipe: curry_de_crevettes_doux_cp_1,
+  message: "Salut Diane ! Comme convenu,j'ai complété l'étape finale en précisant que le feu doit être doux et qu'il faut remuer régulièrement pour éviter que ça ne brûle. À bientôt. Mélanie",
+  status: "pending",
+)
 
 puts 'Finished!'
