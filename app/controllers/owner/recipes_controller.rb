@@ -61,12 +61,15 @@ class Owner::RecipesController < ApplicationController
   end
 
   def destroy
-    if @recipe.kind == 'original'
+    case @recipe.kind
+    when 'original'
       if @recipe.variants.count == 0
         @recipe.destroy!
       else
         flash[:notice] = "Suppression impossible, cette recette possède actuellement des variantes."
       end
+    when 'variant'
+      @recipe.destroy!
     end
     redirect_to owner_dashboard_path
   end
