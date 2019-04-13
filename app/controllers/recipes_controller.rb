@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     if params[:query].present?
@@ -24,7 +25,7 @@ class RecipesController < ApplicationController
       format.js {}
     end
   end
-    
+
   private
 
   def set_recipe
