@@ -12,7 +12,7 @@
           <% end %>
         </div>
         <div class="profile-details-text mt-4">
-          <h1><%= @user.first_name + " " + @user.last_name %></h1>
+          <h1><%= @user.first_name.capitalize! + " " + @user.last_name.capitalize! %></h1>
           <div class="line-below"></div>
           <h5><%= @user.email %></h5>
           <p>Membre depuis le <%= @user.created_at.strftime("%d / %m / %Y") %></p>
