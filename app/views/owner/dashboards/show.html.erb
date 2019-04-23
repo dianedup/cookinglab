@@ -1,0 +1,111 @@
+<div class="container pt-3">
+  <h1 class="text-center">Mes recettes</h1>
+  <div class="dashboard-actions">
+    <button class="btn btn-secondary mb-3">+<%= link_to ' Ajouter une recette', new_owner_recipe_path %></button>
+  </div>
+  <div class="row">
+    <% @recipes.each do |recipe| %>
+    <div class= "col-sm-12 col-md-6 col-lg-4">
+      <div class="card-recipe-dashboard">
+
+        <% if recipe.photo.url.nil? %>
+          <div class="card-recipe-image text-center" style="background-image: url('<%= image_path "default_image.png" %>')">
+        <% else %>
+          <div class="card-recipe-image text-center" style="background-image: url('<%= cl_image_path recipe.photo %>')">
+        <% end %>
+        <% if recipe.published == true %>
+          <%= link_to recipe_path(recipe), class: 'dashboard-link-to-show' do %>
+          <div class="card-recipe-title">
+            <h2><%= recipe.title %></h2>
+          </div>
+        <% end %>
+        <% else %>
+          <div class="card-recipe-title">
+            <h2><%= recipe.title %></h2>
+          </div>
+        <% end %>
+          <span>
+          <% if recipe.kind == 'variant' %>
+            <div class="variant-count">
+            variante
+            </div>
+          <% else %>
+            <div class="variant-orginal">
+            originale
+            </div>
+          <% end %>
+          </span>
+        </div>
+        <div class="container-subtitle">
+          <% if recipe.kind == 'variant' %>
+            <p class="myrecipe-card-subtitle"><%= recipe.subtitle.capitalize.truncate(45, omission: '...') %></p>
+          <% end %>
+        </div>
+        <div class="d-flex justify-content-around">
+          <div>
+            <% if recipe.published == false %>
+              <button class="btn btn-success p-0 pl-1 pr-1"><%= link_to 'Publier ', owner_recipe_publish_path(recipe), method: :patch %><i class="fas fa-rocket"></i></button>
+            <% else %>
+              <p clas="badge badge-primary">Publié <i class="fas fa-check"></i></p>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to edit_owner_recipe_path(recipe), class: 'card-link' do %>
+            <p class="text-center">Modifier <i class="fas fa-pen"></i></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm">
+      <div class="changes-proposals-review-box" id="changes-proposals">
+        <div class="changes-proposals-box-title">
+          <h4 class="text-center">Propositions de changements</h4>
+        </div>
+        <% if @changes_proposals.empty? %>
+          <center>Vous n'avez pas de propositions de modifications pour le moment</center>
+        <% end %>
+        <% @changes_proposals.each do |changes_proposal| %>
+          <h6>Proposition de <%= changes_proposal.recipe.user.first_name.capitalize %></h6>
+          <div class="notification-dashboard mb-4">
+            <%= cl_image_tag changes_proposal.recipe.photo, width: 600, aspect_ratio: 1, crop: :fill%>
+            <div class="notification-content">
+              <div class="notification-content-title">
+                <h5><%= changes_proposal.recipe.title %></h5>
+              </div>
+              <p class="mb-5"><%= changes_proposal.message %></p>
+              <% if changes_proposal.status == 'pending' %>
+                <div class="notifications-actions mt-2">
+                  <p>
+                  <%= link_to accept_owner_changes_proposal_path(changes_proposal), method: :patch, class: 'card-link' do %>
+                    Accepter <i class="fas fa-check"></i>
+                  <% end %>
+                  <%= link_to deny_owner_changes_proposal_path(changes_proposal), method: :patch, class: 'card-link' do %>
+                    Refuser <i class="fas fa-times"></i>
+                  <% end %>
+                  </p>
+                </div>
+              <% end %>
+            </div>
+            <div class="notification-status-box">
+              <% if  changes_proposal.status == 'pending' %>
+                <i class="fas fa-hourglass-half"></i>
+              <% elsif changes_proposal.status == 'accepted' %>
+                <i class="fas fa-check"></i>
+              <% elsif changes_proposal.status == 'denied' %>
+                <i class="fas fa-ban"></i>
+              <% else %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
