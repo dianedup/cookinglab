@@ -1,4 +1,6 @@
 class Owner::DosesController < ApplicationController
+  before_action :set_owner_doses, only: [:update, :destroy]
+
   def new
     @dose = Dose.new
     @step = Step.find(params[:step_id])
@@ -21,7 +23,6 @@ class Owner::DosesController < ApplicationController
   end
 
   def update
-    @dose = Dose.find(params[:id])
     @recipe = @dose.step.recipe
 
     if @dose.update(dose_params)
@@ -38,7 +39,6 @@ class Owner::DosesController < ApplicationController
   end
 
   def destroy
-    @dose = Dose.find(params[:id])
     @recipe = @dose.step.recipe
     @dose_id = @dose.id
     if @dose.destroy
@@ -54,7 +54,13 @@ class Owner::DosesController < ApplicationController
     end
   end
 
+  private
+
   def dose_params
     params.require(:dose).permit(:quantity, :unit, :ingredient_id)
+  end
+
+  def set_owner_doses
+    @dose = Dose.find(params[:id])
   end
 end

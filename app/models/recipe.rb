@@ -12,7 +12,6 @@ class Recipe < ApplicationRecord
   has_many :recipes_with_changes_proposals, -> { where(kind: 'changes_proposal') }, class_name: "Recipe", foreign_key: "original_recipe_id", dependent: :destroy
   has_many :variants, -> { where(kind: 'variant') }, class_name: "Recipe", foreign_key: "original_recipe_id", dependent: :destroy
 
-
   mount_uploader :photo, PhotoUploader
 
   include PgSearch
