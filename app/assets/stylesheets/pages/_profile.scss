@@ -1,4 +1,15 @@
-.profile-details-text {
-  margin-top: 40px;
-  // margin-bottom: 30px;
+.line-below {
+  border-top: 1px dotted $charcoal;
+  border-bottom: 1px dotted $white;
+  margin-bottom: 8px;
+}
+
+.update-option {
+  background-color: blue;
+}
+
+.profile-contain {
+  position: absolute;
+  top: -125px;
+  left: 155px;
 }
