@@ -6,7 +6,7 @@ class Owner::RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new(params_recipe)
+    @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
 
     if @recipe.save
@@ -36,7 +36,7 @@ class Owner::RecipesController < ApplicationController
 
   def update
     if @recipe.user == current_user
-      @recipe.update!(params_recipe)
+      @recipe.update!(recipe_params)
 
       if params[:recipe][:tags].present? # => ["1", "2", "3"]
         @recipe.recipe_tags.destroy_all
@@ -61,7 +61,7 @@ class Owner::RecipesController < ApplicationController
 
   private
 
-  def params_recipe
+  def recipe_params
     params.require(:recipe).permit(:photo, :title, :subtitle, :description,
                                    :prep_time, :cook_time, :rest_time, :kind, :published, :servings)
   end

@@ -5,7 +5,7 @@ class Owner::ContributionsController < ApplicationController
   end
 
   def create
-    @contribution = ChangesProposal.new(params_contributions)
+    @contribution = ChangesProposal.new(contribution_params)
     @recipe = Recipe.find(params[:recipe_id])
     @contribution.recipe = @recipe
     @contribution.status = 'pending'
@@ -16,7 +16,7 @@ class Owner::ContributionsController < ApplicationController
 
   private
 
-  def params_contributions
+  def contribution_params
     params.require(:changes_proposal).permit(:message)
   end
 end

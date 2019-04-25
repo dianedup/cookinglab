@@ -7,7 +7,7 @@ class Owner::StepUtensilsController < ApplicationController
   end
 
   def create
-    @step_utensil      = StepUtensil.new(params_step_ustensils)
+    @step_utensil      = StepUtensil.new(step_ustensil_params)
     @step              = Step.find(params[:step_id])
     @step_utensil.step = @step
     utensil            = params[:step_utensil][:utensil_id]
@@ -24,7 +24,7 @@ class Owner::StepUtensilsController < ApplicationController
   end
 
   def update
-    if @step_utensil.update(params_step_ustensils)
+    if @step_utensil.update(step_ustensil_params)
       redirect_to edit_owner_recipe_path(@recipe)
     else
       render 'owner/recipes/edit'
@@ -46,7 +46,7 @@ class Owner::StepUtensilsController < ApplicationController
     end
   end
 
-  def params_step_ustensils
+  def step_ustensil_params
     params.require(:step_utensil).permit(:utensil_id)
   end
 
