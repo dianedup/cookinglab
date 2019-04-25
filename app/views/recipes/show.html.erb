@@ -12,9 +12,11 @@
             <span><%= tag.name %></span>
             <% end %>
           </div>
-          <div id="upvote-recipe">
-            <%= render 'upvote' %>
-          </div>
+          <% if user_signed_in? %>
+            <div id="upvote-recipe">
+              <%= render 'upvote' %>
+            </div>
+          <% end %>
         </div>
         <div class="recipe-title-card">
           <h2><%= @recipe.title.capitalize %></h2>
@@ -194,4 +196,3 @@
     </div>
   </div>
 </div>
-
