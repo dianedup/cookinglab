@@ -4,9 +4,6 @@
     <button class="btn btn-secondary mb-3">+<%= link_to ' Ajouter une recette', new_owner_recipe_path %></button>
   </div>
   <div class="row">
-    <% if flash[:notice] %>
-      <div class="notice"></div>
-    <% end %>
     <% @recipes.each do |recipe| %>
       <% if recipe.kind == 'original' || recipe.kind == 'variant' %>
         <div class= "col-sm-12 col-md-6 col-lg-4">
