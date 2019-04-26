@@ -1,5 +1,5 @@
 class Owner::StepUtensilsController < ApplicationController
-  before_action :set_step_ustensils, only: [:update, :destroy]
+  before_action :set_step_ustensil, only: [:update, :destroy]
 
   def new
     @step_utensil = StepUtensil.new
@@ -52,7 +52,7 @@ class Owner::StepUtensilsController < ApplicationController
 
   private
 
-  def set_step_ustensils
+  def set_step_ustensil
     @step_utensil = StepUtensil.find(params[:id])
     @recipe = @step_utensil.step.recipe
   end
