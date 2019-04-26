@@ -1,6 +1,7 @@
 class Owner::ChangesProposalsController < ApplicationController
+  before_action :set_owner_changes_proposals, only: [:accept, :deny]
+
   def accept
-    @changes_proposal = ChangesProposal.find(params[:id])
     @changes_proposal.status = 'accepted'
 
     if @changes_proposal.save
@@ -11,7 +12,6 @@ class Owner::ChangesProposalsController < ApplicationController
   end
 
   def deny
-    @changes_proposal = ChangesProposal.find(params[:id])
     @changes_proposal.status = 'denied'
 
     if @changes_proposal.save
@@ -21,9 +21,13 @@ class Owner::ChangesProposalsController < ApplicationController
 
   private
 
+
+  def set_owner_changes_proposals
+    @changes_proposal = ChangesProposal.find(params[:id])
+  end
+  
   def merge_cp_on_original_recipe
     ::Recipes::MergeCpOnOriginalRecipeService.new(@changes_proposal.recipe.id).call
     # recipe_id <=> id of recipe with kind = "changes_proposal", not original recipe
-
   end
 end
