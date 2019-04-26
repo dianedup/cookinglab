@@ -1,5 +1,5 @@
 class Owner::DosesController < ApplicationController
-  before_action :set_owner_doses, only: [:update, :destroy]
+  before_action :set_owner_dose, only: [:update, :destroy]
 
   def new
     @dose = Dose.new
@@ -60,7 +60,7 @@ class Owner::DosesController < ApplicationController
     params.require(:dose).permit(:quantity, :unit, :ingredient_id)
   end
 
-  def set_owner_doses
+  def set_owner_dose
     @dose = Dose.find(params[:id])
   end
 end
