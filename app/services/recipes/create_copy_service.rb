@@ -1,6 +1,5 @@
 module Recipes
   class CreateCopyService
-
     attr_reader :original_recipe, :copy, :creator, :recipe_copy_kind
 
     def initialize(original_recipe_id, creator_id, recipe_copy_kind = "variant")
@@ -30,7 +29,7 @@ module Recipes
 
     def create_copy
       @copy = Recipe.new(
-        original_recipe.attributes.slice('title', 'prep_time', 'cook_time', 'rest_time', 'servings')
+        original_recipe.attributes.slice('title', 'prep_time', 'cook_time', 'rest_time', 'servings', 'description')
       )
 
       # Add to new copy :
@@ -43,7 +42,7 @@ module Recipes
       @copy.user            = creator
       @copy.original_recipe = original_recipe
       @copy.subtitle        = ""
-      @copy.description     = "Proposez votre description"
+      @copy.description = "Proposez votre description" if recipe_copy_kind == 'variant' # else keep original description
       original_recipe.tags.each do |tag|
         @copy.tags << tag
       end
