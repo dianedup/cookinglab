@@ -24,7 +24,7 @@ class RecipesController < ApplicationController
       format.js {}
     end
   end
-    
+
   private
 
   def set_recipe
