@@ -3,7 +3,7 @@ class Recipe < ApplicationRecord
   belongs_to :original_recipe, class_name: "Recipe", optional: true
 
   has_many :recipe_tags
-  has_many :tags, through: :recipe_tags, dependent: :destroy
+  has_many :tags, through: :recipe_tags
   has_many :steps, dependent: :destroy
   has_many :doses, through: :steps
 
