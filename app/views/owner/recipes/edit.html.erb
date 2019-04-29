@@ -16,7 +16,7 @@
     <div class="text-center mb-2">Nom de votre variante</div>
     <%= simple_form_for([:owner, @recipe], remote: true) do |recipe_form|%>
       <div class="form-subtitle">
-        <%= recipe_form.input :subtitle, label: false, placeholder: '...' %>
+        <%= recipe_form.input :subtitle, label: false, placeholder: '...', input_html: { maxlength: 40 } %>
         <!-- <div><%#= recipe_form.button :submit, 'Enregistrer', class: 'btn btn-info mt-2 js-update-btn' %></div> -->
       </div>
     <% end %>
