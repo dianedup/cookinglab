@@ -1,10 +1,12 @@
 class Owner::RecipesController < ApplicationController
+  before_action :set_owner_recipe, only: [:edit, :update, :publish]
+
   def new
     @recipe = Recipe.new
   end
 
   def create
-    @recipe = Recipe.new(params_recipe)
+    @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
 
     if @recipe.save
@@ -22,7 +24,6 @@ class Owner::RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
     if @recipe.user == current_user
       @step = Step.new(recipe: @recipe)
       @dose = Dose.new
@@ -34,9 +35,8 @@ class Owner::RecipesController < ApplicationController
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
     if @recipe.user == current_user
-      @recipe.update!(params_recipe)
+      @recipe.update!(recipe_params)
 
       if params[:recipe][:tags].present? # => ["1", "2", "3"]
         @recipe.recipe_tags.destroy_all
@@ -53,7 +53,6 @@ class Owner::RecipesController < ApplicationController
   end
 
   def publish
-    @recipe = Recipe.find(params[:recipe_id])
     @recipe.published = 'true'
     @recipe.published_on = Date.today
     @recipe.save!
@@ -62,8 +61,12 @@ class Owner::RecipesController < ApplicationController
 
   private
 
-  def params_recipe
+  def recipe_params
     params.require(:recipe).permit(:photo, :title, :subtitle, :description,
                                    :prep_time, :cook_time, :rest_time, :kind, :published, :servings)
+  end
+
+  def set_owner_recipe
+    @recipe = Recipe.find(params[:id])
   end
 end
