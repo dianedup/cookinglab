@@ -1,5 +1,5 @@
 class Owner::RecipesController < ApplicationController
-  before_action :set_owner_recipe, only: [:edit, :update, :publish]
+  before_action :set_recipe, only: [:edit, :update, :destroy]
 
   def new
     @recipe = Recipe.new
@@ -53,9 +53,24 @@ class Owner::RecipesController < ApplicationController
   end
 
   def publish
+    @recipe = Recipe.find(params[:recipe_id])
     @recipe.published = 'true'
     @recipe.published_on = Date.today
     @recipe.save!
+    redirect_to owner_dashboard_path
+  end
+
+  def destroy
+    case @recipe.kind
+    when 'original'
+      if @recipe.variants.count == 0
+        @recipe.destroy!
+      else
+        flash[:notice] = "Suppression impossible, cette recette possède actuellement des variantes."
+      end
+    when 'variant'
+      @recipe.destroy!
+    end
     redirect_to owner_dashboard_path
   end
 
@@ -66,7 +81,7 @@ class Owner::RecipesController < ApplicationController
                                    :prep_time, :cook_time, :rest_time, :kind, :published, :servings)
   end
 
-  def set_owner_recipe
-    @recipe = Recipe.find(params[:recipe_id])
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
   end
 end
