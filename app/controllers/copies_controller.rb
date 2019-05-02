@@ -11,7 +11,7 @@ class CopiesController < ApplicationController
 
   private
 
-  def params_variant
+  def variant_params
     params.permit(:recipe_id, :recipe_copy_kind)
   end
 end

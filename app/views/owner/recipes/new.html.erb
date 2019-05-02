@@ -7,7 +7,7 @@
         <%= simple_form_for [:owner, @recipe] do |f| %>
           <div class="photo-upload-box">
               <div class="recipe-title-input-box">
-                <%= f.input :title, label: 'Titre de votre recette', required: false %>
+                <%= f.input :title, label: 'Titre de votre recette', required: false, input_html: { maxlength: 40 } %>
               </div>
               <div class="photo-upload-input-box">
                 <%= f.input :photo, input_html: { class: 'hidden', id: 'photo-input'}, label_html: { class: 'upload-photo'}, label: '📷 Télécharger une photo'%>

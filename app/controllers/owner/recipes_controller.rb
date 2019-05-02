@@ -66,7 +66,7 @@ class Owner::RecipesController < ApplicationController
                                    :prep_time, :cook_time, :rest_time, :kind, :published, :servings)
   end
 
-  def set_owner_recipe
+  def set_recipe
     @recipe = Recipe.find(params[:id])
   end
 end
