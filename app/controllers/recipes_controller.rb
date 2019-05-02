@@ -20,11 +20,11 @@ class RecipesController < ApplicationController
     @recipe.save
 
     respond_to do |format|
-      format.html {redirect_to recipe_path(@recipe)}
+      format.html { redirect_to recipe_path(@recipe) }
       format.js {}
     end
   end
-    
+
   private
 
   def set_recipe

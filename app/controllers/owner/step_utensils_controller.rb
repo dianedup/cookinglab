@@ -1,4 +1,6 @@
 class Owner::StepUtensilsController < ApplicationController
+  before_action :set_step_ustensil, only: [:update, :destroy]
+
   def new
     @step_utensil = StepUtensil.new
     @step = Step.find(params[:step_id])
@@ -22,9 +24,6 @@ class Owner::StepUtensilsController < ApplicationController
   end
 
   def update
-    @step_utensil = StepUtensil.find(params[:id])
-    @recipe = @step_utensil.step.recipe
-
     if @step_utensil.update(step_utensil_params)
       redirect_to edit_owner_recipe_path(@recipe)
     else
@@ -33,8 +32,6 @@ class Owner::StepUtensilsController < ApplicationController
   end
 
   def destroy
-    @step_utensil = StepUtensil.find(params[:id])
-    @recipe = @step_utensil.step.recipe
     @step_utensil_id = @step_utensil.id
     if @step_utensil.destroy
       respond_to do |format|
@@ -52,5 +49,11 @@ class Owner::StepUtensilsController < ApplicationController
   def step_utensil_params
     params.require(:step_utensil).permit(:utensil_id)
   end
-end
 
+  private
+
+  def set_step_ustensil
+    @step_utensil = StepUtensil.find(params[:id])
+    @recipe = @step_utensil.step.recipe
+  end
+end
