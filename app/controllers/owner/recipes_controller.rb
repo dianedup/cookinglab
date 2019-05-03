@@ -53,6 +53,7 @@ class Owner::RecipesController < ApplicationController
   end
 
   def publish
+    @recipe = Recipe.find(params[:recipe_id])
     @recipe.published = 'true'
     @recipe.published_on = Date.today
     @recipe.save!
@@ -66,7 +67,7 @@ class Owner::RecipesController < ApplicationController
                                    :prep_time, :cook_time, :rest_time, :kind, :published, :servings)
   end
 
-  def set_owner_recipe
-    @recipe = Recipe.find(params[:recipe_id])
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
   end
 end
